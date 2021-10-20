@@ -1,0 +1,5 @@
+connection.json
+venv
+output
+readme.txt
+*/__pycache__
