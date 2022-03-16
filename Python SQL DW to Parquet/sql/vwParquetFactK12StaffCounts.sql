@@ -1,4 +1,4 @@
-CREATE VIEW RDS.vwParquetFactK12StudentEnrollments AS
+CREATE VIEW RDS.vwParquetFactK12StaffCounts AS
 
 	SELECT fact.FactK12StaffCountId
 		, DimSchoolYears.SchoolYear
