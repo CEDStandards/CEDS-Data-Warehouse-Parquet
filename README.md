@@ -1,4 +1,4 @@
-![CEDS Data Warehouse Parquet Logo](/res/CEDS-Data-Warehouse-Parquet-Logo-Full.png "CEDS Data Warehouse Parquet")
+![CEDS Data Warehouse Parquet Logo](/res/Data-Warehouse-Parquet-Logo-Full.png "CEDS Data Warehouse Parquet")
 
 # CEDS Data Warehouse Parquet (DW Parquet)
 Welcome to the CEDS Open Source Community!
