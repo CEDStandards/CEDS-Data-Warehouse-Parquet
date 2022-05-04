@@ -1,24 +1,29 @@
-![CEDS Data Warehouse Parquet Logo](/res/CEDS-IDS-Logo-Full-Medium.png "CEDS Data Warehouse Parquet")
+![CEDS Data Warehouse Parquet Logo](/res/CEDS-Data-Warehouse-Parquet-Logo-Full.png "CEDS Data Warehouse Parquet")
 
 # CEDS Data Warehouse Parquet (DW Parquet)
 Welcome to the CEDS Open Source Community!
 
-The Common Education Data Standards (CEDS) Data Warehouse Parquet (DW Parquet) standard is designed for modern data engineering and data science needs in the cloud. The DW Parquet Models mirror the SQL-based CEDS Data Warehouse so solutions can be developed for both data model standards consistently. Parquet files are designed for rapid and distributed reporting across multiple technology stacks, data processing and BI tools, and are cloud vendor agnostic. 
+The Common Education Data Standards (CEDS) Data Warehouse Parquet (DW Parquet) standard is designed for data engineering and data science needs in the cloud. The DW Parquet Models mirror the SQL-based CEDS Data Warehouse. Parquet files are designed for rapid and distributed reporting across multiple technology stacks, data processing and BI tools, and are cloud vendor agnostic.  This standard is ideal for stakeholders implementing reporting structures in a data lake environment. 
 
-## Getting Started
-### Fresh Installation
+## Parquet File Format Standard
+The CEDS Data Warehouse Parquet standard is based on the CEDS Data Warehouse data standard fact tables.  The file name standard mimics the Fact table names.  The fields within the files are derived from the table and column names in the Fact table.  Fields in the Fact table that links to a Dimension table are used as the prefix for the fields within the dimension.  For example, RDS.FactK12StudentEnrollments.EnrollmentStartDateId, which links to RDS.DimDates in the CEDS Data Warehouse, translates to the following fields in the Parquet standard:
 
-### Upgrading your CEDS IDS
-The CEDS team  will provide rerunnable scripts to incrementally upgrade your IDS between compatible, incompatible, and alignment versions of the CEDS IDS. Upgrade scripts will be rerunnable to make it safe and easy to perform upgrades. Upgrade scripts contain CEDS metadata and reference table inserts and updates.
-1.	Based on your current version, download the appropriate upgrade script at /src/upgrade using your preferred SQL client.
-2.	Connect to your CEDS IDS database instance.
-3.	Execute the script.
+* EnrollmentEntryDate_DateValue
+* EnrollmentEntryDate_Day
+* EnrollmentEntryDate_DayOfWeek
+* EnrollmentEntryDate_DayOfYear
+* EnrollmentEntryDate_Month
+* EnrollmentEntryDate_MonthName
+* EnrollmentEntryDate_SubmissionYear
+* EnrollmentEntryDate_Year
+
+Each of the CEDS Data Warehouse Parquet file standards is documented in [CEDS-Data-Warehouse-Parquet-File-Metadata.xlsx](/docs/CEDS-Data-Warehouse-Parquet-File-Metadata.xlsx)
 
 ## Submitting a Use Case
 Use cases may be submitted through the [Issues](https://github.com/CEDStandards/CEDS-Data-Warehouse-Parquet/issues) tab by clicking on **New Issue** and then **Get Started** which is located next to **CEDS Integrated Data Store and Data Warehouse Use Case**.
 
 ## Contributing
-Please read [Contributing.md](https://github.com/CEDStandards/CEDS-IDS/blob/master/Contributing.md) for details on the process for submitting pull requests.
+Please read [Contributing.md](/Contributing.md) for details on the process for submitting pull requests.
 
 ## Versioning
 The CEDS open source community uses a customized version of Explicit Versioning. To keep the various CEDS open source projects in alignment with the CEDS Elements, the concept of "disruptive" releases has been replaced with "alignment" releases. These releases ensure that the data models are in sync with the official, CEDS community approved list of CEDS Elements. For the versions available, see the tags on this repository.
@@ -66,5 +71,5 @@ CEDS Elements version = 8.0.0.0
 Note: The CEDS Collaborative Exchange contains resources contributed by stakeholders. These resources should contain the compatible version they were created under.  The versions are not changed for a resource unless a stakeholder updates them to function under a newer version.
 
 ## License
-This project is licensed under the [Apache 2.0 License](https://github.com/CEDStandards/CEDS-Collaborative-Exchange/blob/master/LICENSE) - see the LICENSE file for details.
+This project is licensed under the [Apache 2.0 License](/LICENSE) - see the LICENSE file for details.
 
