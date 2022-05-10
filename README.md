@@ -5,20 +5,6 @@ Welcome to the CEDS Open Source Community!
 
 The Common Education Data Standards (CEDS) Data Warehouse Parquet (DW Parquet) standard is designed for data engineering and data science needs in the cloud. The DW Parquet Models mirror the SQL-based CEDS Data Warehouse. Parquet files are designed for rapid and distributed reporting across multiple technology stacks, data processing and BI tools, and are cloud vendor agnostic.  This standard is ideal for stakeholders implementing reporting structures in a data lake environment. 
 
-## Parquet File Format Standard
-The CEDS Data Warehouse Parquet standard is based on the CEDS Data Warehouse data standard fact tables.  The file name standard mimics the Fact table names.  The fields within the files are derived from the table and column names in the Fact table.  Fields in the Fact table that links to a Dimension table are used as the prefix for the fields within the dimension.  For example, RDS.FactK12StudentEnrollments.EnrollmentStartDateId, which links to RDS.DimDates in the CEDS Data Warehouse, translates to the following fields in the Parquet standard:
-
-* EnrollmentEntryDate_DateValue
-* EnrollmentEntryDate_Day
-* EnrollmentEntryDate_DayOfWeek
-* EnrollmentEntryDate_DayOfYear
-* EnrollmentEntryDate_Month
-* EnrollmentEntryDate_MonthName
-* EnrollmentEntryDate_SubmissionYear
-* EnrollmentEntryDate_Year
-
-Each of the CEDS Data Warehouse Parquet file standards is documented in [CEDS-Data-Warehouse-Parquet-File-Metadata.xlsx](/docs/CEDS-Data-Warehouse-Parquet-File-Metadata.xlsx)
-
 ## Submitting a Use Case
 Use cases may be submitted through the [Issues](https://github.com/CEDStandards/CEDS-Data-Warehouse-Parquet/issues) tab by clicking on **New Issue** and then **Get Started** which is located next to **CEDS Integrated Data Store and Data Warehouse Use Case**.
 
