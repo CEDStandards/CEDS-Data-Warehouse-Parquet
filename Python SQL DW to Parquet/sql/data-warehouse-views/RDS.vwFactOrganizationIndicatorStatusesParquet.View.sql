@@ -1,0 +1,46 @@
+/****** Object:  View [RDS].[vwFactOrganizationIndicatorStatusesParquet]    Script Date: 5/10/2022 2:48:07 PM ******/
+
+CREATE OR ALTER VIEW [RDS].[vwFactOrganizationIndicatorStatusesParquet] AS 
+SELECT fact.FactOrganizationIndicatorStatusId
+	, FactType.FactTypeCode AS FactType_FactTypeCode
+	, FactType.FactTypeDescription AS FactType_FactTypeDescription
+	, fact.K12SchoolId
+	, fact.CountDateId
+	, Race.RaceCode AS Race_RaceCode
+	, Race.RaceDescription AS Race_RaceDescription
+	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
+	, IdeaStatus.SpecialEducationExitReasonCode AS IdeaStatus_SpecialEducationExitReasonCode
+	, IdeaStatus.SpecialEducationExitReasonDescription AS IdeaStatus_SpecialEducationExitReasonDescription
+	, IdeaStatus.SpecialEducationExitReasonEdFactsCode AS IdeaStatus_SpecialEducationExitReasonEdFactsCode
+	, IdeaStatus.IdeaEducationalEnvironmentForSchoolAgeDescription AS IdeaStatus_IdeaEducationalEnvironmentForSchoolAgeDescription
+	, IdeaStatus.IdeaEducationalEnvironmentForSchoolAgeCode AS IdeaStatus_IdeaEducationalEnvironmentForSchoolAgeCode
+	, IdeaStatus.IdeaEducationalEnvironmentForSchoolAgeEdFactsCode AS IdeaStatus_IdeaEducationalEnvironmentForSchoolAgeEdFactsCode
+	, IdeaStatus.IdeaIndicatorCode AS IdeaStatus_IdeaIndicatorCode
+	, IdeaStatus.IdeaIndicatorDescription AS IdeaStatus_IdeaIndicatorDescription
+	, IdeaStatus.IdeaIndicatorEdFactsCode AS IdeaStatus_IdeaIndicatorEdFactsCode
+	, IdeaStatus.IdeaEducationalEnvironmentForEarlyChildhoodCode AS IdeaStatus_IdeaEducationalEnvironmentForEarlyChildhoodCode
+	, IdeaStatus.IdeaEducationalEnvironmentForEarlyChildhoodDescription AS IdeaStatus_IdeaEducationalEnvironmentForEarlyChildhoodDescription
+	, IdeaStatus.IdeaEducationalEnvironmentForEarlyChildhoodEdFactsCode AS IdeaStatus_IdeaEducationalEnvironmentForEarlyChildhoodEdFactsCode
+	, K12Demographic.SexCode AS K12Demographic_SexCode
+	, K12Demographic.SexDescription AS K12Demographic_SexDescription
+	, K12Demographic.SexEdFactsCode AS K12Demographic_SexEdFactsCode
+	, IndicatorStatus.IndicatorStatusCode AS IndicatorStatus_IndicatorStatusCode
+	, IndicatorStatus.IndicatorStatusDescription AS IndicatorStatus_IndicatorStatusDescription
+	, IndicatorStatus.IndicatorStatusEdFactsCode AS IndicatorStatus_IndicatorStatusEdFactsCode
+	, StateDefinedStatus.StateDefinedStatusCode AS StateDefinedStatus_StateDefinedStatusCode
+	, StateDefinedStatus.StateDefinedStatusDescription AS StateDefinedStatus_StateDefinedStatusDescription
+	, fact.OrganizationCount
+FROM RDS.FactOrganizationIndicatorStatuses fact
+JOIN RDS.DimFactTypes FactType
+	ON Fact.FactTypeId = FactType.DimFactTypeId
+JOIN RDS.DimRaces Race
+	ON Fact.RaceId = Race.DimRaceId
+JOIN RDS.DimIdeaStatuses IdeaStatus
+	ON Fact.IdeaStatusId = IdeaStatus.DimIdeaStatusId
+JOIN RDS.DimK12Demographics K12Demographic
+	ON Fact.K12DemographicId = K12Demographic.DimK12DemographicId
+JOIN RDS.DimIndicatorStatuses IndicatorStatus
+	ON Fact.IndicatorStatusId = IndicatorStatus.DimIndicatorStatusId
+JOIN RDS.DimStateDefinedStatuses StateDefinedStatus
+	ON Fact.StateDefinedStatusId = StateDefinedStatus.DimStateDefinedStatusId
+GO

@@ -1,0 +1,1 @@
+SELECT * FROM [RDS].[vwDimK12SchoolsParquet]
