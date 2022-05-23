@@ -4,7 +4,7 @@ The [Center for the Integration of IDEA Data](https://ciidta.grads360.org/#progr
 
 In the next few years, CEDS will continue to work with stakeholders to find ways to bring the community together. The CEDS team is excited to continue to partner with you, the community, in this new era.
 
-[Cedar Labs](https://Cedarlabs.com/)
+[Cedar Labs](http://Cedarlabs.com/)
 
 Cedar Labs assisted in the development, testing, and implementation of the CEDS Data Warehouse Parquet format at the Maine Department of Education.
 
