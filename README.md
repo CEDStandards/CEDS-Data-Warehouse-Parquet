@@ -47,7 +47,7 @@ DW Parquet version = 7.27.1.6
 IDS version = 7.3.2.0
 CEDS Elements = 7.2.18.2
 
-The annual official CEDS release occurs, typically around January/February of the calendar year. All resources are brought into version alignment (Note: no changes occurred to the resource, the annual release simply restarts/aligns the versioning):
+The annual official CEDS release occurs typically around January/February of the calendar year. All resources are brought into version alignment (Note: no changes occurred to the resource, the annual release simply restarts/aligns the versioning):
 
 DW version = 8.0.0.0
 DW Parquet version = 8.0.0.0
