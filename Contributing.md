@@ -20,7 +20,7 @@ Changes to the CEDS Data Warehouse Parquet standard must originate from a change
 
 The CEDS Data Warehouse Parquet standard is based on the CEDS Data Warehouse data standard fact tables.  
 The fields within the files are derived from the table and column names in the Fact and Dimension tables in this format "\[*Fact table column name minus the 'ID' at the end\]\_\[*Dimension table column name\]"
-For example, RDS.FactK12StudentEnrollments.EnrollmentStartDateId, which links to RDS.DimDates, translates to the following fields in the Parquet standard:
+For example, RDS.FactK12StudentEnrollments.EnrollmentEntryDateId, which links to RDS.DimDates, translates to the following fields in the Parquet standard:
 
 FactK12StudentEnrollmentsParquet
 * EnrollmentEntryDate_DateValue
