@@ -1,0 +1,144 @@
+CREATE   VIEW RDS.vwFactPsStudentEnrollmentsParquet AS SELECT fact.FactPsStudentEnrollmentId
+	, DataCollection.SourceSystemDataCollectionIdentifier AS DataCollection_SourceSystemDataCollectionIdentifier
+	, DataCollection.SourceSystemName AS DataCollection_SourceSystemName
+	, DataCollection.DataCollectionName AS DataCollection_DataCollectionName
+	, DataCollection.DataCollectionDescription AS DataCollection_DataCollectionDescription
+	, DataCollection.DataCollectionOpenDate AS DataCollection_DataCollectionOpenDate
+	, DataCollection.DataCollectionCloseDate AS DataCollection_DataCollectionCloseDate
+	, DataCollection.DataCollectionAcademicSchoolYear AS DataCollection_DataCollectionAcademicSchoolYear
+	, DataCollection.DataCollectionSchoolYear AS DataCollection_DataCollectionSchoolYear
+	, SchoolYear.SchoolYear AS SchoolYear_SchoolYear
+	, SchoolYear.SessionBeginDate AS SchoolYear_SessionBeginDate
+	, SchoolYear.SessionEndDate AS SchoolYear_SessionEndDate
+	, CountDate.DateValue AS CountDate_DateValue
+	, CountDate.Day AS CountDate_Day
+	, CountDate.DayOfWeek AS CountDate_DayOfWeek
+	, CountDate.DayOfYear AS CountDate_DayOfYear
+	, CountDate.Month AS CountDate_Month
+	, CountDate.MonthName AS CountDate_MonthName
+	, CountDate.SubmissionYear AS CountDate_SubmissionYear
+	, CountDate.Year AS CountDate_Year
+	, PsInstitution.NameOfInstitution AS PsInstitution_NameOfInstitution
+	, PsInstitution.ShortNameOfInstitution AS PsInstitution_ShortNameOfInstitution
+	, PsInstitution.IPEDSIdentifier AS PsInstitution_IPEDSIdentifier
+	, PsInstitution.OrganizationOperationalStatus AS PsInstitution_OrganizationOperationalStatus
+	, PsInstitution.OperationalStatusEffectiveDate AS PsInstitution_OperationalStatusEffectiveDate
+	, PsInstitution.MostPrevalentLevelOfInstitutionCode AS PsInstitution_MostPrevalentLevelOfInstitutionCode
+	, PsInstitution.MailingAddressStreetNumberAndName AS PsInstitution_MailingAddressStreetNumberAndName
+	, PsInstitution.MailingAddressApartmentRoomOrSuiteNumber AS PsInstitution_MailingAddressApartmentRoomOrSuiteNumber
+	, PsInstitution.MailingAddressCity AS PsInstitution_MailingAddressCity
+	, PsInstitution.MailingAddressPostalCode AS PsInstitution_MailingAddressPostalCode
+	, PsInstitution.MailingAddressStateAbbreviation AS PsInstitution_MailingAddressStateAbbreviation
+	, PsInstitution.PhysicalAddressStreetNumberAndName AS PsInstitution_PhysicalAddressStreetNumberAndName
+	, PsInstitution.PhysicalAddressApartmentRoomOrSuiteNumber AS PsInstitution_PhysicalAddressApartmentRoomOrSuiteNumber
+	, PsInstitution.PhysicalAddressCity AS PsInstitution_PhysicalAddressCity
+	, PsInstitution.PhysicalAddressPostalCode AS PsInstitution_PhysicalAddressPostalCode
+	, PsInstitution.PhysicalAddressStateAbbreviation AS PsInstitution_PhysicalAddressStateAbbreviation
+	, PsInstitution.TelephoneNumber AS PsInstitution_TelephoneNumber
+	, PsInstitution.WebsiteAddress AS PsInstitution_WebsiteAddress
+	, PsInstitution.Latitude AS PsInstitution_Latitude
+	, PsInstitution.Longitude AS PsInstitution_Longitude
+	, PsInstitution.RecordStartDateTime AS PsInstitution_RecordStartDateTime
+	, PsInstitution.RecordEndDateTime AS PsInstitution_RecordEndDateTime
+	, PsInstitution.MailingAddressCountyAnsiCodeCode AS PsInstitution_MailingAddressCountyAnsiCodeCode
+	, PsInstitution.PhysicalAddressCountyAnsiCodeCode AS PsInstitution_PhysicalAddressCountyAnsiCodeCode
+	, PsStudent.FirstName AS PsStudent_FirstName
+	, PsStudent.MiddleName AS PsStudent_MiddleName
+	, PsStudent.LastOrSurname AS PsStudent_LastOrSurname
+	, PsStudent.BirthDate AS PsStudent_BirthDate
+	, PsStudent.ELChildChildIdentifierState AS PsStudent_ELChildChildIdentifierState
+	, PsStudent.K12StudentStudentIdentifierState AS PsStudent_K12StudentStudentIdentifierState
+	, PsStudent.K12StudentStudentIdentifierDistrict AS PsStudent_K12StudentStudentIdentifierDistrict
+	, PsStudent.K12StudentStudentIdentifierNationalMigrant AS PsStudent_K12StudentStudentIdentifierNationalMigrant
+	, PsStudent.PsStudentStudentIdentifierState AS PsStudent_PsStudentStudentIdentifierState
+	, PsStudent.AeStudentStudentIdentifierState AS PsStudent_AeStudentStudentIdentifierState
+	, PsStudent.WorkforceProgramParticipantPersonIdentifierState AS PsStudent_WorkforceProgramParticipantPersonIdentifierState
+	, PsStudent.ELStaffStaffMemberIdentifierState AS PsStudent_ELStaffStaffMemberIdentifierState
+	, PsStudent.K12StaffStaffMemberIdentifierState AS PsStudent_K12StaffStaffMemberIdentifierState
+	, PsStudent.K12StaffStaffMemberIdentifierDistrict AS PsStudent_K12StaffStaffMemberIdentifierDistrict
+	, PsStudent.PsStaffStaffMemberIdentifierState AS PsStudent_PsStaffStaffMemberIdentifierState
+	, PsStudent.PersonIdentifierDriversLicense AS PsStudent_PersonIdentifierDriversLicense
+	, PsStudent.IsActiveELChild AS PsStudent_IsActiveELChild
+	, PsStudent.IsActiveK12Student AS PsStudent_IsActiveK12Student
+	, PsStudent.IsActivePsStudent AS PsStudent_IsActivePsStudent
+	, PsStudent.IsActiveAeStudent AS PsStudent_IsActiveAeStudent
+	, PsStudent.IsActiveWorkforceProgramParticipant AS PsStudent_IsActiveWorkforceProgramParticipant
+	, PsStudent.IsActiveELStaff AS PsStudent_IsActiveELStaff
+	, PsStudent.IsActiveK12Staff AS PsStudent_IsActiveK12Staff
+	, PsStudent.IsActivePsStaff AS PsStudent_IsActivePsStaff
+	, PsStudent.RecordStartDateTime AS PsStudent_RecordStartDateTime
+	, PsStudent.RecordEndDateTime AS PsStudent_RecordEndDateTime
+	, PsStudent.ElectronicMailAddressHome AS PsStudent_ElectronicMailAddressHome
+	, PsStudent.ElectronicMailAddressOrganizational AS PsStudent_ElectronicMailAddressOrganizational
+	, PsStudent.ElectronicMailAddressWork AS PsStudent_ElectronicMailAddressWork
+	, PsStudent.TelephoneNumberFax AS PsStudent_TelephoneNumberFax
+	, PsStudent.TelephoneNumberHome AS PsStudent_TelephoneNumberHome
+	, PsStudent.TelephoneNumberMobile AS PsStudent_TelephoneNumberMobile
+	, PsStudent.TelephoneNumberWork AS PsStudent_TelephoneNumberWork
+	, PsStudent.PersonalTitleOrPrefix AS PsStudent_PersonalTitleOrPrefix
+	, PsStudent.PositionTitle AS PsStudent_PositionTitle
+	, AcademicTermDesignator.AcademicTermDesignatorCode AS AcademicTermDesignator_AcademicTermDesignatorCode
+	, AcademicTermDesignator.AcademicTermDesignatorDescription AS AcademicTermDesignator_AcademicTermDesignatorDescription
+	, EntryDateIntoPostSecondary.DateValue AS EntryDateIntoPostSecondary_DateValue
+	, EntryDateIntoPostSecondary.Day AS EntryDateIntoPostSecondary_Day
+	, EntryDateIntoPostSecondary.DayOfWeek AS EntryDateIntoPostSecondary_DayOfWeek
+	, EntryDateIntoPostSecondary.DayOfYear AS EntryDateIntoPostSecondary_DayOfYear
+	, EntryDateIntoPostSecondary.Month AS EntryDateIntoPostSecondary_Month
+	, EntryDateIntoPostSecondary.MonthName AS EntryDateIntoPostSecondary_MonthName
+	, EntryDateIntoPostSecondary.SubmissionYear AS EntryDateIntoPostSecondary_SubmissionYear
+	, EntryDateIntoPostSecondary.Year AS EntryDateIntoPostSecondary_Year
+	, EnrollmentEntryDate.DateValue AS EnrollmentEntryDate_DateValue
+	, EnrollmentEntryDate.Day AS EnrollmentEntryDate_Day
+	, EnrollmentEntryDate.DayOfWeek AS EnrollmentEntryDate_DayOfWeek
+	, EnrollmentEntryDate.DayOfYear AS EnrollmentEntryDate_DayOfYear
+	, EnrollmentEntryDate.Month AS EnrollmentEntryDate_Month
+	, EnrollmentEntryDate.MonthName AS EnrollmentEntryDate_MonthName
+	, EnrollmentEntryDate.SubmissionYear AS EnrollmentEntryDate_SubmissionYear
+	, EnrollmentEntryDate.Year AS EnrollmentEntryDate_Year
+	, EnrollmentExitDate.DateValue AS EnrollmentExitDate_DateValue
+	, EnrollmentExitDate.Day AS EnrollmentExitDate_Day
+	, EnrollmentExitDate.DayOfWeek AS EnrollmentExitDate_DayOfWeek
+	, EnrollmentExitDate.DayOfYear AS EnrollmentExitDate_DayOfYear
+	, EnrollmentExitDate.Month AS EnrollmentExitDate_Month
+	, EnrollmentExitDate.MonthName AS EnrollmentExitDate_MonthName
+	, EnrollmentExitDate.SubmissionYear AS EnrollmentExitDate_SubmissionYear
+	, EnrollmentExitDate.Year AS EnrollmentExitDate_Year
+	, PsEnrollmentStatus.PostsecondaryExitOrWithdrawalTypeCode AS PsEnrollmentStatus_PostsecondaryExitOrWithdrawalTypeCode
+	, PsEnrollmentStatus.PostsecondaryExitOrWithdrawalTypeDescription AS PsEnrollmentStatus_PostsecondaryExitOrWithdrawalTypeDescription
+	, PsInstitutionStatus.LevelOfInstitutionCode AS PsInstitutionStatus_LevelOfInstitutionCode
+	, PsInstitutionStatus.LevelOfInstitutionDescription AS PsInstitutionStatus_LevelOfInstitutionDescription
+	, PsInstitutionStatus.ControlOfInstitutionCode AS PsInstitutionStatus_ControlOfInstitutionCode
+	, PsInstitutionStatus.ControlOfInstitutionDescription AS PsInstitutionStatus_ControlOfInstitutionDescription
+	, PsInstitutionStatus.VirtualIndicatorCode AS PsInstitutionStatus_VirtualIndicatorCode
+	, PsInstitutionStatus.VirtualIndicatorDescription AS PsInstitutionStatus_VirtualIndicatorDescription
+	, PsInstitutionStatus.CarnegieBasicClassificationCode AS PsInstitutionStatus_CarnegieBasicClassificationCode
+	, PsInstitutionStatus.CarnegieBasicClassificationDescription AS PsInstitutionStatus_CarnegieBasicClassificationDescription
+	, PsInstitutionStatus.MostPrevalentLevelOfInstitutionCode AS PsInstitutionStatus_MostPrevalentLevelOfInstitutionCode
+	, PsInstitutionStatus.MostPrevalentLevelOfInstitutionDescription AS PsInstitutionStatus_MostPrevalentLevelOfInstitutionDescription
+	, PsInstitutionStatus.PredominantCalendarSystemCode AS PsInstitutionStatus_PredominantCalendarSystemCode
+	, PsInstitutionStatus.PredominantCalendarSystemDescription AS PsInstitutionStatus_PredominantCalendarSystemDescription
+	, fact.StudentCount
+FROM RDS.FactPsStudentEnrollments fact
+JOIN RDS.DimDataCollections DataCollection
+	ON Fact.DataCollectionId = DataCollection.DimDataCollectionId
+JOIN RDS.DimSchoolYears SchoolYear
+	ON Fact.SchoolYearId = SchoolYear.DimSchoolYearId
+JOIN RDS.DimDates CountDate
+	ON Fact.CountDateId = CountDate.DimDateId
+JOIN RDS.DimPsInstitutions PsInstitution
+	ON Fact.PsInstitutionID = PsInstitution.DimPsInstitutionID
+JOIN RDS.DimPeople PsStudent
+	ON Fact.PsStudentId = PsStudent.DimPersonId
+JOIN RDS.DimAcademicTermDesignators AcademicTermDesignator
+	ON Fact.AcademicTermDesignatorId = AcademicTermDesignator.DimAcademicTermDesignatorId
+JOIN RDS.DimDates EntryDateIntoPostSecondary
+	ON Fact.EntryDateIntoPostSecondaryId = EntryDateIntoPostSecondary.DimDateId
+JOIN RDS.DimDates EnrollmentEntryDate
+	ON Fact.EnrollmentEntryDateId = EnrollmentEntryDate.DimDateId
+JOIN RDS.DimDates EnrollmentExitDate
+	ON Fact.EnrollmentExitDateId = EnrollmentExitDate.DimDateId
+JOIN RDS.DimPsEnrollmentStatuses PsEnrollmentStatus
+	ON Fact.PsEnrollmentStatusId = PsEnrollmentStatus.DimPsEnrollmentStatusId
+JOIN RDS.DimPsInstitutionStatuses PsInstitutionStatus
+	ON Fact.PsInstitutionStatusId = PsInstitutionStatus.DimPsInstitutionStatusId
+
