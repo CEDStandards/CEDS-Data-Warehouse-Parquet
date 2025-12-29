@@ -20,9 +20,59 @@ class ExportAll():
         dbTask.sqlStatement = sql;
         dbTask.saveParquet(tableName + '.parquet')
 
+    def exportTablesWithoutParquetViews(self):
+        """
+        Finds RDS tables that don't have corresponding Parquet views and exports them
+        """
+        # Create a DbTask to run the query
+        dbTask = DbTask()
+        cursor = dbTask.dbConnection.getCursor()
+        
+        # SQL query to find tables without corresponding Parquet views
+        query = """
+        select t.TABLE_NAME
+        from INFORMATION_SCHEMA.tables t
+        left join INFORMATION_SCHEMA.Views v
+            ON v.TABLE_NAME LIKE 'vw' + t.TABLE_NAME + 'Parquet'
+        WHERE v.TABLE_NAME IS NULL
+            AND t.TABLE_SCHEMA = 'RDS'
+            AND t.TABLE_TYPE = 'BASE TABLE'
+            AND t.TABLE_NAME NOT LIKE 'Toggle%'
+            AND t.TABLE_NAME NOT LIKE 'Report%'
+            AND t.TABLE_NAME NOT LIKE 'Fact%'
+        ORDER BY t.TABLE_NAME
+        """
+        
+        print("Finding RDS tables without corresponding Parquet views...")
+        cursor.execute(query)
+        tables = cursor.fetchall()
+        
+        print(f"Found {len(tables)} tables to export:")
+        
+        # Loop through each table and export it
+        for table in tables:
+            table_name = table.TABLE_NAME
+            print(f"Exporting table: {table_name}")
+            
+            # Create SQL statement to select all from the table
+            sql_statement = f"select * from RDS.{table_name}"
+            
+            try:
+                # Call getOneTableFromSqlStatement for this table
+                self.getOneTableFromSqlStatement(sql_statement, table_name)
+                print(f"✓ Successfully exported: {table_name}.parquet")
+            except Exception as e:
+                print(f"✗ Error exporting {table_name}: {str(e)}")
+        
+        print(f"\nExport completed. Processed {len(tables)} tables.")
+
 
 if __name__ == "__main__":
-    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwDimAcademicTermDesignators', 'vwDimAcademicTermDesignators')
+    # Export tables that don't have corresponding Parquet views
+    ExportAll().exportTablesWithoutParquetViews()
+    
+    # Export all tables defined in Statements enum
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.DimK12AcademicAwardStatuses', 'DimK12AcademicAwardStatuses')
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwDimChildOutcomeSummaries', 'vwDimChildOutcomeSummaries')
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwDimComprehensiveAndTargetedSupports', 'vwDimComprehensiveAndTargetedSupports')
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwDimCteStatuses', 'vwDimCteStatuses')
@@ -66,29 +116,29 @@ if __name__ == "__main__":
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwDimSubgroups', 'vwDimSubgroups')
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwDimTitleIIIStatuses', 'vwDimTitleIIIStatuses')
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwDimTitleIStatuses', 'vwDimTitleIStatuses')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactAeStudentEnrollmentsParquet', 'vwFactAeStudentEnrollmentsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12FinancialAccountBalancesParquet', 'vwFactK12FinancialAccountBalancesParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12FinancialAccountBudgetsParquet', 'vwFactK12FinancialAccountBudgetsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12FinancialAccountGeneralLedgersParquet', 'vwFactK12FinancialAccountGeneralLedgersParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12ProgramParticipationsParquet', 'vwFactK12ProgramParticipationsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12SalarySchedulesParquet', 'vwFactK12SalarySchedulesParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StaffCountsParquet', 'vwFactK12StaffCountsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentAssessmentsParquet', 'vwFactK12StudentAssessmentsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentAssessmentsResultAggregatesParquet', 'vwFactK12StudentAssessmentsResultAggregatesParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentAttendanceRatesParquet', 'vwFactK12StudentAttendanceRatesParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentCountsParquet', 'vwFactK12StudentCountsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentCourseSectionsParquet', 'vwFactK12StudentCourseSectionsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentDailyAttendancesParquet', 'vwFactK12StudentDailyAttendancesParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentDisciplinesParquet', 'vwFactK12StudentDisciplinesParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentEconomicDisadvantagesParquet', 'vwFactK12StudentEconomicDisadvantagesParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentEnrollmentsParquet', 'vwFactK12StudentEnrollmentsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactOrganizationCountsParquet', 'vwFactOrganizationCountsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactOrganizationStatusCountsParquet', 'vwFactOrganizationStatusCountsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactPsStudentAcademicAwardsParquet', 'vwFactPsStudentAcademicAwardsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactPsStudentAcademicRecordsParquet', 'vwFactPsStudentAcademicRecordsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactPsStudentEnrollmentsParquet', 'vwFactPsStudentEnrollmentsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactSchoolPerformanceIndicatorsParquet', 'vwFactSchoolPerformanceIndicatorsParquet')
-    ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactSpecialEducationParquet', 'vwFactSpecialEducationParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactAeStudentEnrollmentsParquet', 'vwFactAeStudentEnrollmentsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12FinancialAccountBalancesParquet', 'vwFactK12FinancialAccountBalancesParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12FinancialAccountBudgetsParquet', 'vwFactK12FinancialAccountBudgetsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12FinancialAccountGeneralLedgersParquet', 'vwFactK12FinancialAccountGeneralLedgersParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12ProgramParticipationsParquet', 'vwFactK12ProgramParticipationsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12SalarySchedulesParquet', 'vwFactK12SalarySchedulesParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StaffCountsParquet', 'vwFactK12StaffCountsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentAssessmentsParquet', 'vwFactK12StudentAssessmentsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentAssessmentsResultAggregatesParquet', 'vwFactK12StudentAssessmentsResultAggregatesParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentAttendanceRatesParquet', 'vwFactK12StudentAttendanceRatesParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentCountsParquet', 'vwFactK12StudentCountsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentCourseSectionsParquet', 'vwFactK12StudentCourseSectionsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentDailyAttendancesParquet', 'vwFactK12StudentDailyAttendancesParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentDisciplinesParquet', 'vwFactK12StudentDisciplinesParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentEconomicDisadvantagesParquet', 'vwFactK12StudentEconomicDisadvantagesParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactK12StudentEnrollmentsParquet', 'vwFactK12StudentEnrollmentsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactOrganizationCountsParquet', 'vwFactOrganizationCountsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactOrganizationStatusCountsParquet', 'vwFactOrganizationStatusCountsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactPsStudentAcademicAwardsParquet', 'vwFactPsStudentAcademicAwardsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactPsStudentAcademicRecordsParquet', 'vwFactPsStudentAcademicRecordsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactPsStudentEnrollmentsParquet', 'vwFactPsStudentEnrollmentsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactSchoolPerformanceIndicatorsParquet', 'vwFactSchoolPerformanceIndicatorsParquet')
+    # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactSpecialEducationParquet', 'vwFactSpecialEducationParquet')
     
     # k12StudentCounts = ExportFactK12StudentCounts()
     # df = k12StudentCounts.getDataFrame()

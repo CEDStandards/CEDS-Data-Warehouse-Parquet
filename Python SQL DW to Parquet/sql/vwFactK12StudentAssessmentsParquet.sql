@@ -1,1 +1,0 @@
-SELECT * FROM [RDS].[vwFactK12StudentAssessmentsParquet]

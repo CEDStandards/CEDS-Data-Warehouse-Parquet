@@ -1,0 +1,28 @@
+-- View: RDS.vwBridgeAeStudentEnrollmentRacesParquet
+-- Generated from database export
+
+CREATE VIEW [RDS].[vwBridgeAeStudentEnrollmentRacesParquet] AS
+CREATE   VIEW RDS.vwBridgeAeStudentEnrollmentRacesParquet AS SELECT fact.BridgeFactAeStudentEnrollmentRaceId
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ1 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ1
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ2 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ2
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ3 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ3
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ4 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ4
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ5 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ5
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ6 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ6
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ7 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ7
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ8 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ8
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ9 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ9
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ10 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ10
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ11 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ11
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ12 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ12
+	, FactAeStudentEnrollment.QuarterlyEarningsAfterExitQ13 AS FactAeStudentEnrollment_QuarterlyEarningsAfterExitQ13
+	, FactAeStudentEnrollment.InstructionalActivityHoursCompleted AS FactAeStudentEnrollment_InstructionalActivityHoursCompleted
+	, FactAeStudentEnrollment.StudentCount AS FactAeStudentEnrollment_StudentCount
+	, Race.RaceCode AS Race_RaceCode
+	, Race.RaceDescription AS Race_RaceDescription
+	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
+FROM RDS.BridgeAeStudentEnrollmentRaces fact
+JOIN RDS.FactAeStudentEnrollments FactAeStudentEnrollment
+	ON Fact.FactAeStudentEnrollmentId = FactAeStudentEnrollment.FactAeStudentEnrollmentId
+JOIN RDS.DimRaces Race
+	ON Fact.RaceId = Race.DimRaceId
