@@ -1,14 +1,23 @@
--- View: RDS.vwBridgePsStudentEnrollmentRacesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgePsStudentEnrollmentRacesParquet] AS
-CREATE   VIEW RDS.vwBridgePsStudentEnrollmentRacesParquet AS SELECT fact.BridgePsStudentEnrollmentRaceId
+CREATE OR ALTER VIEW [RDS].[vwBridgePsStudentEnrollmentRacesParquet] AS
+	SELECT fact.BridgePsStudentEnrollmentRaceId
+	, FactPsStudentEnrollment.DataCollectionId AS FactPsStudentEnrollment_DataCollectionId
+	, FactPsStudentEnrollment.SchoolYearId AS FactPsStudentEnrollment_SchoolYearId
+	, FactPsStudentEnrollment.CountDateId AS FactPsStudentEnrollment_CountDateId
+	, FactPsStudentEnrollment.PsInstitutionId AS FactPsStudentEnrollment_PsInstitutionId
+	, FactPsStudentEnrollment.PsStudentId AS FactPsStudentEnrollment_PsStudentId
+	, FactPsStudentEnrollment.PsStudent_CurrentId AS FactPsStudentEnrollment_PsStudent_CurrentId
+	, FactPsStudentEnrollment.AcademicTermDesignatorId AS FactPsStudentEnrollment_AcademicTermDesignatorId
+	, FactPsStudentEnrollment.EntryDateIntoPostSecondaryId AS FactPsStudentEnrollment_EntryDateIntoPostSecondaryId
+	, FactPsStudentEnrollment.EnrollmentEntryDateId AS FactPsStudentEnrollment_EnrollmentEntryDateId
+	, FactPsStudentEnrollment.EnrollmentExitDateId AS FactPsStudentEnrollment_EnrollmentExitDateId
+	, FactPsStudentEnrollment.PsEnrollmentStatusId AS FactPsStudentEnrollment_PsEnrollmentStatusId
+	, FactPsStudentEnrollment.PsInstitutionStatusId AS FactPsStudentEnrollment_PsInstitutionStatusId
 	, FactPsStudentEnrollment.StudentCount AS FactPsStudentEnrollment_StudentCount
 	, Race.RaceCode AS Race_RaceCode
 	, Race.RaceDescription AS Race_RaceDescription
 	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
 FROM RDS.BridgePsStudentEnrollmentRaces fact
 JOIN RDS.FactPsStudentEnrollments FactPsStudentEnrollment
-	ON Fact.FactPsStudentEnrollmentId = FactPsStudentEnrollment.FactPsStudentEnrollmentId
+	ON fact.FactPsStudentEnrollmentId = FactPsStudentEnrollment.FactPsStudentEnrollmentId
 JOIN RDS.DimRaces Race
-	ON Fact.RaceId = Race.DimRaceId
+	ON fact.RaceId = Race.DimRaceId

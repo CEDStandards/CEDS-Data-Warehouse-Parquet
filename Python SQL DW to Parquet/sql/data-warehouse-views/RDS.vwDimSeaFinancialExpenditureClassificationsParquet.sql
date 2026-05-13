@@ -1,8 +1,5 @@
--- View: RDS.vwDimSeaFinancialExpenditureClassificationsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimSeaFinancialExpenditureClassificationsParquet] AS
-CREATE   VIEW RDS.vwDimSeaFinancialExpenditureClassificationsParquet AS SELECT fact.DimSeaFinancialExpenditureClassificationId
+CREATE OR ALTER VIEW [RDS].[vwDimSeaFinancialExpenditureClassificationsParquet] AS
+	SELECT fact.DimSeaFinancialExpenditureClassificationId
 	, fact.FinancialAccountCodingSystemOrganizationTypeCode
 	, fact.FinancialAccountCodingSystemOrganizationTypeDescription
 	, fact.FinancialExpenditureLocalFunctionCodeCode

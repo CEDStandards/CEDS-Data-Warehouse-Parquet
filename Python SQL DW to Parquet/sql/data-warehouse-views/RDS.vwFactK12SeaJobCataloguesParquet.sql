@@ -1,8 +1,5 @@
--- View: RDS.vwFactK12SeaJobCataloguesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwFactK12SeaJobCataloguesParquet] AS
-CREATE   VIEW RDS.vwFactK12SeaJobCataloguesParquet AS SELECT fact.FactK12SeaJobCatalogueId
+CREATE OR ALTER VIEW [RDS].[vwFactK12SeaJobCataloguesParquet] AS
+	SELECT fact.FactK12SeaJobCatalogueId
 	, SchoolYear.SchoolYear AS SchoolYear_SchoolYear
 	, SchoolYear.SessionBeginDate AS SchoolYear_SessionBeginDate
 	, SchoolYear.SessionEndDate AS SchoolYear_SessionEndDate
@@ -46,4 +43,47 @@ CREATE   VIEW RDS.vwFactK12SeaJobCataloguesParquet AS SELECT fact.FactK12SeaJobC
 	, SeaJobClassification.LocalJobFunctionDefinition AS SeaJobClassification_LocalJobFunctionDefinition
 	, SeaJobClassification.LocalJobCategoryCode AS SeaJobClassification_LocalJobCategoryCode
 	, SeaJobClassification.LocalJobCategoryDescription AS SeaJobClassification_LocalJobCategoryDescription
-	, SeaJobClassification.LocalJobC
+	, SeaJobClassification.LocalJobCategoryDefinition AS SeaJobClassification_LocalJobCategoryDefinition
+	, SeaJobClassification.K12StaffClassificationCode AS SeaJobClassification_K12StaffClassificationCode
+	, SeaJobClassification.K12StaffClassificationDescription AS SeaJobClassification_K12StaffClassificationDescription
+	, SeaJobClassification.TitleIProgramStaffCategoryCode AS SeaJobClassification_TitleIProgramStaffCategoryCode
+	, SeaJobClassification.TitleIProgramStaffCategoryDescription AS SeaJobClassification_TitleIProgramStaffCategoryDescription
+	, SeaJobClassification.MigrantEducationProgramStaffCategoryCode AS SeaJobClassification_MigrantEducationProgramStaffCategoryCode
+	, SeaJobClassification.MigrantEducationProgramStaffCategoryDescription AS SeaJobClassification_MigrantEducationProgramStaffCategoryDescription
+	, SeaJobClassification.SpecialEducationSupportServicesCategoryCode AS SeaJobClassification_SpecialEducationSupportServicesCategoryCode
+	, SeaJobClassification.SpecialEducationSupportServicesCategoryDescription AS SeaJobClassification_SpecialEducationSupportServicesCategoryDescription
+	, SeaJobClassification.EvaluationRequiredIndicatorCode AS SeaJobClassification_EvaluationRequiredIndicatorCode
+	, SeaJobClassification.EvaluationRequiredIndicatorDescription AS SeaJobClassification_EvaluationRequiredIndicatorDescription
+	, SeaJobClassification.RecordStartDateTime AS SeaJobClassification_RecordStartDateTime
+	, SeaJobClassification.RecordEndDateTime AS SeaJobClassification_RecordEndDateTime
+	, DataCollection.SourceSystemDataCollectionIdentifier AS DataCollection_SourceSystemDataCollectionIdentifier
+	, DataCollection.SourceSystemName AS DataCollection_SourceSystemName
+	, DataCollection.DataCollectionName AS DataCollection_DataCollectionName
+	, DataCollection.DataCollectionDescription AS DataCollection_DataCollectionDescription
+	, DataCollection.DataCollectionOpenDate AS DataCollection_DataCollectionOpenDate
+	, DataCollection.DataCollectionCloseDate AS DataCollection_DataCollectionCloseDate
+	, DataCollection.DataCollectionAcademicSchoolYear AS DataCollection_DataCollectionAcademicSchoolYear
+	, DataCollection.DataCollectionSchoolYear AS DataCollection_DataCollectionSchoolYear
+	, RecordStatus.RecordStatusTypeCode AS RecordStatus_RecordStatusTypeCode
+	, RecordStatus.RecordStatusTypeDescription AS RecordStatus_RecordStatusTypeDescription
+	, RecordStatus.RecordStatusCreatorEntityCode AS RecordStatus_RecordStatusCreatorEntityCode
+	, RecordStatus.RecordStatusCreatorEntityDescription AS RecordStatus_RecordStatusCreatorEntityDescription
+FROM RDS.FactK12SeaJobCatalogues fact
+JOIN RDS.DimSchoolYears SchoolYear
+	ON fact.SchoolYearId = SchoolYear.DimSchoolYearId
+JOIN RDS.DimDates CountDate
+	ON fact.CountDateId = CountDate.DimDateId
+JOIN RDS.DimOnetSocOccupationTypes OnetSocOccupationType
+	ON fact.OnetSocOccupationTypeId = OnetSocOccupationType.DimOnetSocOccupationTypeId
+JOIN RDS.DimStandardOccupationalClassifications StandardOccupationalClassification
+	ON fact.StandardOccupationalClassificationId = StandardOccupationalClassification.DimStandardOccupationalClassificationId
+JOIN RDS.DimK12StaffCategories K12StaffCategory
+	ON fact.K12StaffCategoryId = K12StaffCategory.DimK12StaffCategoryId
+JOIN RDS.DimK12Jobs K12Job
+	ON fact.K12JobId = K12Job.DimK12JobId
+JOIN RDS.DimSeaJobClassifications SeaJobClassification
+	ON fact.SeaJobClassificationId = SeaJobClassification.DimSeaJobClassificationId
+JOIN RDS.DimDataCollections DataCollection
+	ON fact.DataCollectionId = DataCollection.DimDataCollectionId
+JOIN RDS.DimRecordStatuses RecordStatus
+	ON fact.RecordStatusId = RecordStatus.DimRecordStatusId

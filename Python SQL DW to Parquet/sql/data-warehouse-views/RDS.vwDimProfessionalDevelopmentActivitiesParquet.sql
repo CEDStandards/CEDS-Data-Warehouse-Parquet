@@ -1,8 +1,5 @@
--- View: RDS.vwDimProfessionalDevelopmentActivitiesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimProfessionalDevelopmentActivitiesParquet] AS
-CREATE   VIEW RDS.vwDimProfessionalDevelopmentActivitiesParquet AS SELECT fact.DimProfessionalDevelopmentActivityId
+CREATE OR ALTER VIEW [RDS].[vwDimProfessionalDevelopmentActivitiesParquet] AS
+	SELECT fact.DimProfessionalDevelopmentActivityId
 	, fact.ProfessionalDevelopmentActivityIdentifier
 	, fact.ProfessionalDevelopmentActivityTitle
 	, fact.SponsoringAgencyName

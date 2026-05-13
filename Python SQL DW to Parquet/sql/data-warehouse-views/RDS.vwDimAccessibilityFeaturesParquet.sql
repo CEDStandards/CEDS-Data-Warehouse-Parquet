@@ -1,8 +1,5 @@
--- View: RDS.vwDimAccessibilityFeaturesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimAccessibilityFeaturesParquet] AS
-CREATE   VIEW RDS.vwDimAccessibilityFeaturesParquet AS SELECT fact.DimAccessibilityFeatureId
+CREATE OR ALTER VIEW [RDS].[vwDimAccessibilityFeaturesParquet] AS
+	SELECT fact.DimAccessibilityFeatureId
 	, fact.AccessibilityFeatureTypeCode
 	, fact.AccessibilityFeatureTypeDescription
 	, fact.AccessibilityFeatureApplicationTypeCode

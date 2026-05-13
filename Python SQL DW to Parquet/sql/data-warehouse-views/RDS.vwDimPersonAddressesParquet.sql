@@ -1,8 +1,5 @@
--- View: RDS.vwDimPersonAddressesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimPersonAddressesParquet] AS
-CREATE   VIEW RDS.vwDimPersonAddressesParquet AS SELECT fact.DimPersonAddressId
+CREATE OR ALTER VIEW [RDS].[vwDimPersonAddressesParquet] AS
+	SELECT fact.DimPersonAddressId
 	, fact.AddressTypeForLearnerOrFamilyCode
 	, fact.AddressTypeForLearnerOrFamilyDescription
 	, fact.AddressStreetNumberAndName

@@ -1,8 +1,5 @@
--- View: RDS.vwFactK12IncidentsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwFactK12IncidentsParquet] AS
-CREATE   VIEW RDS.vwFactK12IncidentsParquet AS SELECT fact.FactK12IncidentId
+CREATE OR ALTER VIEW [RDS].[vwFactK12IncidentsParquet] AS
+	SELECT fact.FactK12IncidentId
 	, SchoolYear.SchoolYear AS SchoolYear_SchoolYear
 	, SchoolYear.SessionBeginDate AS SchoolYear_SessionBeginDate
 	, SchoolYear.SessionEndDate AS SchoolYear_SessionEndDate
@@ -24,7 +21,6 @@ CREATE   VIEW RDS.vwFactK12IncidentsParquet AS SELECT fact.FactK12IncidentId
 	, IncidentDate.MonthName AS IncidentDate_MonthName
 	, IncidentDate.SubmissionYear AS IncidentDate_SubmissionYear
 	, IncidentDate.Year AS IncidentDate_Year
-	, IncidentTime.TimeTime AS IncidentTime_TimeTime
 	, IncidentTime.TimeHour AS IncidentTime_TimeHour
 	, IncidentTime.TimeMinute AS IncidentTime_TimeMinute
 	, Sea.SeaOrganizationName AS Sea_SeaOrganizationName
@@ -67,4 +63,169 @@ CREATE   VIEW RDS.vwFactK12IncidentsParquet AS SELECT fact.FactK12IncidentId
 	, Ieu.OperationalStatusEffectiveDate AS Ieu_OperationalStatusEffectiveDate
 	, Ieu.PhysicalAddressStreetNumberAndName AS Ieu_PhysicalAddressStreetNumberAndName
 	, Ieu.PhysicalAddressApartmentRoomOrSuiteNumber AS Ieu_PhysicalAddressApartmentRoomOrSuiteNumber
-	,
+	, Ieu.PhysicalAddressCity AS Ieu_PhysicalAddressCity
+	, Ieu.PhysicalAddressPostalCode AS Ieu_PhysicalAddressPostalCode
+	, Ieu.PhysicalAddressStateAbbreviation AS Ieu_PhysicalAddressStateAbbreviation
+	, Ieu.PhysicalAddressCountyAnsiCodeCode AS Ieu_PhysicalAddressCountyAnsiCodeCode
+	, Ieu.PhysicalAddressCountyName AS Ieu_PhysicalAddressCountyName
+	, Ieu.TelephoneNumber AS Ieu_TelephoneNumber
+	, Ieu.WebSiteAddress AS Ieu_WebSiteAddress
+	, Ieu.OrganizationRegionGeoJson AS Ieu_OrganizationRegionGeoJson
+	, Ieu.Latitude AS Ieu_Latitude
+	, Ieu.Longitude AS Ieu_Longitude
+	, Ieu.RecordStartDateTime AS Ieu_RecordStartDateTime
+	, Ieu.RecordEndDateTime AS Ieu_RecordEndDateTime
+	, Lea.IeuOrganizationName AS Lea_IeuOrganizationName
+	, Lea.IeuOrganizationIdentifierSea AS Lea_IeuOrganizationIdentifierSea
+	, Lea.StateAnsiCode AS Lea_StateAnsiCode
+	, Lea.StateAbbreviationCode AS Lea_StateAbbreviationCode
+	, Lea.StateAbbreviationDescription AS Lea_StateAbbreviationDescription
+	, Lea.SeaOrganizationName AS Lea_SeaOrganizationName
+	, Lea.SeaOrganizationIdentifierSea AS Lea_SeaOrganizationIdentifierSea
+	, Lea.LeaOrganizationName AS Lea_LeaOrganizationName
+	, Lea.LeaIdentifierNces AS Lea_LeaIdentifierNces
+	, Lea.LeaIdentifierSea AS Lea_LeaIdentifierSea
+	, Lea.PriorLeaIdentifierSea AS Lea_PriorLeaIdentifierSea
+	, Lea.ReportedFederally AS Lea_ReportedFederally
+	, Lea.LeaTypeCode AS Lea_LeaTypeCode
+	, Lea.LeaTypeDescription AS Lea_LeaTypeDescription
+	, Lea.LeaTypeEdFactsCode AS Lea_LeaTypeEdFactsCode
+	, Lea.MailingAddressStreetNumberAndName AS Lea_MailingAddressStreetNumberAndName
+	, Lea.MailingAddressApartmentRoomOrSuiteNumber AS Lea_MailingAddressApartmentRoomOrSuiteNumber
+	, Lea.MailingAddressCity AS Lea_MailingAddressCity
+	, Lea.MailingAddressPostalCode AS Lea_MailingAddressPostalCode
+	, Lea.MailingAddressStateAbbreviation AS Lea_MailingAddressStateAbbreviation
+	, Lea.MailingAddressCountyName AS Lea_MailingAddressCountyName
+	, Lea.PhysicalAddressStreetNumberAndName AS Lea_PhysicalAddressStreetNumberAndName
+	, Lea.PhysicalAddressApartmentRoomOrSuiteNumber AS Lea_PhysicalAddressApartmentRoomOrSuiteNumber
+	, Lea.PhysicalAddressCity AS Lea_PhysicalAddressCity
+	, Lea.PhysicalAddressPostalCode AS Lea_PhysicalAddressPostalCode
+	, Lea.PhysicalAddressStateAbbreviation AS Lea_PhysicalAddressStateAbbreviation
+	, Lea.PhysicalAddressCountyName AS Lea_PhysicalAddressCountyName
+	, Lea.Longitude AS Lea_Longitude
+	, Lea.Latitude AS Lea_Latitude
+	, Lea.TelephoneNumber AS Lea_TelephoneNumber
+	, Lea.WebSiteAddress AS Lea_WebSiteAddress
+	, Lea.OutOfStateIndicator AS Lea_OutOfStateIndicator
+	, Lea.LeaOperationalStatus AS Lea_LeaOperationalStatus
+	, Lea.LeaOperationalStatusEdFactsCode AS Lea_LeaOperationalStatusEdFactsCode
+	, Lea.OperationalStatusEffectiveDate AS Lea_OperationalStatusEffectiveDate
+	, Lea.CharterLeaStatus AS Lea_CharterLeaStatus
+	, Lea.ReconstitutedStatus AS Lea_ReconstitutedStatus
+	, Lea.McKinneyVentoSubgrantRecipient AS Lea_McKinneyVentoSubgrantRecipient
+	, Lea.RecordStartDateTime AS Lea_RecordStartDateTime
+	, Lea.RecordEndDateTime AS Lea_RecordEndDateTime
+	, K12School.LeaOrganizationName AS K12School_LeaOrganizationName
+	, K12School.LeaIdentifierNces AS K12School_LeaIdentifierNces
+	, K12School.LeaIdentifierSea AS K12School_LeaIdentifierSea
+	, K12School.NameOfInstitution AS K12School_NameOfInstitution
+	, K12School.SchoolIdentifierNces AS K12School_SchoolIdentifierNces
+	, K12School.SchoolIdentifierSea AS K12School_SchoolIdentifierSea
+	, K12School.SchoolIdentifierAct AS K12School_SchoolIdentifierAct
+	, K12School.SeaOrganizationName AS K12School_SeaOrganizationName
+	, K12School.SeaOrganizationIdentifierSea AS K12School_SeaOrganizationIdentifierSea
+	, K12School.StateAnsiCode AS K12School_StateAnsiCode
+	, K12School.StateAbbreviationCode AS K12School_StateAbbreviationCode
+	, K12School.StateAbbreviationDescription AS K12School_StateAbbreviationDescription
+	, K12School.PriorLeaIdentifierSea AS K12School_PriorLeaIdentifierSea
+	, K12School.PriorSchoolIdentifierSea AS K12School_PriorSchoolIdentifierSea
+	, K12School.CharterSchoolIndicator AS K12School_CharterSchoolIndicator
+	, K12School.CharterSchoolContractIdNumber AS K12School_CharterSchoolContractIdNumber
+	, K12School.CharterSchoolContractApprovalDate AS K12School_CharterSchoolContractApprovalDate
+	, K12School.CharterSchoolContractRenewalDate AS K12School_CharterSchoolContractRenewalDate
+	, K12School.ReportedFederally AS K12School_ReportedFederally
+	, K12School.LeaTypeCode AS K12School_LeaTypeCode
+	, K12School.LeaTypeDescription AS K12School_LeaTypeDescription
+	, K12School.LeaTypeEdFactsCode AS K12School_LeaTypeEdFactsCode
+	, K12School.SchoolTypeCode AS K12School_SchoolTypeCode
+	, K12School.SchoolTypeDescription AS K12School_SchoolTypeDescription
+	, K12School.SchoolTypeEdFactsCode AS K12School_SchoolTypeEdFactsCode
+	, K12School.MailingAddressCity AS K12School_MailingAddressCity
+	, K12School.MailingAddressPostalCode AS K12School_MailingAddressPostalCode
+	, K12School.MailingAddressStateAbbreviation AS K12School_MailingAddressStateAbbreviation
+	, K12School.MailingAddressStreetNumberAndName AS K12School_MailingAddressStreetNumberAndName
+	, K12School.PhysicalAddressCity AS K12School_PhysicalAddressCity
+	, K12School.PhysicalAddressPostalCode AS K12School_PhysicalAddressPostalCode
+	, K12School.PhysicalAddressStateAbbreviation AS K12School_PhysicalAddressStateAbbreviation
+	, K12School.PhysicalAddressStreetNumberAndName AS K12School_PhysicalAddressStreetNumberAndName
+	, K12School.TelephoneNumber AS K12School_TelephoneNumber
+	, K12School.WebSiteAddress AS K12School_WebSiteAddress
+	, K12School.OutOfStateIndicator AS K12School_OutOfStateIndicator
+	, K12School.RecordStartDateTime AS K12School_RecordStartDateTime
+	, K12School.RecordEndDateTime AS K12School_RecordEndDateTime
+	, K12School.SchoolOperationalStatus AS K12School_SchoolOperationalStatus
+	, K12School.SchoolOperationalStatusEdFactsCode AS K12School_SchoolOperationalStatusEdFactsCode
+	, K12School.CharterSchoolStatus AS K12School_CharterSchoolStatus
+	, K12School.ReconstitutedStatus AS K12School_ReconstitutedStatus
+	, K12School.MailingAddressApartmentRoomOrSuiteNumber AS K12School_MailingAddressApartmentRoomOrSuiteNumber
+	, K12School.PhysicalAddressApartmentRoomOrSuiteNumber AS K12School_PhysicalAddressApartmentRoomOrSuiteNumber
+	, K12School.IeuOrganizationName AS K12School_IeuOrganizationName
+	, K12School.IeuOrganizationIdentifierSea AS K12School_IeuOrganizationIdentifierSea
+	, K12School.MailingAddressCountyAnsiCodeCode AS K12School_MailingAddressCountyAnsiCodeCode
+	, K12School.MailingAddressCountyName AS K12School_MailingAddressCountyName
+	, K12School.PhysicalAddressCountyAnsiCodeCode AS K12School_PhysicalAddressCountyAnsiCodeCode
+	, K12School.PhysicalAddressCountyName AS K12School_PhysicalAddressCountyName
+	, K12School.Longitude AS K12School_Longitude
+	, K12School.Latitude AS K12School_Latitude
+	, K12School.SchoolOperationalStatusEffectiveDate AS K12School_SchoolOperationalStatusEffectiveDate
+	, K12School.AdministrativeFundingControlCode AS K12School_AdministrativeFundingControlCode
+	, K12School.AdministrativeFundingControlDescription AS K12School_AdministrativeFundingControlDescription
+	, Incident.IncidentIdentifier AS Incident_IncidentIdentifier
+	, Incident.IncidentDescription AS Incident_IncidentDescription
+	, IncidentSetting.IncidentLocationCode AS IncidentSetting_IncidentLocationCode
+	, IncidentSetting.IncidentLocationDescription AS IncidentSetting_IncidentLocationDescription
+	, IncidentSetting.IncidentActivityCode AS IncidentSetting_IncidentActivityCode
+	, IncidentSetting.IncidentActivityDescription AS IncidentSetting_IncidentActivityDescription
+	, IncidentTimeIndicator.IncidentTimeDescriptionCodeCode AS IncidentTimeIndicator_IncidentTimeDescriptionCodeCode
+	, IncidentTimeIndicator.IncidentTimeDescriptionCodeDescription AS IncidentTimeIndicator_IncidentTimeDescriptionCodeDescription
+	, IncidentStatus.IdeaInterimRemovalReasonCode AS IncidentStatus_IdeaInterimRemovalReasonCode
+	, IncidentStatus.IdeaInterimRemovalReasonDescription AS IncidentStatus_IdeaInterimRemovalReasonDescription
+	, IncidentStatus.IdeaInterimRemovalReasonEdFactsCode AS IncidentStatus_IdeaInterimRemovalReasonEdFactsCode
+	, IncidentStatus.DisciplineReasonCode AS IncidentStatus_DisciplineReasonCode
+	, IncidentStatus.DisciplineReasonDescription AS IncidentStatus_DisciplineReasonDescription
+	, IncidentStatus.IncidentInjuryTypeCode AS IncidentStatus_IncidentInjuryTypeCode
+	, IncidentStatus.IncidentInjuryTypeDescription AS IncidentStatus_IncidentInjuryTypeDescription
+	, IncidentStatus.IncidentReportedToLawEnforcementIndicatorCode AS IncidentStatus_IncidentReportedToLawEnforcementIndicatorCode
+	, IncidentStatus.IncidentReportedToLawEnforcementIndicatorDescription AS IncidentStatus_IncidentReportedToLawEnforcementIndicatorDescription
+	, fact.IncidentCost
+	, DataCollection.SourceSystemDataCollectionIdentifier AS DataCollection_SourceSystemDataCollectionIdentifier
+	, DataCollection.SourceSystemName AS DataCollection_SourceSystemName
+	, DataCollection.DataCollectionName AS DataCollection_DataCollectionName
+	, DataCollection.DataCollectionDescription AS DataCollection_DataCollectionDescription
+	, DataCollection.DataCollectionOpenDate AS DataCollection_DataCollectionOpenDate
+	, DataCollection.DataCollectionCloseDate AS DataCollection_DataCollectionCloseDate
+	, DataCollection.DataCollectionAcademicSchoolYear AS DataCollection_DataCollectionAcademicSchoolYear
+	, DataCollection.DataCollectionSchoolYear AS DataCollection_DataCollectionSchoolYear
+	, RecordStatus.RecordStatusTypeCode AS RecordStatus_RecordStatusTypeCode
+	, RecordStatus.RecordStatusTypeDescription AS RecordStatus_RecordStatusTypeDescription
+	, RecordStatus.RecordStatusCreatorEntityCode AS RecordStatus_RecordStatusCreatorEntityCode
+	, RecordStatus.RecordStatusCreatorEntityDescription AS RecordStatus_RecordStatusCreatorEntityDescription
+FROM RDS.FactK12Incidents fact
+JOIN RDS.DimSchoolYears SchoolYear
+	ON fact.SchoolYearId = SchoolYear.DimSchoolYearId
+JOIN RDS.DimDates CountDate
+	ON fact.CountDateId = CountDate.DimDateId
+JOIN RDS.DimDates IncidentDate
+	ON fact.IncidentDateId = IncidentDate.DimDateId
+JOIN RDS.DimTimes IncidentTime
+	ON fact.IncidentTimeId = IncidentTime.DimTimeId
+JOIN RDS.DimSeas Sea
+	ON fact.SeaId = Sea.DimSeaId
+JOIN RDS.DimIeus Ieu
+	ON fact.IeuId = Ieu.DimIeuId
+JOIN RDS.DimLeas Lea
+	ON fact.LeaId = Lea.DimLeaId
+JOIN RDS.DimK12Schools K12School
+	ON fact.K12SchoolId = K12School.DimK12SchoolId
+JOIN RDS.DimIncidents Incident
+	ON fact.IncidentId = Incident.DimIncidentId
+JOIN RDS.DimIncidentSettings IncidentSetting
+	ON fact.IncidentSettingId = IncidentSetting.DimIncidentSettingId
+JOIN RDS.DimIncidentTimeIndicators IncidentTimeIndicator
+	ON fact.IncidentTimeIndicatorId = IncidentTimeIndicator.DimIncidentTimeIndicatorId
+JOIN RDS.DimIncidentStatuses IncidentStatus
+	ON fact.IncidentStatusId = IncidentStatus.DimIncidentStatusId
+JOIN RDS.DimDataCollections DataCollection
+	ON fact.DataCollectionId = DataCollection.DimDataCollectionId
+JOIN RDS.DimRecordStatuses RecordStatus
+	ON fact.RecordStatusId = RecordStatus.DimRecordStatusId

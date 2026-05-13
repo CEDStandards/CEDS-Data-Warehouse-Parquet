@@ -1,8 +1,5 @@
--- View: RDS.vwDimEducationOrganizationNetworksParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimEducationOrganizationNetworksParquet] AS
-CREATE   VIEW RDS.vwDimEducationOrganizationNetworksParquet AS SELECT fact.DimEducationOrganizationNetworkId
+CREATE OR ALTER VIEW [RDS].[vwDimEducationOrganizationNetworksParquet] AS
+	SELECT fact.DimEducationOrganizationNetworkId
 	, fact.OrganizationIdentifierSea
 	, fact.OrganizationTypeCode
 	, fact.OrganizationTypeDescription

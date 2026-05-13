@@ -1,8 +1,12 @@
--- View: RDS.vwBridgeFacilityOrganizationAddressesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgeFacilityOrganizationAddressesParquet] AS
-CREATE   VIEW RDS.vwBridgeFacilityOrganizationAddressesParquet AS SELECT fact.BridgeFacilityOrganizationAddressId
+CREATE OR ALTER VIEW [RDS].[vwBridgeFacilityOrganizationAddressesParquet] AS
+	SELECT fact.BridgeFacilityOrganizationAddressId
+	, Facility.FacilityUtilizationStatusId AS Facility_FacilityUtilizationStatusId
+	, Facility.OrganizationId AS Facility_OrganizationId
+	, Facility.CountDateId AS Facility_CountDateId
+	, Facility.SchoolYearId AS Facility_SchoolYearId
+	, Facility.FacilityId AS Facility_FacilityId
+	, Facility.FacilitySpaceStatusId AS Facility_FacilitySpaceStatusId
+	, Facility.FacilityStatusId AS Facility_FacilityStatusId
 	, OrganizationAddress.AddressStreetNumberAndName AS OrganizationAddress_AddressStreetNumberAndName
 	, OrganizationAddress.AddressApartmentRoomOrSuiteNumber AS OrganizationAddress_AddressApartmentRoomOrSuiteNumber
 	, OrganizationAddress.BuildingSiteNumber AS OrganizationAddress_BuildingSiteNumber
@@ -19,6 +23,6 @@ CREATE   VIEW RDS.vwBridgeFacilityOrganizationAddressesParquet AS SELECT fact.Br
 	, OrganizationAddress.RecordEndDateTime AS OrganizationAddress_RecordEndDateTime
 FROM RDS.BridgeFacilityOrganizationAddresses fact
 JOIN RDS.FactFacilities Facility
-	ON Fact.FacilityId = Facility.FactFacilityId
+	ON fact.FacilityId = Facility.FactFacilityId
 JOIN RDS.DimOrganizationAddresses OrganizationAddress
-	ON Fact.OrganizationAddressId = OrganizationAddress.DimOrganizationAddressId
+	ON fact.OrganizationAddressId = OrganizationAddress.DimOrganizationAddressId

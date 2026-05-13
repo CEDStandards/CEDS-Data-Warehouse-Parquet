@@ -1,8 +1,19 @@
--- View: RDS.vwBridgeK12StudentEconomicDisadvantageRacesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgeK12StudentEconomicDisadvantageRacesParquet] AS
-CREATE   VIEW RDS.vwBridgeK12StudentEconomicDisadvantageRacesParquet AS SELECT fact.BridgeK12StudentEconomicDisadvantageRaceId
+CREATE OR ALTER VIEW [RDS].[vwBridgeK12StudentEconomicDisadvantageRacesParquet] AS
+	SELECT fact.BridgeK12StudentEconomicDisadvantageRaceId
+	, FactK12StudentEconomicDisadvantage.SchoolYearId AS FactK12StudentEconomicDisadvantage_SchoolYearId
+	, FactK12StudentEconomicDisadvantage.CountDateId AS FactK12StudentEconomicDisadvantage_CountDateId
+	, FactK12StudentEconomicDisadvantage.DataCollectionId AS FactK12StudentEconomicDisadvantage_DataCollectionId
+	, FactK12StudentEconomicDisadvantage.NcesSideVintageBeginYearDateId AS FactK12StudentEconomicDisadvantage_NcesSideVintageBeginYearDateId
+	, FactK12StudentEconomicDisadvantage.NcesSideVintageEndYearDateId AS FactK12StudentEconomicDisadvantage_NcesSideVintageEndYearDateId
+	, FactK12StudentEconomicDisadvantage.SeaId AS FactK12StudentEconomicDisadvantage_SeaId
+	, FactK12StudentEconomicDisadvantage.IeuId AS FactK12StudentEconomicDisadvantage_IeuId
+	, FactK12StudentEconomicDisadvantage.LeaId AS FactK12StudentEconomicDisadvantage_LeaId
+	, FactK12StudentEconomicDisadvantage.K12SchoolId AS FactK12StudentEconomicDisadvantage_K12SchoolId
+	, FactK12StudentEconomicDisadvantage.K12StudentId AS FactK12StudentEconomicDisadvantage_K12StudentId
+	, FactK12StudentEconomicDisadvantage.K12Student_CurrentId AS FactK12StudentEconomicDisadvantage_K12Student_CurrentId
+	, FactK12StudentEconomicDisadvantage.K12DemographicId AS FactK12StudentEconomicDisadvantage_K12DemographicId
+	, FactK12StudentEconomicDisadvantage.EconomicallyDisadvantagedStatusId AS FactK12StudentEconomicDisadvantage_EconomicallyDisadvantagedStatusId
+	, FactK12StudentEconomicDisadvantage.PersonAddressId AS FactK12StudentEconomicDisadvantage_PersonAddressId
 	, FactK12StudentEconomicDisadvantage.NcesSideEstimate AS FactK12StudentEconomicDisadvantage_NcesSideEstimate
 	, FactK12StudentEconomicDisadvantage.NcesSideStandardError AS FactK12StudentEconomicDisadvantage_NcesSideStandardError
 	, Race.RaceCode AS Race_RaceCode
@@ -10,6 +21,6 @@ CREATE   VIEW RDS.vwBridgeK12StudentEconomicDisadvantageRacesParquet AS SELECT f
 	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
 FROM RDS.BridgeK12StudentEconomicDisadvantageRaces fact
 JOIN RDS.FactK12StudentEconomicDisadvantages FactK12StudentEconomicDisadvantage
-	ON Fact.FactK12StudentEconomicDisadvantageId = FactK12StudentEconomicDisadvantage.FactK12StudentEconomicDisadvantageId
+	ON fact.FactK12StudentEconomicDisadvantageId = FactK12StudentEconomicDisadvantage.FactK12StudentEconomicDisadvantageId
 JOIN RDS.DimRaces Race
-	ON Fact.RaceId = Race.DimRaceId
+	ON fact.RaceId = Race.DimRaceId

@@ -1,14 +1,29 @@
--- View: RDS.vwBridgeK12ProgramParticipationRacesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgeK12ProgramParticipationRacesParquet] AS
-CREATE   VIEW RDS.vwBridgeK12ProgramParticipationRacesParquet AS SELECT fact.BridgeK12ProgramParticipationId
+CREATE OR ALTER VIEW [RDS].[vwBridgeK12ProgramParticipationRacesParquet] AS
+	SELECT fact.BridgeK12ProgramParticipationId
+	, FactK12ProgramParticipation.DataCollectionId AS FactK12ProgramParticipation_DataCollectionId
+	, FactK12ProgramParticipation.SchoolYearId AS FactK12ProgramParticipation_SchoolYearId
+	, FactK12ProgramParticipation.SeaId AS FactK12ProgramParticipation_SeaId
+	, FactK12ProgramParticipation.IeuId AS FactK12ProgramParticipation_IeuId
+	, FactK12ProgramParticipation.LeaAccountabilityId AS FactK12ProgramParticipation_LeaAccountabilityId
+	, FactK12ProgramParticipation.LeaAttendanceId AS FactK12ProgramParticipation_LeaAttendanceId
+	, FactK12ProgramParticipation.LeaFundingId AS FactK12ProgramParticipation_LeaFundingId
+	, FactK12ProgramParticipation.LeaGraduationId AS FactK12ProgramParticipation_LeaGraduationId
+	, FactK12ProgramParticipation.LeaIndividualizedEducationProgramId AS FactK12ProgramParticipation_LeaIndividualizedEducationProgramId
+	, FactK12ProgramParticipation.K12SchoolId AS FactK12ProgramParticipation_K12SchoolId
+	, FactK12ProgramParticipation.K12StudentId AS FactK12ProgramParticipation_K12StudentId
+	, FactK12ProgramParticipation.K12Student_CurrentId AS FactK12ProgramParticipation_K12Student_CurrentId
+	, FactK12ProgramParticipation.IdeaStatusId AS FactK12ProgramParticipation_IdeaStatusId
+	, FactK12ProgramParticipation.K12DemographicId AS FactK12ProgramParticipation_K12DemographicId
+	, FactK12ProgramParticipation.K12ProgramTypeId AS FactK12ProgramParticipation_K12ProgramTypeId
+	, FactK12ProgramParticipation.ProgramParticipationStartDateId AS FactK12ProgramParticipation_ProgramParticipationStartDateId
+	, FactK12ProgramParticipation.ProgramParticipationExitDateId AS FactK12ProgramParticipation_ProgramParticipationExitDateId
+	, FactK12ProgramParticipation.TitleIIIStatusId AS FactK12ProgramParticipation_TitleIIIStatusId
 	, FactK12ProgramParticipation.StudentCount AS FactK12ProgramParticipation_StudentCount
 	, Race.RaceCode AS Race_RaceCode
 	, Race.RaceDescription AS Race_RaceDescription
 	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
 FROM RDS.BridgeK12ProgramParticipationRaces fact
 JOIN RDS.FactK12ProgramParticipations FactK12ProgramParticipation
-	ON Fact.FactK12ProgramParticipationId = FactK12ProgramParticipation.FactK12ProgramParticipationId
+	ON fact.FactK12ProgramParticipationId = FactK12ProgramParticipation.FactK12ProgramParticipationId
 JOIN RDS.DimRaces Race
-	ON Fact.RaceId = Race.DimRaceId
+	ON fact.RaceId = Race.DimRaceId

@@ -1,8 +1,5 @@
--- View: RDS.vwDimOrganizationsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimOrganizationsParquet] AS
-CREATE   VIEW RDS.vwDimOrganizationsParquet AS SELECT fact.DimOrganizationId
+CREATE OR ALTER VIEW [RDS].[vwDimOrganizationsParquet] AS
+	SELECT fact.DimOrganizationId
 	, fact.OrganizationName
 	, fact.ShortNameOfOrganization
 	, fact.OrganizationIdentifierSea

@@ -1,8 +1,5 @@
--- View: RDS.vwDimCalendarSessionsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimCalendarSessionsParquet] AS
-CREATE   VIEW RDS.vwDimCalendarSessionsParquet AS SELECT fact.DimCalendarSessionId
+CREATE OR ALTER VIEW [RDS].[vwDimCalendarSessionsParquet] AS
+	SELECT fact.DimCalendarSessionId
 	, fact.CalendarCode
 	, fact.CalendarDescription
 	, fact.SessionBeginDate

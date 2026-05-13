@@ -1,8 +1,5 @@
--- View: RDS.vwFactFacilitiesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwFactFacilitiesParquet] AS
-CREATE   VIEW RDS.vwFactFacilitiesParquet AS SELECT fact.FactFacilityId
+CREATE OR ALTER VIEW [RDS].[vwFactFacilitiesParquet] AS
+	SELECT fact.FactFacilityId
 	, FacilityUtilizationStatus.BuildingUseTypeCode AS FacilityUtilizationStatus_BuildingUseTypeCode
 	, FacilityUtilizationStatus.BuildingUseTypeDescription AS FacilityUtilizationStatus_BuildingUseTypeDescription
 	, Organization.OrganizationName AS Organization_OrganizationName
@@ -46,7 +43,6 @@ CREATE   VIEW RDS.vwFactFacilitiesParquet AS SELECT fact.FactFacilityId
 	, Facility.BuildingYearBuilt AS Facility_BuildingYearBuilt
 	, Facility.BuildingYearOfLastModernization AS Facility_BuildingYearOfLastModernization
 	, Facility.FacilityBlockNumberArea AS Facility_FacilityBlockNumberArea
-	, Facility.FacilityCensusTract AS Facility_FacilityCensusTract
 	, Facility.FacilityConstructionDate AS Facility_FacilityConstructionDate
 	, Facility.FacilityConstructionDateTypeCode AS Facility_FacilityConstructionDateTypeCode
 	, Facility.FacilityConstructionDateTypeDescription AS Facility_FacilityConstructionDateTypeDescription
@@ -56,4 +52,26 @@ CREATE   VIEW RDS.vwFactFacilitiesParquet AS SELECT fact.FactFacilityId
 	, Facility.FacilitySiteIdentifier AS Facility_FacilitySiteIdentifier
 	, FacilitySpaceStatus.FacilitySpaceUseTypeCode AS FacilitySpaceStatus_FacilitySpaceUseTypeCode
 	, FacilitySpaceStatus.FacilitySpaceUseTypeDescription AS FacilitySpaceStatus_FacilitySpaceUseTypeDescription
-	, FacilityStatus.FacilityLeaseAmoun
+	, FacilityStatus.FacilityLeaseAmountCategoryCode AS FacilityStatus_FacilityLeaseAmountCategoryCode
+	, FacilityStatus.FacilityLeaseAmountCategoryDescription AS FacilityStatus_FacilityLeaseAmountCategoryDescription
+	, FacilityStatus.FacilityLeaseTypeCode AS FacilityStatus_FacilityLeaseTypeCode
+	, FacilityStatus.FacilityLeaseTypeDescription AS FacilityStatus_FacilityLeaseTypeDescription
+	, FacilityStatus.FacilityMortgageInterestTypeCode AS FacilityStatus_FacilityMortgageInterestTypeCode
+	, FacilityStatus.FacilityMortgageInterestTypeDescription AS FacilityStatus_FacilityMortgageInterestTypeDescription
+	, FacilityStatus.FacilityMortgageTypeCode AS FacilityStatus_FacilityMortgageTypeCode
+	, FacilityStatus.FacilityMortgageTypeDescription AS FacilityStatus_FacilityMortgageTypeDescription
+FROM RDS.FactFacilities fact
+JOIN RDS.DimFacilityUtilization FacilityUtilizationStatus
+	ON fact.FacilityUtilizationStatusId = FacilityUtilizationStatus.DimFacilityUtilizationStatusId
+JOIN RDS.DimOrganizations Organization
+	ON fact.OrganizationId = Organization.DimOrganizationId
+JOIN RDS.DimDates CountDate
+	ON fact.CountDateId = CountDate.DimDateId
+JOIN RDS.DimSchoolYears SchoolYear
+	ON fact.SchoolYearId = SchoolYear.DimSchoolYearId
+JOIN RDS.DimFacilities Facility
+	ON fact.FacilityId = Facility.DimFacilityId
+JOIN RDS.DimFacilitySpaceStatuses FacilitySpaceStatus
+	ON fact.FacilitySpaceStatusId = FacilitySpaceStatus.DimFacilitySpaceStatusId
+JOIN RDS.DimFacilityStatuses FacilityStatus
+	ON fact.FacilityStatusId = FacilityStatus.DimFacilityStatusId

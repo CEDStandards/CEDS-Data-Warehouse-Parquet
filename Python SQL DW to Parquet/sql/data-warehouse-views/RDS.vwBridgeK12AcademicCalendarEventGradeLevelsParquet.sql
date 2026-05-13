@@ -1,19 +1,32 @@
--- View: RDS.vwBridgeK12AcademicCalendarEventGradeLevelsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgeK12AcademicCalendarEventGradeLevelsParquet] AS
-CREATE   VIEW RDS.vwBridgeK12AcademicCalendarEventGradeLevelsParquet AS SELECT fact.BridgeK12AcademicCalendarEventGradeLevelId
+CREATE OR ALTER VIEW [RDS].[vwBridgeK12AcademicCalendarEventGradeLevelsParquet] AS
+	SELECT fact.BridgeK12AcademicCalendarEventGradeLevelId
+	, FactK12AcademicCalendarEvent.SchoolYearId AS FactK12AcademicCalendarEvent_SchoolYearId
+	, FactK12AcademicCalendarEvent.CalendarEventDateId AS FactK12AcademicCalendarEvent_CalendarEventDateId
+	, FactK12AcademicCalendarEvent.StartTimeId AS FactK12AcademicCalendarEvent_StartTimeId
+	, FactK12AcademicCalendarEvent.EndTimeId AS FactK12AcademicCalendarEvent_EndTimeId
+	, FactK12AcademicCalendarEvent.SeaId AS FactK12AcademicCalendarEvent_SeaId
+	, FactK12AcademicCalendarEvent.IeuId AS FactK12AcademicCalendarEvent_IeuId
+	, FactK12AcademicCalendarEvent.LeaId AS FactK12AcademicCalendarEvent_LeaId
+	, FactK12AcademicCalendarEvent.K12SchoolId AS FactK12AcademicCalendarEvent_K12SchoolId
+	, FactK12AcademicCalendarEvent.CalendarEventIndicatorId AS FactK12AcademicCalendarEvent_CalendarEventIndicatorId
+	, FactK12AcademicCalendarEvent.CalendarSessionIndicatorId AS FactK12AcademicCalendarEvent_CalendarSessionIndicatorId
+	, FactK12AcademicCalendarEvent.CalendarSessionId AS FactK12AcademicCalendarEvent_CalendarSessionId
 	, FactK12AcademicCalendarEvent.MinutesPerDay AS FactK12AcademicCalendarEvent_MinutesPerDay
 	, FactK12AcademicCalendarEvent.InstructionalMinutesPerDay AS FactK12AcademicCalendarEvent_InstructionalMinutesPerDay
 	, FactK12AcademicCalendarEvent.LunchMinutesPerDay AS FactK12AcademicCalendarEvent_LunchMinutesPerDay
 	, FactK12AcademicCalendarEvent.RecessMinutesPerDay AS FactK12AcademicCalendarEvent_RecessMinutesPerDay
+	, FactK12AcademicCalendarEvent.CalendarEventDayId AS FactK12AcademicCalendarEvent_CalendarEventDayId
+	, FactK12AcademicCalendarEvent.AcademicTermDesignatorId AS FactK12AcademicCalendarEvent_AcademicTermDesignatorId
+	, FactK12AcademicCalendarEvent.CalendarCrisisId AS FactK12AcademicCalendarEvent_CalendarCrisisId
+	, FactK12AcademicCalendarEvent.DataCollectionId AS FactK12AcademicCalendarEvent_DataCollectionId
 	, FactK12AcademicCalendarEvent.RecordStartDateTime AS FactK12AcademicCalendarEvent_RecordStartDateTime
 	, FactK12AcademicCalendarEvent.RecordEndDateTime AS FactK12AcademicCalendarEvent_RecordEndDateTime
+	, FactK12AcademicCalendarEvent.RecordStatusId AS FactK12AcademicCalendarEvent_RecordStatusId
 	, GradeLevel.GradeLevelCode AS GradeLevel_GradeLevelCode
 	, GradeLevel.GradeLevelDescription AS GradeLevel_GradeLevelDescription
 	, GradeLevel.GradeLevelEdFactsCode AS GradeLevel_GradeLevelEdFactsCode
 FROM RDS.BridgeK12AcademicCalendarEventGradeLevels fact
 JOIN RDS.FactK12AcademicCalendarEvents FactK12AcademicCalendarEvent
-	ON Fact.FactK12AcademicCalendarEventId = FactK12AcademicCalendarEvent.FactK12AcademicCalendarEventId
+	ON fact.FactK12AcademicCalendarEventId = FactK12AcademicCalendarEvent.FactK12AcademicCalendarEventId
 JOIN RDS.DimGradeLevels GradeLevel
-	ON Fact.GradeLevelId = GradeLevel.DimGradeLevelId
+	ON fact.GradeLevelId = GradeLevel.DimGradeLevelId

@@ -1,8 +1,5 @@
--- View: RDS.vwDimCredentialAwardsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimCredentialAwardsParquet] AS
-CREATE   VIEW RDS.vwDimCredentialAwardsParquet AS SELECT fact.DimCredentialAwardId
+CREATE OR ALTER VIEW [RDS].[vwDimCredentialAwardsParquet] AS
+	SELECT fact.DimCredentialAwardId
 	, fact.ProfessionalCertificateOrLicenseNumber
 	, fact.CredentialAdvancedStandingDescription
 	, fact.CredentialAdvancedStandingURL

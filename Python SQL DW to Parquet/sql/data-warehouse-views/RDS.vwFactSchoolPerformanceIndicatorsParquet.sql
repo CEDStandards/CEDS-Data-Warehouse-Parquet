@@ -1,8 +1,5 @@
--- View: RDS.vwFactSchoolPerformanceIndicatorsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwFactSchoolPerformanceIndicatorsParquet] AS
-CREATE   VIEW RDS.vwFactSchoolPerformanceIndicatorsParquet AS SELECT fact.FactSchoolPerformanceIndicatorId
+CREATE OR ALTER VIEW [RDS].[vwFactSchoolPerformanceIndicatorsParquet] AS
+	SELECT fact.FactSchoolPerformanceIndicatorId
 	, FactType.FactTypeCode AS FactType_FactTypeCode
 	, FactType.FactTypeDescription AS FactType_FactTypeDescription
 	, FactType.FactTypeLabel AS FactType_FactTypeLabel
@@ -55,4 +52,74 @@ CREATE   VIEW RDS.vwFactSchoolPerformanceIndicatorsParquet AS SELECT fact.FactSc
 	, K12School.MailingAddressCountyAnsiCodeCode AS K12School_MailingAddressCountyAnsiCodeCode
 	, K12School.MailingAddressCountyName AS K12School_MailingAddressCountyName
 	, K12School.PhysicalAddressCountyAnsiCodeCode AS K12School_PhysicalAddressCountyAnsiCodeCode
-	, K12School.PhysicalAddressCountyName AS K1
+	, K12School.PhysicalAddressCountyName AS K12School_PhysicalAddressCountyName
+	, K12School.Longitude AS K12School_Longitude
+	, K12School.Latitude AS K12School_Latitude
+	, K12School.SchoolOperationalStatusEffectiveDate AS K12School_SchoolOperationalStatusEffectiveDate
+	, K12School.AdministrativeFundingControlCode AS K12School_AdministrativeFundingControlCode
+	, K12School.AdministrativeFundingControlDescription AS K12School_AdministrativeFundingControlDescription
+	, CountDate.DateValue AS CountDate_DateValue
+	, CountDate.Day AS CountDate_Day
+	, CountDate.DayOfWeek AS CountDate_DayOfWeek
+	, CountDate.DayOfYear AS CountDate_DayOfYear
+	, CountDate.Month AS CountDate_Month
+	, CountDate.MonthName AS CountDate_MonthName
+	, CountDate.SubmissionYear AS CountDate_SubmissionYear
+	, CountDate.Year AS CountDate_Year
+	, Race.RaceCode AS Race_RaceCode
+	, Race.RaceDescription AS Race_RaceDescription
+	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
+	, IdeaStatus.SpecialEducationExitReasonCode AS IdeaStatus_SpecialEducationExitReasonCode
+	, IdeaStatus.SpecialEducationExitReasonDescription AS IdeaStatus_SpecialEducationExitReasonDescription
+	, IdeaStatus.SpecialEducationExitReasonEdFactsCode AS IdeaStatus_SpecialEducationExitReasonEdFactsCode
+	, IdeaStatus.IdeaEducationalEnvironmentForSchoolAgeDescription AS IdeaStatus_IdeaEducationalEnvironmentForSchoolAgeDescription
+	, IdeaStatus.IdeaEducationalEnvironmentForSchoolAgeCode AS IdeaStatus_IdeaEducationalEnvironmentForSchoolAgeCode
+	, IdeaStatus.IdeaEducationalEnvironmentForSchoolAgeEdFactsCode AS IdeaStatus_IdeaEducationalEnvironmentForSchoolAgeEdFactsCode
+	, IdeaStatus.IdeaIndicatorCode AS IdeaStatus_IdeaIndicatorCode
+	, IdeaStatus.IdeaIndicatorDescription AS IdeaStatus_IdeaIndicatorDescription
+	, IdeaStatus.IdeaIndicatorEdFactsCode AS IdeaStatus_IdeaIndicatorEdFactsCode
+	, IdeaStatus.IdeaEducationalEnvironmentForEarlyChildhoodCode AS IdeaStatus_IdeaEducationalEnvironmentForEarlyChildhoodCode
+	, IdeaStatus.IdeaEducationalEnvironmentForEarlyChildhoodDescription AS IdeaStatus_IdeaEducationalEnvironmentForEarlyChildhoodDescription
+	, IdeaStatus.IdeaEducationalEnvironmentForEarlyChildhoodEdFactsCode AS IdeaStatus_IdeaEducationalEnvironmentForEarlyChildhoodEdFactsCode
+	, K12Demographic.SexCode AS K12Demographic_SexCode
+	, K12Demographic.SexDescription AS K12Demographic_SexDescription
+	, K12Demographic.SexEdFactsCode AS K12Demographic_SexEdFactsCode
+	, EconomicallyDisadvantagedStatus.EconomicDisadvantageStatusCode AS EconomicallyDisadvantagedStatus_EconomicDisadvantageStatusCode
+	, EconomicallyDisadvantagedStatus.EconomicDisadvantageStatusDescription AS EconomicallyDisadvantagedStatus_EconomicDisadvantageStatusDescription
+	, EconomicallyDisadvantagedStatus.EconomicDisadvantageStatusEdFactsCode AS EconomicallyDisadvantagedStatus_EconomicDisadvantageStatusEdFactsCode
+	, EconomicallyDisadvantagedStatus.EligibilityStatusForSchoolFoodServiceProgramsCode AS EconomicallyDisadvantagedStatus_EligibilityStatusForSchoolFoodServiceProgramsCode
+	, EconomicallyDisadvantagedStatus.EligibilityStatusForSchoolFoodServiceProgramsDescription AS EconomicallyDisadvantagedStatus_EligibilityStatusForSchoolFoodServiceProgramsDescription
+	, EconomicallyDisadvantagedStatus.EligibilityStatusForSchoolFoodServiceProgramsEdFactsCode AS EconomicallyDisadvantagedStatus_EligibilityStatusForSchoolFoodServiceProgramsEdFactsCode
+	, EconomicallyDisadvantagedStatus.NationalSchoolLunchProgramDirectCertificationIndicatorCode AS EconomicallyDisadvantagedStatus_NationalSchoolLunchProgramDirectCertificationIndicatorCode
+	, EconomicallyDisadvantagedStatus.NationalSchoolLunchProgramDirectCertificationIndicatorDescription AS EconomicallyDisadvantagedStatus_NationalSchoolLunchProgramDirectCertificationIndicatorDescription
+	, Subgroup.SubgroupElementName AS Subgroup_SubgroupElementName
+	, Subgroup.SubgroupCode AS Subgroup_SubgroupCode
+	, Subgroup.SubgroupDescription AS Subgroup_SubgroupDescription
+	, Subgroup.SubgroupEdFactsCode AS Subgroup_SubgroupEdFactsCode
+	, SchoolPerformanceIndicator.SchoolPerformanceIndicatorTypeCode AS SchoolPerformanceIndicator_SchoolPerformanceIndicatorTypeCode
+	, SchoolPerformanceIndicator.SchoolPerformanceIndicatorTypeDescription AS SchoolPerformanceIndicator_SchoolPerformanceIndicatorTypeDescription
+	, SchoolPerformanceIndicator.SchoolPerformanceIndicatorTypeEdFactsCode AS SchoolPerformanceIndicator_SchoolPerformanceIndicatorTypeEdFactsCode
+	, SchoolPerformanceIndicatorStateDefinedStatus.SchoolPerformanceIndicatorStateDefinedStatusCode AS SchoolPerformanceIndicatorStateDefinedStatus_SchoolPerformanceIndicatorStateDefinedStatusCode
+	, SchoolPerformanceIndicatorStateDefinedStatus.SchoolPerformanceIndicatorStateDefinedStatusDescription AS SchoolPerformanceIndicatorStateDefinedStatus_SchoolPerformanceIndicatorStateDefinedStatusDescription
+	, fact.OrganizationCount
+FROM RDS.FactSchoolPerformanceIndicators fact
+JOIN RDS.DimFactTypes FactType
+	ON fact.FactTypeId = FactType.DimFactTypeId
+JOIN RDS.DimK12Schools K12School
+	ON fact.K12SchoolId = K12School.DimK12SchoolId
+JOIN RDS.DimDates CountDate
+	ON fact.CountDateId = CountDate.DimDateId
+JOIN RDS.DimRaces Race
+	ON fact.RaceId = Race.DimRaceId
+JOIN RDS.DimIdeaStatuses IdeaStatus
+	ON fact.IdeaStatusId = IdeaStatus.DimIdeaStatusId
+JOIN RDS.DimK12Demographics K12Demographic
+	ON fact.K12DemographicId = K12Demographic.DimK12DemographicId
+JOIN RDS.DimEconomicallyDisadvantagedStatuses EconomicallyDisadvantagedStatus
+	ON fact.EconomicallyDisadvantagedStatusId = EconomicallyDisadvantagedStatus.DimEconomicallyDisadvantagedStatusId
+JOIN RDS.DimSubgroups Subgroup
+	ON fact.SubgroupId = Subgroup.DimSubgroupId
+JOIN RDS.DimSchoolPerformanceIndicators SchoolPerformanceIndicator
+	ON fact.SchoolPerformanceIndicatorId = SchoolPerformanceIndicator.DimSchoolPerformanceIndicatorId
+JOIN RDS.DimSchoolPerformanceIndicatorStateDefinedStatuses SchoolPerformanceIndicatorStateDefinedStatus
+	ON fact.SchoolPerformanceIndicatorStateDefinedStatusId = SchoolPerformanceIndicatorStateDefinedStatus.DimSchoolPerformanceIndicatorStateDefinedStatusId

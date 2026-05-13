@@ -1,8 +1,5 @@
--- View: RDS.vwDimLeaFinancialRevenueClassificationsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimLeaFinancialRevenueClassificationsParquet] AS
-CREATE   VIEW RDS.vwDimLeaFinancialRevenueClassificationsParquet AS SELECT fact.DimLeaFinancialRevenueClassificationId
+CREATE OR ALTER VIEW [RDS].[vwDimLeaFinancialRevenueClassificationsParquet] AS
+	SELECT fact.DimLeaFinancialRevenueClassificationId
 	, fact.FinancialAccountCodingSystemOrganizationTypeCode
 	, fact.FinancialAccountCodingSystemOrganizationTypeDescription
 	, fact.FinancialAccountLocalRevenueCodeCode

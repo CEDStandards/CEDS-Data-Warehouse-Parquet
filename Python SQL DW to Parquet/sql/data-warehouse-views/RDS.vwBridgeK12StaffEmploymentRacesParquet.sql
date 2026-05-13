@@ -1,21 +1,43 @@
--- View: RDS.vwBridgeK12StaffEmploymentRacesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgeK12StaffEmploymentRacesParquet] AS
-CREATE   VIEW RDS.vwBridgeK12StaffEmploymentRacesParquet AS SELECT fact.BridgeK12StaffEmploymentRace
+CREATE OR ALTER VIEW [RDS].[vwBridgeK12StaffEmploymentRacesParquet] AS
+	SELECT fact.BridgeK12StaffEmploymentRace
+	, FactK12StaffEmployment.SchoolYearId AS FactK12StaffEmployment_SchoolYearId
+	, FactK12StaffEmployment.CountDateId AS FactK12StaffEmployment_CountDateId
 	, FactK12StaffEmployment.RecordStartDateTime AS FactK12StaffEmployment_RecordStartDateTime
 	, FactK12StaffEmployment.RecordEndDateTime AS FactK12StaffEmployment_RecordEndDateTime
+	, FactK12StaffEmployment.K12StaffStatusId AS FactK12StaffEmployment_K12StaffStatusId
+	, FactK12StaffEmployment.TeachingCredentialStatusId AS FactK12StaffEmployment_TeachingCredentialStatusId
+	, FactK12StaffEmployment.SeaId AS FactK12StaffEmployment_SeaId
+	, FactK12StaffEmployment.IeuId AS FactK12StaffEmployment_IeuId
+	, FactK12StaffEmployment.LeaId AS FactK12StaffEmployment_LeaId
+	, FactK12StaffEmployment.EmployerId AS FactK12StaffEmployment_EmployerId
+	, FactK12StaffEmployment.K12StaffId AS FactK12StaffEmployment_K12StaffId
+	, FactK12StaffEmployment.K12Staff_CurrentId AS FactK12StaffEmployment_K12Staff_CurrentId
+	, FactK12StaffEmployment.OnetSocOccupationTypeId AS FactK12StaffEmployment_OnetSocOccupationTypeId
+	, FactK12StaffEmployment.StandardOccupationalClassificationId AS FactK12StaffEmployment_StandardOccupationalClassificationId
+	, FactK12StaffEmployment.K12StaffCategoryId AS FactK12StaffEmployment_K12StaffCategoryId
 	, FactK12StaffEmployment.YearsOfPriorTeachingExperience AS FactK12StaffEmployment_YearsOfPriorTeachingExperience
 	, FactK12StaffEmployment.YearsOfPriorProfessionalExperience AS FactK12StaffEmployment_YearsOfPriorProfessionalExperience
 	, FactK12StaffEmployment.YearsOfTotalExperience AS FactK12StaffEmployment_YearsOfTotalExperience
 	, FactK12StaffEmployment.YearsofPriorAdultEducationTeachingExperience AS FactK12StaffEmployment_YearsofPriorAdultEducationTeachingExperience
+	, FactK12StaffEmployment.K12EmploymentStatusId AS FactK12StaffEmployment_K12EmploymentStatusId
+	, FactK12StaffEmployment.K12JobPositionId AS FactK12StaffEmployment_K12JobPositionId
+	, FactK12StaffEmployment.K12JobPositionStatusId AS FactK12StaffEmployment_K12JobPositionStatusId
+	, FactK12StaffEmployment.K12JobId AS FactK12StaffEmployment_K12JobId
+	, FactK12StaffEmployment.LeaJobClassificationId AS FactK12StaffEmployment_LeaJobClassificationId
+	, FactK12StaffEmployment.SeaJobClassificationId AS FactK12StaffEmployment_SeaJobClassificationId
 	, FactK12StaffEmployment.FullTimeEquivalency AS FactK12StaffEmployment_FullTimeEquivalency
+	, FactK12StaffEmployment.EmploymentStartDateId AS FactK12StaffEmployment_EmploymentStartDateId
+	, FactK12StaffEmployment.EmploymentEndDateId AS FactK12StaffEmployment_EmploymentEndDateId
+	, FactK12StaffEmployment.HireDateId AS FactK12StaffEmployment_HireDateId
+	, FactK12StaffEmployment.K12DemographicId AS FactK12StaffEmployment_K12DemographicId
 	, FactK12StaffEmployment.ContractDaysOfServicePerYear AS FactK12StaffEmployment_ContractDaysOfServicePerYear
+	, FactK12StaffEmployment.DataCollectionId AS FactK12StaffEmployment_DataCollectionId
+	, FactK12StaffEmployment.RecordStatusId AS FactK12StaffEmployment_RecordStatusId
 	, Race.RaceCode AS Race_RaceCode
 	, Race.RaceDescription AS Race_RaceDescription
 	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
 FROM RDS.BridgeK12StaffEmploymentRaces fact
 JOIN RDS.FactK12StaffEmployments FactK12StaffEmployment
-	ON Fact.FactK12StaffEmploymentId = FactK12StaffEmployment.FactK12StaffEmploymentId
+	ON fact.FactK12StaffEmploymentId = FactK12StaffEmployment.FactK12StaffEmploymentId
 JOIN RDS.DimRaces Race
-	ON Fact.RaceId = Race.DimRaceId
+	ON fact.RaceId = Race.DimRaceId

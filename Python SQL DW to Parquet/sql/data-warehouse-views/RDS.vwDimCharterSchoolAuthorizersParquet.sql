@@ -1,8 +1,5 @@
--- View: RDS.vwDimCharterSchoolAuthorizersParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimCharterSchoolAuthorizersParquet] AS
-CREATE   VIEW RDS.vwDimCharterSchoolAuthorizersParquet AS SELECT fact.DimCharterSchoolAuthorizerId
+CREATE OR ALTER VIEW [RDS].[vwDimCharterSchoolAuthorizersParquet] AS
+	SELECT fact.DimCharterSchoolAuthorizerId
 	, fact.CharterSchoolAuthorizingOrganizationOrganizationIdentifierSea
 	, fact.CharterSchoolAuthorizingOrganizationOrganizationName
 	, fact.CharterSchoolAuthorizerTypeCode

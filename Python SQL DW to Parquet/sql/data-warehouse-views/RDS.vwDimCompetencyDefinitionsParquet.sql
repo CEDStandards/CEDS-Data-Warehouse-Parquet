@@ -1,8 +1,5 @@
--- View: RDS.vwDimCompetencyDefinitionsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimCompetencyDefinitionsParquet] AS
-CREATE   VIEW RDS.vwDimCompetencyDefinitionsParquet AS SELECT fact.DimCompetencyDefinitionId
+CREATE OR ALTER VIEW [RDS].[vwDimCompetencyDefinitionsParquet] AS
+	SELECT fact.DimCompetencyDefinitionId
 	, fact.CompetencyDefinitionIdentifier
 	, fact.CompetencyDefinitionCode
 	, fact.CompetencyDefinitionShortName

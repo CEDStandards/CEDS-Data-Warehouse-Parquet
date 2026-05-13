@@ -1,8 +1,5 @@
--- View: RDS.vwDimCredentialIssuersParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimCredentialIssuersParquet] AS
-CREATE   VIEW RDS.vwDimCredentialIssuersParquet AS SELECT fact.DimCredentialIssuerId
+CREATE OR ALTER VIEW [RDS].[vwDimCredentialIssuersParquet] AS
+	SELECT fact.DimCredentialIssuerId
 	, fact.CredentialIssuerOrganizationName
 	, fact.CredentialIssuerOrganizationIdentifierSea
 	, fact.SeaOrganizationName
@@ -17,7 +14,6 @@ CREATE   VIEW RDS.vwDimCredentialIssuersParquet AS SELECT fact.DimCredentialIssu
 	, fact.MailingAddressCity
 	, fact.MailingAddressStateAbbreviation
 	, fact.MailingAddressPostalCode
-	, fact.MailingAddressCountyAnsiCodeCode
 	, fact.OutOfStateIndicator
 	, fact.OrganizationOperationalStatus
 	, fact.OperationalStatusEffectiveDate
@@ -26,7 +22,6 @@ CREATE   VIEW RDS.vwDimCredentialIssuersParquet AS SELECT fact.DimCredentialIssu
 	, fact.PhysicalAddressCity
 	, fact.PhysicalAddressPostalCode
 	, fact.PhysicalAddressStateAbbreviation
-	, fact.PhysicalAddressCountyAnsiCodeCode
 	, fact.StateIssuingProfessionalCredentialOrLicenseCode
 	, fact.StateIssuingProfessionalCredentialOrLicenseDescription
 	, fact.TelephoneNumber

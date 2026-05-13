@@ -1,8 +1,5 @@
--- View: RDS.vwFactK12StudentAcademicRecordsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwFactK12StudentAcademicRecordsParquet] AS
-CREATE   VIEW RDS.vwFactK12StudentAcademicRecordsParquet AS SELECT fact.FactK12StudentAcademicRecordId
+CREATE OR ALTER VIEW [RDS].[vwFactK12StudentAcademicRecordsParquet] AS
+	SELECT fact.FactK12StudentAcademicRecordId
 	, SchoolYear.SchoolYear AS SchoolYear_SchoolYear
 	, SchoolYear.SessionBeginDate AS SchoolYear_SessionBeginDate
 	, SchoolYear.SessionEndDate AS SchoolYear_SessionEndDate
@@ -48,7 +45,6 @@ CREATE   VIEW RDS.vwFactK12StudentAcademicRecordsParquet AS SELECT fact.FactK12S
 	, LeaAccountability.LeaIdentifierNces AS LeaAccountability_LeaIdentifierNces
 	, LeaAccountability.LeaIdentifierSea AS LeaAccountability_LeaIdentifierSea
 	, LeaAccountability.PriorLeaIdentifierSea AS LeaAccountability_PriorLeaIdentifierSea
-	, LeaAccountability.LeaSupervisoryUnionIdentificationNumber AS LeaAccountability_LeaSupervisoryUnionIdentificationNumber
 	, LeaAccountability.ReportedFederally AS LeaAccountability_ReportedFederally
 	, LeaAccountability.LeaTypeCode AS LeaAccountability_LeaTypeCode
 	, LeaAccountability.LeaTypeDescription AS LeaAccountability_LeaTypeDescription
@@ -56,4 +52,298 @@ CREATE   VIEW RDS.vwFactK12StudentAcademicRecordsParquet AS SELECT fact.FactK12S
 	, LeaAccountability.MailingAddressStreetNumberAndName AS LeaAccountability_MailingAddressStreetNumberAndName
 	, LeaAccountability.MailingAddressApartmentRoomOrSuiteNumber AS LeaAccountability_MailingAddressApartmentRoomOrSuiteNumber
 	, LeaAccountability.MailingAddressCity AS LeaAccountability_MailingAddressCity
-	, LeaAcc
+	, LeaAccountability.MailingAddressPostalCode AS LeaAccountability_MailingAddressPostalCode
+	, LeaAccountability.MailingAddressStateAbbreviation AS LeaAccountability_MailingAddressStateAbbreviation
+	, LeaAccountability.MailingAddressCountyName AS LeaAccountability_MailingAddressCountyName
+	, LeaAccountability.PhysicalAddressStreetNumberAndName AS LeaAccountability_PhysicalAddressStreetNumberAndName
+	, LeaAccountability.PhysicalAddressApartmentRoomOrSuiteNumber AS LeaAccountability_PhysicalAddressApartmentRoomOrSuiteNumber
+	, LeaAccountability.PhysicalAddressCity AS LeaAccountability_PhysicalAddressCity
+	, LeaAccountability.PhysicalAddressPostalCode AS LeaAccountability_PhysicalAddressPostalCode
+	, LeaAccountability.PhysicalAddressStateAbbreviation AS LeaAccountability_PhysicalAddressStateAbbreviation
+	, LeaAccountability.PhysicalAddressCountyName AS LeaAccountability_PhysicalAddressCountyName
+	, LeaAccountability.Longitude AS LeaAccountability_Longitude
+	, LeaAccountability.Latitude AS LeaAccountability_Latitude
+	, LeaAccountability.TelephoneNumber AS LeaAccountability_TelephoneNumber
+	, LeaAccountability.WebSiteAddress AS LeaAccountability_WebSiteAddress
+	, LeaAccountability.OutOfStateIndicator AS LeaAccountability_OutOfStateIndicator
+	, LeaAccountability.LeaOperationalStatus AS LeaAccountability_LeaOperationalStatus
+	, LeaAccountability.LeaOperationalStatusEdFactsCode AS LeaAccountability_LeaOperationalStatusEdFactsCode
+	, LeaAccountability.OperationalStatusEffectiveDate AS LeaAccountability_OperationalStatusEffectiveDate
+	, LeaAccountability.CharterLeaStatus AS LeaAccountability_CharterLeaStatus
+	, LeaAccountability.ReconstitutedStatus AS LeaAccountability_ReconstitutedStatus
+	, LeaAccountability.McKinneyVentoSubgrantRecipient AS LeaAccountability_McKinneyVentoSubgrantRecipient
+	, LeaAccountability.RecordStartDateTime AS LeaAccountability_RecordStartDateTime
+	, LeaAccountability.RecordEndDateTime AS LeaAccountability_RecordEndDateTime
+	, LeaInstruction.IeuOrganizationName AS LeaInstruction_IeuOrganizationName
+	, LeaInstruction.IeuOrganizationIdentifierSea AS LeaInstruction_IeuOrganizationIdentifierSea
+	, LeaInstruction.StateAnsiCode AS LeaInstruction_StateAnsiCode
+	, LeaInstruction.StateAbbreviationCode AS LeaInstruction_StateAbbreviationCode
+	, LeaInstruction.StateAbbreviationDescription AS LeaInstruction_StateAbbreviationDescription
+	, LeaInstruction.SeaOrganizationName AS LeaInstruction_SeaOrganizationName
+	, LeaInstruction.SeaOrganizationIdentifierSea AS LeaInstruction_SeaOrganizationIdentifierSea
+	, LeaInstruction.LeaOrganizationName AS LeaInstruction_LeaOrganizationName
+	, LeaInstruction.LeaIdentifierNces AS LeaInstruction_LeaIdentifierNces
+	, LeaInstruction.LeaIdentifierSea AS LeaInstruction_LeaIdentifierSea
+	, LeaInstruction.PriorLeaIdentifierSea AS LeaInstruction_PriorLeaIdentifierSea
+	, LeaInstruction.ReportedFederally AS LeaInstruction_ReportedFederally
+	, LeaInstruction.LeaTypeCode AS LeaInstruction_LeaTypeCode
+	, LeaInstruction.LeaTypeDescription AS LeaInstruction_LeaTypeDescription
+	, LeaInstruction.LeaTypeEdFactsCode AS LeaInstruction_LeaTypeEdFactsCode
+	, LeaInstruction.MailingAddressStreetNumberAndName AS LeaInstruction_MailingAddressStreetNumberAndName
+	, LeaInstruction.MailingAddressApartmentRoomOrSuiteNumber AS LeaInstruction_MailingAddressApartmentRoomOrSuiteNumber
+	, LeaInstruction.MailingAddressCity AS LeaInstruction_MailingAddressCity
+	, LeaInstruction.MailingAddressPostalCode AS LeaInstruction_MailingAddressPostalCode
+	, LeaInstruction.MailingAddressStateAbbreviation AS LeaInstruction_MailingAddressStateAbbreviation
+	, LeaInstruction.MailingAddressCountyName AS LeaInstruction_MailingAddressCountyName
+	, LeaInstruction.PhysicalAddressStreetNumberAndName AS LeaInstruction_PhysicalAddressStreetNumberAndName
+	, LeaInstruction.PhysicalAddressApartmentRoomOrSuiteNumber AS LeaInstruction_PhysicalAddressApartmentRoomOrSuiteNumber
+	, LeaInstruction.PhysicalAddressCity AS LeaInstruction_PhysicalAddressCity
+	, LeaInstruction.PhysicalAddressPostalCode AS LeaInstruction_PhysicalAddressPostalCode
+	, LeaInstruction.PhysicalAddressStateAbbreviation AS LeaInstruction_PhysicalAddressStateAbbreviation
+	, LeaInstruction.PhysicalAddressCountyName AS LeaInstruction_PhysicalAddressCountyName
+	, LeaInstruction.Longitude AS LeaInstruction_Longitude
+	, LeaInstruction.Latitude AS LeaInstruction_Latitude
+	, LeaInstruction.TelephoneNumber AS LeaInstruction_TelephoneNumber
+	, LeaInstruction.WebSiteAddress AS LeaInstruction_WebSiteAddress
+	, LeaInstruction.OutOfStateIndicator AS LeaInstruction_OutOfStateIndicator
+	, LeaInstruction.LeaOperationalStatus AS LeaInstruction_LeaOperationalStatus
+	, LeaInstruction.LeaOperationalStatusEdFactsCode AS LeaInstruction_LeaOperationalStatusEdFactsCode
+	, LeaInstruction.OperationalStatusEffectiveDate AS LeaInstruction_OperationalStatusEffectiveDate
+	, LeaInstruction.CharterLeaStatus AS LeaInstruction_CharterLeaStatus
+	, LeaInstruction.ReconstitutedStatus AS LeaInstruction_ReconstitutedStatus
+	, LeaInstruction.McKinneyVentoSubgrantRecipient AS LeaInstruction_McKinneyVentoSubgrantRecipient
+	, LeaInstruction.RecordStartDateTime AS LeaInstruction_RecordStartDateTime
+	, LeaInstruction.RecordEndDateTime AS LeaInstruction_RecordEndDateTime
+	, K12School.LeaOrganizationName AS K12School_LeaOrganizationName
+	, K12School.LeaIdentifierNces AS K12School_LeaIdentifierNces
+	, K12School.LeaIdentifierSea AS K12School_LeaIdentifierSea
+	, K12School.NameOfInstitution AS K12School_NameOfInstitution
+	, K12School.SchoolIdentifierNces AS K12School_SchoolIdentifierNces
+	, K12School.SchoolIdentifierSea AS K12School_SchoolIdentifierSea
+	, K12School.SchoolIdentifierAct AS K12School_SchoolIdentifierAct
+	, K12School.SeaOrganizationName AS K12School_SeaOrganizationName
+	, K12School.SeaOrganizationIdentifierSea AS K12School_SeaOrganizationIdentifierSea
+	, K12School.StateAnsiCode AS K12School_StateAnsiCode
+	, K12School.StateAbbreviationCode AS K12School_StateAbbreviationCode
+	, K12School.StateAbbreviationDescription AS K12School_StateAbbreviationDescription
+	, K12School.PriorLeaIdentifierSea AS K12School_PriorLeaIdentifierSea
+	, K12School.PriorSchoolIdentifierSea AS K12School_PriorSchoolIdentifierSea
+	, K12School.CharterSchoolIndicator AS K12School_CharterSchoolIndicator
+	, K12School.CharterSchoolContractIdNumber AS K12School_CharterSchoolContractIdNumber
+	, K12School.CharterSchoolContractApprovalDate AS K12School_CharterSchoolContractApprovalDate
+	, K12School.CharterSchoolContractRenewalDate AS K12School_CharterSchoolContractRenewalDate
+	, K12School.ReportedFederally AS K12School_ReportedFederally
+	, K12School.LeaTypeCode AS K12School_LeaTypeCode
+	, K12School.LeaTypeDescription AS K12School_LeaTypeDescription
+	, K12School.LeaTypeEdFactsCode AS K12School_LeaTypeEdFactsCode
+	, K12School.SchoolTypeCode AS K12School_SchoolTypeCode
+	, K12School.SchoolTypeDescription AS K12School_SchoolTypeDescription
+	, K12School.SchoolTypeEdFactsCode AS K12School_SchoolTypeEdFactsCode
+	, K12School.MailingAddressCity AS K12School_MailingAddressCity
+	, K12School.MailingAddressPostalCode AS K12School_MailingAddressPostalCode
+	, K12School.MailingAddressStateAbbreviation AS K12School_MailingAddressStateAbbreviation
+	, K12School.MailingAddressStreetNumberAndName AS K12School_MailingAddressStreetNumberAndName
+	, K12School.PhysicalAddressCity AS K12School_PhysicalAddressCity
+	, K12School.PhysicalAddressPostalCode AS K12School_PhysicalAddressPostalCode
+	, K12School.PhysicalAddressStateAbbreviation AS K12School_PhysicalAddressStateAbbreviation
+	, K12School.PhysicalAddressStreetNumberAndName AS K12School_PhysicalAddressStreetNumberAndName
+	, K12School.TelephoneNumber AS K12School_TelephoneNumber
+	, K12School.WebSiteAddress AS K12School_WebSiteAddress
+	, K12School.OutOfStateIndicator AS K12School_OutOfStateIndicator
+	, K12School.RecordStartDateTime AS K12School_RecordStartDateTime
+	, K12School.RecordEndDateTime AS K12School_RecordEndDateTime
+	, K12School.SchoolOperationalStatus AS K12School_SchoolOperationalStatus
+	, K12School.SchoolOperationalStatusEdFactsCode AS K12School_SchoolOperationalStatusEdFactsCode
+	, K12School.CharterSchoolStatus AS K12School_CharterSchoolStatus
+	, K12School.ReconstitutedStatus AS K12School_ReconstitutedStatus
+	, K12School.MailingAddressApartmentRoomOrSuiteNumber AS K12School_MailingAddressApartmentRoomOrSuiteNumber
+	, K12School.PhysicalAddressApartmentRoomOrSuiteNumber AS K12School_PhysicalAddressApartmentRoomOrSuiteNumber
+	, K12School.IeuOrganizationName AS K12School_IeuOrganizationName
+	, K12School.IeuOrganizationIdentifierSea AS K12School_IeuOrganizationIdentifierSea
+	, K12School.MailingAddressCountyAnsiCodeCode AS K12School_MailingAddressCountyAnsiCodeCode
+	, K12School.MailingAddressCountyName AS K12School_MailingAddressCountyName
+	, K12School.PhysicalAddressCountyAnsiCodeCode AS K12School_PhysicalAddressCountyAnsiCodeCode
+	, K12School.PhysicalAddressCountyName AS K12School_PhysicalAddressCountyName
+	, K12School.Longitude AS K12School_Longitude
+	, K12School.Latitude AS K12School_Latitude
+	, K12School.SchoolOperationalStatusEffectiveDate AS K12School_SchoolOperationalStatusEffectiveDate
+	, K12School.AdministrativeFundingControlCode AS K12School_AdministrativeFundingControlCode
+	, K12School.AdministrativeFundingControlDescription AS K12School_AdministrativeFundingControlDescription
+	, K12Student.FirstName AS K12Student_FirstName
+	, K12Student.MiddleName AS K12Student_MiddleName
+	, K12Student.LastOrSurname AS K12Student_LastOrSurname
+	, K12Student.Birthdate AS K12Student_Birthdate
+	, K12Student.ELChildChildIdentifierState AS K12Student_ELChildChildIdentifierState
+	, K12Student.K12StudentStudentIdentifierState AS K12Student_K12StudentStudentIdentifierState
+	, K12Student.K12StudentStudentIdentifierDistrict AS K12Student_K12StudentStudentIdentifierDistrict
+	, K12Student.K12StudentStudentIdentifierNationalMigrant AS K12Student_K12StudentStudentIdentifierNationalMigrant
+	, K12Student.PsStudentStudentIdentifierState AS K12Student_PsStudentStudentIdentifierState
+	, K12Student.AeStudentStudentIdentifierState AS K12Student_AeStudentStudentIdentifierState
+	, K12Student.WorkforceProgramParticipantPersonIdentifierState AS K12Student_WorkforceProgramParticipantPersonIdentifierState
+	, K12Student.ELStaffStaffMemberIdentifierState AS K12Student_ELStaffStaffMemberIdentifierState
+	, K12Student.K12StaffStaffMemberIdentifierState AS K12Student_K12StaffStaffMemberIdentifierState
+	, K12Student.K12StaffStaffMemberIdentifierDistrict AS K12Student_K12StaffStaffMemberIdentifierDistrict
+	, K12Student.PsStaffStaffMemberIdentifierState AS K12Student_PsStaffStaffMemberIdentifierState
+	, K12Student.PersonIdentifierDriversLicense AS K12Student_PersonIdentifierDriversLicense
+	, K12Student.PersonIdentifierSSN AS K12Student_PersonIdentifierSSN
+	, K12Student.PersonIdentifierState AS K12Student_PersonIdentifierState
+	, K12Student.StudentIdentifierState AS K12Student_StudentIdentifierState
+	, K12Student.IsActiveELChild AS K12Student_IsActiveELChild
+	, K12Student.IsActiveK12Student AS K12Student_IsActiveK12Student
+	, K12Student.IsActivePsStudent AS K12Student_IsActivePsStudent
+	, K12Student.IsActiveAeStudent AS K12Student_IsActiveAeStudent
+	, K12Student.IsActiveWorkforceProgramParticipant AS K12Student_IsActiveWorkforceProgramParticipant
+	, K12Student.IsActiveELStaff AS K12Student_IsActiveELStaff
+	, K12Student.IsActiveK12Staff AS K12Student_IsActiveK12Staff
+	, K12Student.IsActivePsStaff AS K12Student_IsActivePsStaff
+	, K12Student.RecordStartDateTime AS K12Student_RecordStartDateTime
+	, K12Student.RecordEndDateTime AS K12Student_RecordEndDateTime
+	, K12Student.ElectronicMailAddressHome AS K12Student_ElectronicMailAddressHome
+	, K12Student.ElectronicMailAddressOrganizational AS K12Student_ElectronicMailAddressOrganizational
+	, K12Student.ElectronicMailAddressWork AS K12Student_ElectronicMailAddressWork
+	, K12Student.TelephoneNumberFax AS K12Student_TelephoneNumberFax
+	, K12Student.TelephoneNumberHome AS K12Student_TelephoneNumberHome
+	, K12Student.TelephoneNumberMobile AS K12Student_TelephoneNumberMobile
+	, K12Student.TelephoneNumberWork AS K12Student_TelephoneNumberWork
+	, K12Student.PersonalTitleOrPrefix AS K12Student_PersonalTitleOrPrefix
+	, K12Student.PositionTitle AS K12Student_PositionTitle
+	, K12Student.GenerationCodeOrSuffix AS K12Student_GenerationCodeOrSuffix
+	, K12Student.HighestLevelOfEducationCompletedCode AS K12Student_HighestLevelOfEducationCompletedCode
+	, K12Student.HighestLevelOfEducationCompletedDescription AS K12Student_HighestLevelOfEducationCompletedDescription
+	, K12Student_Current.FirstName AS K12Student_Current_FirstName
+	, K12Student_Current.MiddleName AS K12Student_Current_MiddleName
+	, K12Student_Current.LastOrSurname AS K12Student_Current_LastOrSurname
+	, K12Student_Current.Birthdate AS K12Student_Current_Birthdate
+	, K12Student_Current.ELChildChildIdentifierState AS K12Student_Current_ELChildChildIdentifierState
+	, K12Student_Current.K12StudentStudentIdentifierState AS K12Student_Current_K12StudentStudentIdentifierState
+	, K12Student_Current.K12StudentStudentIdentifierDistrict AS K12Student_Current_K12StudentStudentIdentifierDistrict
+	, K12Student_Current.K12StudentStudentIdentifierNationalMigrant AS K12Student_Current_K12StudentStudentIdentifierNationalMigrant
+	, K12Student_Current.PsStudentStudentIdentifierState AS K12Student_Current_PsStudentStudentIdentifierState
+	, K12Student_Current.AeStudentStudentIdentifierState AS K12Student_Current_AeStudentStudentIdentifierState
+	, K12Student_Current.WorkforceProgramParticipantPersonIdentifierState AS K12Student_Current_WorkforceProgramParticipantPersonIdentifierState
+	, K12Student_Current.ELStaffStaffMemberIdentifierState AS K12Student_Current_ELStaffStaffMemberIdentifierState
+	, K12Student_Current.K12StaffStaffMemberIdentifierState AS K12Student_Current_K12StaffStaffMemberIdentifierState
+	, K12Student_Current.K12StaffStaffMemberIdentifierDistrict AS K12Student_Current_K12StaffStaffMemberIdentifierDistrict
+	, K12Student_Current.PsStaffStaffMemberIdentifierState AS K12Student_Current_PsStaffStaffMemberIdentifierState
+	, K12Student_Current.PersonIdentifierDriversLicense AS K12Student_Current_PersonIdentifierDriversLicense
+	, K12Student_Current.PersonIdentifierSSN AS K12Student_Current_PersonIdentifierSSN
+	, K12Student_Current.PersonIdentifierState AS K12Student_Current_PersonIdentifierState
+	, K12Student_Current.StudentIdentifierState AS K12Student_Current_StudentIdentifierState
+	, K12Student_Current.IsActiveELChild AS K12Student_Current_IsActiveELChild
+	, K12Student_Current.IsActiveK12Student AS K12Student_Current_IsActiveK12Student
+	, K12Student_Current.IsActivePsStudent AS K12Student_Current_IsActivePsStudent
+	, K12Student_Current.IsActiveAeStudent AS K12Student_Current_IsActiveAeStudent
+	, K12Student_Current.IsActiveWorkforceProgramParticipant AS K12Student_Current_IsActiveWorkforceProgramParticipant
+	, K12Student_Current.IsActiveELStaff AS K12Student_Current_IsActiveELStaff
+	, K12Student_Current.IsActiveK12Staff AS K12Student_Current_IsActiveK12Staff
+	, K12Student_Current.IsActivePsStaff AS K12Student_Current_IsActivePsStaff
+	, K12Student_Current.ElectronicMailAddressHome AS K12Student_Current_ElectronicMailAddressHome
+	, K12Student_Current.ElectronicMailAddressOrganizational AS K12Student_Current_ElectronicMailAddressOrganizational
+	, K12Student_Current.ElectronicMailAddressWork AS K12Student_Current_ElectronicMailAddressWork
+	, K12Student_Current.TelephoneNumberFax AS K12Student_Current_TelephoneNumberFax
+	, K12Student_Current.TelephoneNumberHome AS K12Student_Current_TelephoneNumberHome
+	, K12Student_Current.TelephoneNumberMobile AS K12Student_Current_TelephoneNumberMobile
+	, K12Student_Current.TelephoneNumberWork AS K12Student_Current_TelephoneNumberWork
+	, K12Student_Current.PersonalTitleOrPrefix AS K12Student_Current_PersonalTitleOrPrefix
+	, K12Student_Current.PositionTitle AS K12Student_Current_PositionTitle
+	, K12Student_Current.GenerationCodeOrSuffix AS K12Student_Current_GenerationCodeOrSuffix
+	, K12Student_Current.HighestLevelOfEducationCompletedCode AS K12Student_Current_HighestLevelOfEducationCompletedCode
+	, K12Student_Current.HighestLevelOfEducationCompletedDescription AS K12Student_Current_HighestLevelOfEducationCompletedDescription
+	, K12AcademicAwardStatus.HighSchoolDiplomaTypeCode AS K12AcademicAwardStatus_HighSchoolDiplomaTypeCode
+	, K12AcademicAwardStatus.HighSchoolDiplomaTypeDescription AS K12AcademicAwardStatus_HighSchoolDiplomaTypeDescription
+	, K12AcademicAwardStatus.HighSchoolDiplomaTypeEdFactsCode AS K12AcademicAwardStatus_HighSchoolDiplomaTypeEdFactsCode
+	, K12AcademicAwardStatus.HighSchoolDiplomaDistinctionTypeCode AS K12AcademicAwardStatus_HighSchoolDiplomaDistinctionTypeCode
+	, K12AcademicAwardStatus.HighSchoolDiplomaDistinctionTypeDescription AS K12AcademicAwardStatus_HighSchoolDiplomaDistinctionTypeDescription
+	, K12AcademicAwardStatus.ProjectedHighSchoolDiplomaTypeCode AS K12AcademicAwardStatus_ProjectedHighSchoolDiplomaTypeCode
+	, K12AcademicAwardStatus.ProjectedHighSchoolDiplomaTypeDescription AS K12AcademicAwardStatus_ProjectedHighSchoolDiplomaTypeDescription
+	, fact.HighSchoolGradePointAverageWeighted
+	, fact.HighSchoolGradePointAverageCumulativeWeighted
+	, fact.HighSchoolGradePointAverageUnweighted
+	, fact.HighSchoolGradePointAverageCumulativeUnweighted
+	, ProjectedGraduationDate.DateValue AS ProjectedGraduationDate_DateValue
+	, ProjectedGraduationDate.Day AS ProjectedGraduationDate_Day
+	, ProjectedGraduationDate.DayOfWeek AS ProjectedGraduationDate_DayOfWeek
+	, ProjectedGraduationDate.DayOfYear AS ProjectedGraduationDate_DayOfYear
+	, ProjectedGraduationDate.Month AS ProjectedGraduationDate_Month
+	, ProjectedGraduationDate.MonthName AS ProjectedGraduationDate_MonthName
+	, ProjectedGraduationDate.SubmissionYear AS ProjectedGraduationDate_SubmissionYear
+	, ProjectedGraduationDate.Year AS ProjectedGraduationDate_Year
+	, EducationCareerEducationPlanDate.DateValue AS EducationCareerEducationPlanDate_DateValue
+	, EducationCareerEducationPlanDate.Day AS EducationCareerEducationPlanDate_Day
+	, EducationCareerEducationPlanDate.DayOfWeek AS EducationCareerEducationPlanDate_DayOfWeek
+	, EducationCareerEducationPlanDate.DayOfYear AS EducationCareerEducationPlanDate_DayOfYear
+	, EducationCareerEducationPlanDate.Month AS EducationCareerEducationPlanDate_Month
+	, EducationCareerEducationPlanDate.MonthName AS EducationCareerEducationPlanDate_MonthName
+	, EducationCareerEducationPlanDate.SubmissionYear AS EducationCareerEducationPlanDate_SubmissionYear
+	, EducationCareerEducationPlanDate.Year AS EducationCareerEducationPlanDate_Year
+	, CareerCareerEducationPlanDate.DateValue AS CareerCareerEducationPlanDate_DateValue
+	, CareerCareerEducationPlanDate.Day AS CareerCareerEducationPlanDate_Day
+	, CareerCareerEducationPlanDate.DayOfWeek AS CareerCareerEducationPlanDate_DayOfWeek
+	, CareerCareerEducationPlanDate.DayOfYear AS CareerCareerEducationPlanDate_DayOfYear
+	, CareerCareerEducationPlanDate.Month AS CareerCareerEducationPlanDate_Month
+	, CareerCareerEducationPlanDate.MonthName AS CareerCareerEducationPlanDate_MonthName
+	, CareerCareerEducationPlanDate.SubmissionYear AS CareerCareerEducationPlanDate_SubmissionYear
+	, CareerCareerEducationPlanDate.Year AS CareerCareerEducationPlanDate_Year
+	, EnrollmentEntryDate.DateValue AS EnrollmentEntryDate_DateValue
+	, EnrollmentEntryDate.Day AS EnrollmentEntryDate_Day
+	, EnrollmentEntryDate.DayOfWeek AS EnrollmentEntryDate_DayOfWeek
+	, EnrollmentEntryDate.DayOfYear AS EnrollmentEntryDate_DayOfYear
+	, EnrollmentEntryDate.Month AS EnrollmentEntryDate_Month
+	, EnrollmentEntryDate.MonthName AS EnrollmentEntryDate_MonthName
+	, EnrollmentEntryDate.SubmissionYear AS EnrollmentEntryDate_SubmissionYear
+	, EnrollmentEntryDate.Year AS EnrollmentEntryDate_Year
+	, EnrollmentExitDate.DateValue AS EnrollmentExitDate_DateValue
+	, EnrollmentExitDate.Day AS EnrollmentExitDate_Day
+	, EnrollmentExitDate.DayOfWeek AS EnrollmentExitDate_DayOfWeek
+	, EnrollmentExitDate.DayOfYear AS EnrollmentExitDate_DayOfYear
+	, EnrollmentExitDate.Month AS EnrollmentExitDate_Month
+	, EnrollmentExitDate.MonthName AS EnrollmentExitDate_MonthName
+	, EnrollmentExitDate.SubmissionYear AS EnrollmentExitDate_SubmissionYear
+	, EnrollmentExitDate.Year AS EnrollmentExitDate_Year
+	, DataCollection.SourceSystemDataCollectionIdentifier AS DataCollection_SourceSystemDataCollectionIdentifier
+	, DataCollection.SourceSystemName AS DataCollection_SourceSystemName
+	, DataCollection.DataCollectionName AS DataCollection_DataCollectionName
+	, DataCollection.DataCollectionDescription AS DataCollection_DataCollectionDescription
+	, DataCollection.DataCollectionOpenDate AS DataCollection_DataCollectionOpenDate
+	, DataCollection.DataCollectionCloseDate AS DataCollection_DataCollectionCloseDate
+	, DataCollection.DataCollectionAcademicSchoolYear AS DataCollection_DataCollectionAcademicSchoolYear
+	, DataCollection.DataCollectionSchoolYear AS DataCollection_DataCollectionSchoolYear
+	, RecordStatus.RecordStatusTypeCode AS RecordStatus_RecordStatusTypeCode
+	, RecordStatus.RecordStatusTypeDescription AS RecordStatus_RecordStatusTypeDescription
+	, RecordStatus.RecordStatusCreatorEntityCode AS RecordStatus_RecordStatusCreatorEntityCode
+	, RecordStatus.RecordStatusCreatorEntityDescription AS RecordStatus_RecordStatusCreatorEntityDescription
+FROM RDS.FactK12StudentAcademicRecords fact
+JOIN RDS.DimSchoolYears SchoolYear
+	ON fact.SchoolYearId = SchoolYear.DimSchoolYearId
+JOIN RDS.DimDates CountDate
+	ON fact.CountDateId = CountDate.DimDateId
+JOIN RDS.DimAcademicTermDesignators AcademicTermDesignator
+	ON fact.AcademicTermDesignatorId = AcademicTermDesignator.DimAcademicTermDesignatorId
+JOIN RDS.DimSeas Sea
+	ON fact.SeaId = Sea.DimSeaId
+JOIN RDS.DimLeas LeaAccountability
+	ON fact.LeaAccountabilityId = LeaAccountability.DimLeaId
+JOIN RDS.DimLeas LeaInstruction
+	ON fact.LeaInstructionId = LeaInstruction.DimLeaId
+JOIN RDS.DimK12Schools K12School
+	ON fact.K12SchoolId = K12School.DimK12SchoolId
+JOIN RDS.DimPeople K12Student
+	ON fact.K12StudentId = K12Student.DimPersonId
+JOIN RDS.DimPeople_Current K12Student_Current
+	ON fact.K12Student_CurrentId = K12Student_Current.DimPersonId
+JOIN RDS.DimK12AcademicAwardStatuses K12AcademicAwardStatus
+	ON fact.K12AcademicAwardStatusId = K12AcademicAwardStatus.DimK12AcademicAwardStatusId
+JOIN RDS.DimDates ProjectedGraduationDate
+	ON fact.ProjectedGraduationDateId = ProjectedGraduationDate.DimDateId
+JOIN RDS.DimDates EducationCareerEducationPlanDate
+	ON fact.EducationCareerEducationPlanDateId = EducationCareerEducationPlanDate.DimDateId
+JOIN RDS.DimDates CareerCareerEducationPlanDate
+	ON fact.CareerCareerEducationPlanDateId = CareerCareerEducationPlanDate.DimDateId
+JOIN RDS.DimDates EnrollmentEntryDate
+	ON fact.EnrollmentEntryDateId = EnrollmentEntryDate.DimDateId
+JOIN RDS.DimDates EnrollmentExitDate
+	ON fact.EnrollmentExitDateId = EnrollmentExitDate.DimDateId
+JOIN RDS.DimDataCollections DataCollection
+	ON fact.DataCollectionId = DataCollection.DimDataCollectionId
+JOIN RDS.DimRecordStatuses RecordStatus
+	ON fact.RecordStatusId = RecordStatus.DimRecordStatusId

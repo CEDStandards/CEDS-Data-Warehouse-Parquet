@@ -1,8 +1,5 @@
--- View: RDS.vwDimSeaJobClassificationsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimSeaJobClassificationsParquet] AS
-CREATE   VIEW RDS.vwDimSeaJobClassificationsParquet AS SELECT fact.DimSeaJobClassificationId
+CREATE OR ALTER VIEW [RDS].[vwDimSeaJobClassificationsParquet] AS
+	SELECT fact.DimSeaJobClassificationId
 	, fact.CodingSystemOrganizationTypeCode
 	, fact.CodingSystemOrganizationTypeDescription
 	, fact.EducationJobTypeCode

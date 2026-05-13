@@ -1,8 +1,5 @@
--- View: RDS.vwDimPsInstitutionsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimPsInstitutionsParquet] AS
-CREATE   VIEW RDS.vwDimPsInstitutionsParquet AS SELECT fact.DimPsInstitutionId
+CREATE OR ALTER VIEW [RDS].[vwDimPsInstitutionsParquet] AS
+	SELECT fact.DimPsInstitutionId
 	, fact.NameOfInstitution
 	, fact.ShortNameOfInstitution
 	, fact.IPEDSIdentifier
@@ -26,6 +23,4 @@ CREATE   VIEW RDS.vwDimPsInstitutionsParquet AS SELECT fact.DimPsInstitutionId
 	, fact.Longitude
 	, fact.RecordStartDateTime
 	, fact.RecordEndDateTime
-	, fact.MailingAddressCountyAnsiCodeCode
-	, fact.PhysicalAddressCountyAnsiCodeCode
 FROM RDS.DimPsInstitutions fact

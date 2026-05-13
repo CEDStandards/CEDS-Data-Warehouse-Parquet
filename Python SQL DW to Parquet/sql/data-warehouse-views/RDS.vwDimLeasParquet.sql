@@ -1,8 +1,5 @@
--- View: RDS.vwDimLeasParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimLeasParquet] AS
-CREATE   VIEW RDS.vwDimLeasParquet AS SELECT fact.DimLeaId
+CREATE OR ALTER VIEW [RDS].[vwDimLeasParquet] AS
+	SELECT fact.DimLeaId
 	, fact.IeuOrganizationName
 	, fact.IeuOrganizationIdentifierSea
 	, fact.StateAnsiCode
@@ -14,7 +11,6 @@ CREATE   VIEW RDS.vwDimLeasParquet AS SELECT fact.DimLeaId
 	, fact.LeaIdentifierNces
 	, fact.LeaIdentifierSea
 	, fact.PriorLeaIdentifierSea
-	, fact.LeaSupervisoryUnionIdentificationNumber
 	, fact.ReportedFederally
 	, fact.LeaTypeCode
 	, fact.LeaTypeDescription
@@ -24,14 +20,12 @@ CREATE   VIEW RDS.vwDimLeasParquet AS SELECT fact.DimLeaId
 	, fact.MailingAddressCity
 	, fact.MailingAddressPostalCode
 	, fact.MailingAddressStateAbbreviation
-	, fact.MailingAddressCountyAnsiCodeCode
 	, fact.MailingAddressCountyName
 	, fact.PhysicalAddressStreetNumberAndName
 	, fact.PhysicalAddressApartmentRoomOrSuiteNumber
 	, fact.PhysicalAddressCity
 	, fact.PhysicalAddressPostalCode
 	, fact.PhysicalAddressStateAbbreviation
-	, fact.PhysicalAddressCountyAnsiCodeCode
 	, fact.PhysicalAddressCountyName
 	, fact.Longitude
 	, fact.Latitude

@@ -1,8 +1,5 @@
--- View: RDS.vwBridgeLeaGradeLevelsOfferedParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgeLeaGradeLevelsOfferedParquet] AS
-CREATE   VIEW RDS.vwBridgeLeaGradeLevelsOfferedParquet AS SELECT fact.BridgeLeaGradeLevelId
+CREATE OR ALTER VIEW [RDS].[vwBridgeLeaGradeLevelsOfferedParquet] AS
+	SELECT fact.BridgeLeaGradeLevelId
 	, Lea.IeuOrganizationName AS Lea_IeuOrganizationName
 	, Lea.IeuOrganizationIdentifierSea AS Lea_IeuOrganizationIdentifierSea
 	, Lea.StateAnsiCode AS Lea_StateAnsiCode
@@ -14,7 +11,6 @@ CREATE   VIEW RDS.vwBridgeLeaGradeLevelsOfferedParquet AS SELECT fact.BridgeLeaG
 	, Lea.LeaIdentifierNces AS Lea_LeaIdentifierNces
 	, Lea.LeaIdentifierSea AS Lea_LeaIdentifierSea
 	, Lea.PriorLeaIdentifierSea AS Lea_PriorLeaIdentifierSea
-	, Lea.LeaSupervisoryUnionIdentificationNumber AS Lea_LeaSupervisoryUnionIdentificationNumber
 	, Lea.ReportedFederally AS Lea_ReportedFederally
 	, Lea.LeaTypeCode AS Lea_LeaTypeCode
 	, Lea.LeaTypeDescription AS Lea_LeaTypeDescription
@@ -24,14 +20,12 @@ CREATE   VIEW RDS.vwBridgeLeaGradeLevelsOfferedParquet AS SELECT fact.BridgeLeaG
 	, Lea.MailingAddressCity AS Lea_MailingAddressCity
 	, Lea.MailingAddressPostalCode AS Lea_MailingAddressPostalCode
 	, Lea.MailingAddressStateAbbreviation AS Lea_MailingAddressStateAbbreviation
-	, Lea.MailingAddressCountyAnsiCodeCode AS Lea_MailingAddressCountyAnsiCodeCode
 	, Lea.MailingAddressCountyName AS Lea_MailingAddressCountyName
 	, Lea.PhysicalAddressStreetNumberAndName AS Lea_PhysicalAddressStreetNumberAndName
 	, Lea.PhysicalAddressApartmentRoomOrSuiteNumber AS Lea_PhysicalAddressApartmentRoomOrSuiteNumber
 	, Lea.PhysicalAddressCity AS Lea_PhysicalAddressCity
 	, Lea.PhysicalAddressPostalCode AS Lea_PhysicalAddressPostalCode
 	, Lea.PhysicalAddressStateAbbreviation AS Lea_PhysicalAddressStateAbbreviation
-	, Lea.PhysicalAddressCountyAnsiCodeCode AS Lea_PhysicalAddressCountyAnsiCodeCode
 	, Lea.PhysicalAddressCountyName AS Lea_PhysicalAddressCountyName
 	, Lea.Longitude AS Lea_Longitude
 	, Lea.Latitude AS Lea_Latitude
@@ -51,6 +45,6 @@ CREATE   VIEW RDS.vwBridgeLeaGradeLevelsOfferedParquet AS SELECT fact.BridgeLeaG
 	, GradeLevelOffered.GradeLevelEdFactsCode AS GradeLevelOffered_GradeLevelEdFactsCode
 FROM RDS.BridgeLeaGradeLevelsOffered fact
 JOIN RDS.DimLeas Lea
-	ON Fact.LeaId = Lea.DimLeaId
+	ON fact.LeaId = Lea.DimLeaId
 JOIN RDS.DimGradeLevels GradeLevelOffered
-	ON Fact.GradeLevelOfferedId = GradeLevelOffered.DimGradeLevelId
+	ON fact.GradeLevelOfferedId = GradeLevelOffered.DimGradeLevelId

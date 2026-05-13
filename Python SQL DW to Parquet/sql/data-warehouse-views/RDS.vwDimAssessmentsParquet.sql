@@ -1,8 +1,5 @@
--- View: RDS.vwDimAssessmentsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimAssessmentsParquet] AS
-CREATE   VIEW RDS.vwDimAssessmentsParquet AS SELECT fact.DimAssessmentId
+CREATE OR ALTER VIEW [RDS].[vwDimAssessmentsParquet] AS
+	SELECT fact.DimAssessmentId
 	, fact.AssessmentIdentifierState
 	, fact.AssessmentFamilyShortName
 	, fact.AssessmentTitle

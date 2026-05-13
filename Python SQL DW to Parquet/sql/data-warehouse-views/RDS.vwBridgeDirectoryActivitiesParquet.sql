@@ -1,9 +1,23 @@
--- View: RDS.vwBridgeDirectoryActivitiesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgeDirectoryActivitiesParquet] AS
-CREATE   VIEW RDS.vwBridgeDirectoryActivitiesParquet AS SELECT fact.BridgeDirectoryActivities
+CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryActivitiesParquet] AS
+	SELECT fact.BridgeDirectoryActivities
+	, FactDirectory.LeaId AS FactDirectory_LeaId
+	, FactDirectory.OrganizationId AS FactDirectory_OrganizationId
+	, FactDirectory.SeaId AS FactDirectory_SeaId
+	, FactDirectory.PsInstitutionID AS FactDirectory_PsInstitutionID
+	, FactDirectory.IeuId AS FactDirectory_IeuId
+	, FactDirectory.K12SchoolId AS FactDirectory_K12SchoolId
+	, FactDirectory.AeProviderId AS FactDirectory_AeProviderId
 	, FactDirectory.ComprehensiveAndTargetedSupportI AS FactDirectory_ComprehensiveAndTargetedSupportI
+	, FactDirectory.NOrDStatusId AS FactDirectory_NOrDStatusId
+	, FactDirectory.CharterSchoolManagementOrganizationId AS FactDirectory_CharterSchoolManagementOrganizationId
+	, FactDirectory.CharterSchoolStatusId AS FactDirectory_CharterSchoolStatusId
+	, FactDirectory.CharterSchoolAuthorizerId AS FactDirectory_CharterSchoolAuthorizerId
+	, FactDirectory.AlternativeSchoolStatusId AS FactDirectory_AlternativeSchoolStatusId
+	, FactDirectory.K12SchoolStatusId AS FactDirectory_K12SchoolStatusId
+	, FactDirectory.EarlyChildhoodOrganizationStatusId AS FactDirectory_EarlyChildhoodOrganizationStatusId
+	, FactDirectory.EarlyLearningOrganizationId AS FactDirectory_EarlyLearningOrganizationId
+	, FactDirectory.DataCollectionId AS FactDirectory_DataCollectionId
+	, FactDirectory.SchoolYearId AS FactDirectory_SchoolYearId
 	, DimProfessionalDevelopmentActivity.ProfessionalDevelopmentActivityIdentifier AS DimProfessionalDevelopmentActivity_ProfessionalDevelopmentActivityIdentifier
 	, DimProfessionalDevelopmentActivity.ProfessionalDevelopmentActivityTitle AS DimProfessionalDevelopmentActivity_ProfessionalDevelopmentActivityTitle
 	, DimProfessionalDevelopmentActivity.SponsoringAgencyName AS DimProfessionalDevelopmentActivity_SponsoringAgencyName
@@ -26,4 +40,11 @@ CREATE   VIEW RDS.vwBridgeDirectoryActivitiesParquet AS SELECT fact.BridgeDirect
 	, DimProfessionalDevelopmentActivity.ProfessionalDevelopmentActivityApprovedPurposeDescription AS DimProfessionalDevelopmentActivity_ProfessionalDevelopmentActivityApprovedPurposeDescription
 	, DimProfessionalDevelopmentActivity.ProfessionalDevelopmentActivityApprovalCode AS DimProfessionalDevelopmentActivity_ProfessionalDevelopmentActivityApprovalCode
 	, DimProfessionalDevelopmentActivity.ProfessionalDevelopmentActivityCode AS DimProfessionalDevelopmentActivity_ProfessionalDevelopmentActivityCode
-	, DimProfessionalDevelopmentActivity.ProfessionalDevelopmentActivit
+	, DimProfessionalDevelopmentActivity.ProfessionalDevelopmentActivityCost AS DimProfessionalDevelopmentActivity_ProfessionalDevelopmentActivityCost
+	, DimProfessionalDevelopmentActivity.ProfessionalDevelopmentApprovalStartDate AS DimProfessionalDevelopmentActivity_ProfessionalDevelopmentApprovalStartDate
+	, DimProfessionalDevelopmentActivity.ProfessionalDevelopmentApprovalEndDate AS DimProfessionalDevelopmentActivity_ProfessionalDevelopmentApprovalEndDate
+FROM RDS.BridgeDirectoryActivities fact
+JOIN RDS.FactDirectory FactDirectory
+	ON fact.FactDirectoryId = FactDirectory.FactDirectoryId
+JOIN RDS.DimProfessionalDevelopmentActivities DimProfessionalDevelopmentActivity
+	ON fact.DimProfessionalDevelopmentActivityId = DimProfessionalDevelopmentActivity.DimProfessionalDevelopmentActivityId

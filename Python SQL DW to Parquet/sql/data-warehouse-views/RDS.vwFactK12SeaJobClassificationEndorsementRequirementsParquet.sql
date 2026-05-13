@@ -1,8 +1,5 @@
--- View: RDS.vwFactK12SeaJobClassificationEndorsementRequirementsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwFactK12SeaJobClassificationEndorsementRequirementsParquet] AS
-CREATE   VIEW RDS.vwFactK12SeaJobClassificationEndorsementRequirementsParquet AS SELECT fact.FactK12SeaJobClassificationEndorsementRequirementId
+CREATE OR ALTER VIEW [RDS].[vwFactK12SeaJobClassificationEndorsementRequirementsParquet] AS
+	SELECT fact.FactK12SeaJobClassificationEndorsementRequirementId
 	, SeaJobClassification.CodingSystemOrganizationTypeCode AS SeaJobClassification_CodingSystemOrganizationTypeCode
 	, SeaJobClassification.CodingSystemOrganizationTypeDescription AS SeaJobClassification_CodingSystemOrganizationTypeDescription
 	, SeaJobClassification.EducationJobTypeCode AS SeaJobClassification_EducationJobTypeCode
@@ -30,4 +27,4 @@ CREATE   VIEW RDS.vwFactK12SeaJobClassificationEndorsementRequirementsParquet AS
 	, fact.SeaJobClassificationEndorsementRequirementCount
 FROM RDS.FactK12SeaJobClassificationEndorsementRequirements fact
 JOIN RDS.DimSeaJobClassifications SeaJobClassification
-	ON Fact.SeaJobClassificationId = SeaJobClassification.DimSeaJobClassificationId
+	ON fact.SeaJobClassificationId = SeaJobClassification.DimSeaJobClassificationId

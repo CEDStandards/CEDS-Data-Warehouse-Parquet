@@ -1,8 +1,25 @@
--- View: RDS.vwBridgePsStudentCourseTranscriptRacesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgePsStudentCourseTranscriptRacesParquet] AS
-CREATE   VIEW RDS.vwBridgePsStudentCourseTranscriptRacesParquet AS SELECT fact.BridgeFactPsStudentCourseTranscriptRaceId
+CREATE OR ALTER VIEW [RDS].[vwBridgePsStudentCourseTranscriptRacesParquet] AS
+	SELECT fact.BridgeFactPsStudentCourseTranscriptRaceId
+	, FactPsStudentCourseTranscript.SchoolYearId AS FactPsStudentCourseTranscript_SchoolYearId
+	, FactPsStudentCourseTranscript.DataCollectionId AS FactPsStudentCourseTranscript_DataCollectionId
+	, FactPsStudentCourseTranscript.PsInstitutionId AS FactPsStudentCourseTranscript_PsInstitutionId
+	, FactPsStudentCourseTranscript.PsStudentId AS FactPsStudentCourseTranscript_PsStudentId
+	, FactPsStudentCourseTranscript.PsStudent_CurrentId AS FactPsStudentCourseTranscript_PsStudent_CurrentId
+	, FactPsStudentCourseTranscript.AcademicTermDesignatorId AS FactPsStudentCourseTranscript_AcademicTermDesignatorId
+	, FactPsStudentCourseTranscript.CipCodeId AS FactPsStudentCourseTranscript_CipCodeId
+	, FactPsStudentCourseTranscript.StatePsCourseId AS FactPsStudentCourseTranscript_StatePsCourseId
+	, FactPsStudentCourseTranscript.UniversityPsCourseId AS FactPsStudentCourseTranscript_UniversityPsCourseId
+	, FactPsStudentCourseTranscript.EnglishLearnerStatusId AS FactPsStudentCourseTranscript_EnglishLearnerStatusId
+	, FactPsStudentCourseTranscript.PsDemographicId AS FactPsStudentCourseTranscript_PsDemographicId
+	, FactPsStudentCourseTranscript.DisabilityStatusId AS FactPsStudentCourseTranscript_DisabilityStatusId
+	, FactPsStudentCourseTranscript.EconomicallyDisadvantagedStatusId AS FactPsStudentCourseTranscript_EconomicallyDisadvantagedStatusId
+	, FactPsStudentCourseTranscript.HomelessnessStatusId AS FactPsStudentCourseTranscript_HomelessnessStatusId
+	, FactPsStudentCourseTranscript.MigrantStatusId AS FactPsStudentCourseTranscript_MigrantStatusId
+	, FactPsStudentCourseTranscript.PrimaryDisabilityTypeId AS FactPsStudentCourseTranscript_PrimaryDisabilityTypeId
+	, FactPsStudentCourseTranscript.IdeaStatusId AS FactPsStudentCourseTranscript_IdeaStatusId
+	, FactPsStudentCourseTranscript.ImmigrantStatusId AS FactPsStudentCourseTranscript_ImmigrantStatusId
+	, FactPsStudentCourseTranscript.MilitartyStatusId AS FactPsStudentCourseTranscript_MilitartyStatusId
+	, FactPsStudentCourseTranscript.CourseGradePointAverageIndicatorId AS FactPsStudentCourseTranscript_CourseGradePointAverageIndicatorId
 	, FactPsStudentCourseTranscript.NumberOfCreditsAttempted AS FactPsStudentCourseTranscript_NumberOfCreditsAttempted
 	, FactPsStudentCourseTranscript.NumberOfCreditsEarned AS FactPsStudentCourseTranscript_NumberOfCreditsEarned
 	, FactPsStudentCourseTranscript.StudentCourseSectionGradeEarned AS FactPsStudentCourseTranscript_StudentCourseSectionGradeEarned
@@ -11,6 +28,6 @@ CREATE   VIEW RDS.vwBridgePsStudentCourseTranscriptRacesParquet AS SELECT fact.B
 	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
 FROM RDS.BridgePsStudentCourseTranscriptRaces fact
 JOIN RDS.FactPsStudentCourseTranscripts FactPsStudentCourseTranscript
-	ON Fact.FactPsStudentCourseTranscriptId = FactPsStudentCourseTranscript.FactPsStudentCourseTranscriptId
+	ON fact.FactPsStudentCourseTranscriptId = FactPsStudentCourseTranscript.FactPsStudentCourseTranscriptId
 JOIN RDS.DimRaces Race
-	ON Fact.RaceId = Race.DimRaceId
+	ON fact.RaceId = Race.DimRaceId

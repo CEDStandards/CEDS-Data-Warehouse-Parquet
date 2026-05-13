@@ -1,8 +1,5 @@
--- View: RDS.vwDimOrganizationAddressesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimOrganizationAddressesParquet] AS
-CREATE   VIEW RDS.vwDimOrganizationAddressesParquet AS SELECT fact.DimOrganizationAddressId
+CREATE OR ALTER VIEW [RDS].[vwDimOrganizationAddressesParquet] AS
+	SELECT fact.DimOrganizationAddressId
 	, fact.AddressStreetNumberAndName
 	, fact.AddressApartmentRoomOrSuiteNumber
 	, fact.BuildingSiteNumber

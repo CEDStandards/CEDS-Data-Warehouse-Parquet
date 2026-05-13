@@ -1,8 +1,5 @@
--- View: RDS.vwFactK12OrganizationContactsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwFactK12OrganizationContactsParquet] AS
-CREATE   VIEW RDS.vwFactK12OrganizationContactsParquet AS SELECT fact.FactK12OrganizationContactId
+CREATE OR ALTER VIEW [RDS].[vwFactK12OrganizationContactsParquet] AS
+	SELECT fact.FactK12OrganizationContactId
 	, SchoolYear.SchoolYear AS SchoolYear_SchoolYear
 	, SchoolYear.SessionBeginDate AS SchoolYear_SessionBeginDate
 	, SchoolYear.SessionEndDate AS SchoolYear_SessionEndDate
@@ -60,4 +57,181 @@ CREATE   VIEW RDS.vwFactK12OrganizationContactsParquet AS SELECT fact.FactK12Org
 	, Ieu.OutOfStateIndicator AS Ieu_OutOfStateIndicator
 	, Ieu.OrganizationOperationalStatus AS Ieu_OrganizationOperationalStatus
 	, Ieu.OperationalStatusEffectiveDate AS Ieu_OperationalStatusEffectiveDate
-	, Ieu.PhysicalAddressStreetNumberAndName AS Ieu_PhysicalAddressStreetNumberA
+	, Ieu.PhysicalAddressStreetNumberAndName AS Ieu_PhysicalAddressStreetNumberAndName
+	, Ieu.PhysicalAddressApartmentRoomOrSuiteNumber AS Ieu_PhysicalAddressApartmentRoomOrSuiteNumber
+	, Ieu.PhysicalAddressCity AS Ieu_PhysicalAddressCity
+	, Ieu.PhysicalAddressPostalCode AS Ieu_PhysicalAddressPostalCode
+	, Ieu.PhysicalAddressStateAbbreviation AS Ieu_PhysicalAddressStateAbbreviation
+	, Ieu.PhysicalAddressCountyAnsiCodeCode AS Ieu_PhysicalAddressCountyAnsiCodeCode
+	, Ieu.PhysicalAddressCountyName AS Ieu_PhysicalAddressCountyName
+	, Ieu.TelephoneNumber AS Ieu_TelephoneNumber
+	, Ieu.WebSiteAddress AS Ieu_WebSiteAddress
+	, Ieu.OrganizationRegionGeoJson AS Ieu_OrganizationRegionGeoJson
+	, Ieu.Latitude AS Ieu_Latitude
+	, Ieu.Longitude AS Ieu_Longitude
+	, Ieu.RecordStartDateTime AS Ieu_RecordStartDateTime
+	, Ieu.RecordEndDateTime AS Ieu_RecordEndDateTime
+	, Lea.IeuOrganizationName AS Lea_IeuOrganizationName
+	, Lea.IeuOrganizationIdentifierSea AS Lea_IeuOrganizationIdentifierSea
+	, Lea.StateAnsiCode AS Lea_StateAnsiCode
+	, Lea.StateAbbreviationCode AS Lea_StateAbbreviationCode
+	, Lea.StateAbbreviationDescription AS Lea_StateAbbreviationDescription
+	, Lea.SeaOrganizationName AS Lea_SeaOrganizationName
+	, Lea.SeaOrganizationIdentifierSea AS Lea_SeaOrganizationIdentifierSea
+	, Lea.LeaOrganizationName AS Lea_LeaOrganizationName
+	, Lea.LeaIdentifierNces AS Lea_LeaIdentifierNces
+	, Lea.LeaIdentifierSea AS Lea_LeaIdentifierSea
+	, Lea.PriorLeaIdentifierSea AS Lea_PriorLeaIdentifierSea
+	, Lea.ReportedFederally AS Lea_ReportedFederally
+	, Lea.LeaTypeCode AS Lea_LeaTypeCode
+	, Lea.LeaTypeDescription AS Lea_LeaTypeDescription
+	, Lea.LeaTypeEdFactsCode AS Lea_LeaTypeEdFactsCode
+	, Lea.MailingAddressStreetNumberAndName AS Lea_MailingAddressStreetNumberAndName
+	, Lea.MailingAddressApartmentRoomOrSuiteNumber AS Lea_MailingAddressApartmentRoomOrSuiteNumber
+	, Lea.MailingAddressCity AS Lea_MailingAddressCity
+	, Lea.MailingAddressPostalCode AS Lea_MailingAddressPostalCode
+	, Lea.MailingAddressStateAbbreviation AS Lea_MailingAddressStateAbbreviation
+	, Lea.MailingAddressCountyName AS Lea_MailingAddressCountyName
+	, Lea.PhysicalAddressStreetNumberAndName AS Lea_PhysicalAddressStreetNumberAndName
+	, Lea.PhysicalAddressApartmentRoomOrSuiteNumber AS Lea_PhysicalAddressApartmentRoomOrSuiteNumber
+	, Lea.PhysicalAddressCity AS Lea_PhysicalAddressCity
+	, Lea.PhysicalAddressPostalCode AS Lea_PhysicalAddressPostalCode
+	, Lea.PhysicalAddressStateAbbreviation AS Lea_PhysicalAddressStateAbbreviation
+	, Lea.PhysicalAddressCountyName AS Lea_PhysicalAddressCountyName
+	, Lea.Longitude AS Lea_Longitude
+	, Lea.Latitude AS Lea_Latitude
+	, Lea.TelephoneNumber AS Lea_TelephoneNumber
+	, Lea.WebSiteAddress AS Lea_WebSiteAddress
+	, Lea.OutOfStateIndicator AS Lea_OutOfStateIndicator
+	, Lea.LeaOperationalStatus AS Lea_LeaOperationalStatus
+	, Lea.LeaOperationalStatusEdFactsCode AS Lea_LeaOperationalStatusEdFactsCode
+	, Lea.OperationalStatusEffectiveDate AS Lea_OperationalStatusEffectiveDate
+	, Lea.CharterLeaStatus AS Lea_CharterLeaStatus
+	, Lea.ReconstitutedStatus AS Lea_ReconstitutedStatus
+	, Lea.McKinneyVentoSubgrantRecipient AS Lea_McKinneyVentoSubgrantRecipient
+	, Lea.RecordStartDateTime AS Lea_RecordStartDateTime
+	, Lea.RecordEndDateTime AS Lea_RecordEndDateTime
+	, fact.K12SchoolId
+	, Contact.FirstName AS Contact_FirstName
+	, Contact.MiddleName AS Contact_MiddleName
+	, Contact.LastOrSurname AS Contact_LastOrSurname
+	, Contact.Birthdate AS Contact_Birthdate
+	, Contact.ELChildChildIdentifierState AS Contact_ELChildChildIdentifierState
+	, Contact.K12StudentStudentIdentifierState AS Contact_K12StudentStudentIdentifierState
+	, Contact.K12StudentStudentIdentifierDistrict AS Contact_K12StudentStudentIdentifierDistrict
+	, Contact.K12StudentStudentIdentifierNationalMigrant AS Contact_K12StudentStudentIdentifierNationalMigrant
+	, Contact.PsStudentStudentIdentifierState AS Contact_PsStudentStudentIdentifierState
+	, Contact.AeStudentStudentIdentifierState AS Contact_AeStudentStudentIdentifierState
+	, Contact.WorkforceProgramParticipantPersonIdentifierState AS Contact_WorkforceProgramParticipantPersonIdentifierState
+	, Contact.ELStaffStaffMemberIdentifierState AS Contact_ELStaffStaffMemberIdentifierState
+	, Contact.K12StaffStaffMemberIdentifierState AS Contact_K12StaffStaffMemberIdentifierState
+	, Contact.K12StaffStaffMemberIdentifierDistrict AS Contact_K12StaffStaffMemberIdentifierDistrict
+	, Contact.PsStaffStaffMemberIdentifierState AS Contact_PsStaffStaffMemberIdentifierState
+	, Contact.PersonIdentifierDriversLicense AS Contact_PersonIdentifierDriversLicense
+	, Contact.PersonIdentifierSSN AS Contact_PersonIdentifierSSN
+	, Contact.PersonIdentifierState AS Contact_PersonIdentifierState
+	, Contact.StudentIdentifierState AS Contact_StudentIdentifierState
+	, Contact.IsActiveELChild AS Contact_IsActiveELChild
+	, Contact.IsActiveK12Student AS Contact_IsActiveK12Student
+	, Contact.IsActivePsStudent AS Contact_IsActivePsStudent
+	, Contact.IsActiveAeStudent AS Contact_IsActiveAeStudent
+	, Contact.IsActiveWorkforceProgramParticipant AS Contact_IsActiveWorkforceProgramParticipant
+	, Contact.IsActiveELStaff AS Contact_IsActiveELStaff
+	, Contact.IsActiveK12Staff AS Contact_IsActiveK12Staff
+	, Contact.IsActivePsStaff AS Contact_IsActivePsStaff
+	, Contact.RecordStartDateTime AS Contact_RecordStartDateTime
+	, Contact.RecordEndDateTime AS Contact_RecordEndDateTime
+	, Contact.ElectronicMailAddressHome AS Contact_ElectronicMailAddressHome
+	, Contact.ElectronicMailAddressOrganizational AS Contact_ElectronicMailAddressOrganizational
+	, Contact.ElectronicMailAddressWork AS Contact_ElectronicMailAddressWork
+	, Contact.TelephoneNumberFax AS Contact_TelephoneNumberFax
+	, Contact.TelephoneNumberHome AS Contact_TelephoneNumberHome
+	, Contact.TelephoneNumberMobile AS Contact_TelephoneNumberMobile
+	, Contact.TelephoneNumberWork AS Contact_TelephoneNumberWork
+	, Contact.PersonalTitleOrPrefix AS Contact_PersonalTitleOrPrefix
+	, Contact.PositionTitle AS Contact_PositionTitle
+	, Contact.GenerationCodeOrSuffix AS Contact_GenerationCodeOrSuffix
+	, Contact.HighestLevelOfEducationCompletedCode AS Contact_HighestLevelOfEducationCompletedCode
+	, Contact.HighestLevelOfEducationCompletedDescription AS Contact_HighestLevelOfEducationCompletedDescription
+	, Contact_Current.FirstName AS Contact_Current_FirstName
+	, Contact_Current.MiddleName AS Contact_Current_MiddleName
+	, Contact_Current.LastOrSurname AS Contact_Current_LastOrSurname
+	, Contact_Current.Birthdate AS Contact_Current_Birthdate
+	, Contact_Current.ELChildChildIdentifierState AS Contact_Current_ELChildChildIdentifierState
+	, Contact_Current.K12StudentStudentIdentifierState AS Contact_Current_K12StudentStudentIdentifierState
+	, Contact_Current.K12StudentStudentIdentifierDistrict AS Contact_Current_K12StudentStudentIdentifierDistrict
+	, Contact_Current.K12StudentStudentIdentifierNationalMigrant AS Contact_Current_K12StudentStudentIdentifierNationalMigrant
+	, Contact_Current.PsStudentStudentIdentifierState AS Contact_Current_PsStudentStudentIdentifierState
+	, Contact_Current.AeStudentStudentIdentifierState AS Contact_Current_AeStudentStudentIdentifierState
+	, Contact_Current.WorkforceProgramParticipantPersonIdentifierState AS Contact_Current_WorkforceProgramParticipantPersonIdentifierState
+	, Contact_Current.ELStaffStaffMemberIdentifierState AS Contact_Current_ELStaffStaffMemberIdentifierState
+	, Contact_Current.K12StaffStaffMemberIdentifierState AS Contact_Current_K12StaffStaffMemberIdentifierState
+	, Contact_Current.K12StaffStaffMemberIdentifierDistrict AS Contact_Current_K12StaffStaffMemberIdentifierDistrict
+	, Contact_Current.PsStaffStaffMemberIdentifierState AS Contact_Current_PsStaffStaffMemberIdentifierState
+	, Contact_Current.PersonIdentifierDriversLicense AS Contact_Current_PersonIdentifierDriversLicense
+	, Contact_Current.PersonIdentifierSSN AS Contact_Current_PersonIdentifierSSN
+	, Contact_Current.PersonIdentifierState AS Contact_Current_PersonIdentifierState
+	, Contact_Current.StudentIdentifierState AS Contact_Current_StudentIdentifierState
+	, Contact_Current.IsActiveELChild AS Contact_Current_IsActiveELChild
+	, Contact_Current.IsActiveK12Student AS Contact_Current_IsActiveK12Student
+	, Contact_Current.IsActivePsStudent AS Contact_Current_IsActivePsStudent
+	, Contact_Current.IsActiveAeStudent AS Contact_Current_IsActiveAeStudent
+	, Contact_Current.IsActiveWorkforceProgramParticipant AS Contact_Current_IsActiveWorkforceProgramParticipant
+	, Contact_Current.IsActiveELStaff AS Contact_Current_IsActiveELStaff
+	, Contact_Current.IsActiveK12Staff AS Contact_Current_IsActiveK12Staff
+	, Contact_Current.IsActivePsStaff AS Contact_Current_IsActivePsStaff
+	, Contact_Current.ElectronicMailAddressHome AS Contact_Current_ElectronicMailAddressHome
+	, Contact_Current.ElectronicMailAddressOrganizational AS Contact_Current_ElectronicMailAddressOrganizational
+	, Contact_Current.ElectronicMailAddressWork AS Contact_Current_ElectronicMailAddressWork
+	, Contact_Current.TelephoneNumberFax AS Contact_Current_TelephoneNumberFax
+	, Contact_Current.TelephoneNumberHome AS Contact_Current_TelephoneNumberHome
+	, Contact_Current.TelephoneNumberMobile AS Contact_Current_TelephoneNumberMobile
+	, Contact_Current.TelephoneNumberWork AS Contact_Current_TelephoneNumberWork
+	, Contact_Current.PersonalTitleOrPrefix AS Contact_Current_PersonalTitleOrPrefix
+	, Contact_Current.PositionTitle AS Contact_Current_PositionTitle
+	, Contact_Current.GenerationCodeOrSuffix AS Contact_Current_GenerationCodeOrSuffix
+	, Contact_Current.HighestLevelOfEducationCompletedCode AS Contact_Current_HighestLevelOfEducationCompletedCode
+	, Contact_Current.HighestLevelOfEducationCompletedDescription AS Contact_Current_HighestLevelOfEducationCompletedDescription
+	, ContactPersonAddress.AddressTypeForLearnerOrFamilyCode AS ContactPersonAddress_AddressTypeForLearnerOrFamilyCode
+	, ContactPersonAddress.AddressTypeForLearnerOrFamilyDescription AS ContactPersonAddress_AddressTypeForLearnerOrFamilyDescription
+	, ContactPersonAddress.AddressStreetNumberAndName AS ContactPersonAddress_AddressStreetNumberAndName
+	, ContactPersonAddress.AddressApartmentRoomOrSuiteNumber AS ContactPersonAddress_AddressApartmentRoomOrSuiteNumber
+	, ContactPersonAddress.AddressCity AS ContactPersonAddress_AddressCity
+	, ContactPersonAddress.StateAbbreviationCode AS ContactPersonAddress_StateAbbreviationCode
+	, ContactPersonAddress.StateAbbreviationDescription AS ContactPersonAddress_StateAbbreviationDescription
+	, ContactPersonAddress.AddressPostalCode AS ContactPersonAddress_AddressPostalCode
+	, ContactPersonAddress.AddressCountyName AS ContactPersonAddress_AddressCountyName
+	, ContactPersonAddress.CountryCodeCode AS ContactPersonAddress_CountryCodeCode
+	, ContactPersonAddress.CountryCodeDescription AS ContactPersonAddress_CountryCodeDescription
+	, ContactPersonAddress.Latitude AS ContactPersonAddress_Latitude
+	, ContactPersonAddress.Longitude AS ContactPersonAddress_Longitude
+	, ContactPersonAddress.CountyAnsiCodeCode AS ContactPersonAddress_CountyAnsiCodeCode
+	, ContactPersonAddress.CountyAnsiCodeDescription AS ContactPersonAddress_CountyAnsiCodeDescription
+	, ContactPersonAddress.DoNotPublishIndicator AS ContactPersonAddress_DoNotPublishIndicator
+	, ContactPersonAddress.PersonalInformationVerificationCode AS ContactPersonAddress_PersonalInformationVerificationCode
+	, ContactPersonAddress.PersonalInformationVerificationDescription AS ContactPersonAddress_PersonalInformationVerificationDescription
+	, ContactIndicator.PrimaryContactIndicatorCode AS ContactIndicator_PrimaryContactIndicatorCode
+	, ContactIndicator.PrimaryContactIndicatorDescription AS ContactIndicator_PrimaryContactIndicatorDescription
+	, ContactIndicator.EmergencyContactIndicatorCode AS ContactIndicator_EmergencyContactIndicatorCode
+	, ContactIndicator.EmergencyContactIndicatorDescription AS ContactIndicator_EmergencyContactIndicatorDescription
+FROM RDS.FactK12OrganizationContacts fact
+JOIN RDS.DimSchoolYears SchoolYear
+	ON fact.SchoolYearId = SchoolYear.DimSchoolYearId
+JOIN RDS.DimDates CountDate
+	ON fact.CountDateId = CountDate.DimDateId
+JOIN RDS.DimDataCollections DataCollection
+	ON fact.DataCollectionId = DataCollection.DimDataCollectionId
+JOIN RDS.DimSeas Sea
+	ON fact.SeaId = Sea.DimSeaId
+JOIN RDS.DimIeus Ieu
+	ON fact.IeuId = Ieu.DimIeuId
+JOIN RDS.DimLeas Lea
+	ON fact.LeaId = Lea.DimLeaId
+JOIN RDS.DimPeople Contact
+	ON fact.ContactId = Contact.DimPersonId
+JOIN RDS.DimPeople_Current Contact_Current
+	ON fact.Contact_CurrentId = Contact_Current.DimPersonId
+JOIN RDS.DimPersonAddresses ContactPersonAddress
+	ON fact.ContactPersonAddressId = ContactPersonAddress.DimPersonAddressId
+JOIN RDS.DimContactIndicators ContactIndicator
+	ON fact.ContactIndicatorId = ContactIndicator.DimContactIndicatorId

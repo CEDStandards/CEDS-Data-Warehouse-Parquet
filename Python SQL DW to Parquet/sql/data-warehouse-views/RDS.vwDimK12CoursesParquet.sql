@@ -1,8 +1,5 @@
--- View: RDS.vwDimK12CoursesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimK12CoursesParquet] AS
-CREATE   VIEW RDS.vwDimK12CoursesParquet AS SELECT fact.DimK12CourseId
+CREATE OR ALTER VIEW [RDS].[vwDimK12CoursesParquet] AS
+	SELECT fact.DimK12CourseId
 	, fact.CourseIdentifier
 	, fact.CourseCodeSystemCode
 	, fact.CourseCodeSystemDescription

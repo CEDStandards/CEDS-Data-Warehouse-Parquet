@@ -1,8 +1,5 @@
--- View: RDS.vwDimDataCollectionsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimDataCollectionsParquet] AS
-CREATE   VIEW RDS.vwDimDataCollectionsParquet AS SELECT fact.DimDataCollectionId
+CREATE OR ALTER VIEW [RDS].[vwDimDataCollectionsParquet] AS
+	SELECT fact.DimDataCollectionId
 	, fact.SourceSystemDataCollectionIdentifier
 	, fact.SourceSystemName
 	, fact.DataCollectionName

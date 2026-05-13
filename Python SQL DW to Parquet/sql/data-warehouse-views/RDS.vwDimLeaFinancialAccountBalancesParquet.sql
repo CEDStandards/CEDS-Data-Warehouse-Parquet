@@ -1,8 +1,5 @@
--- View: RDS.vwDimLeaFinancialAccountBalancesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimLeaFinancialAccountBalancesParquet] AS
-CREATE   VIEW RDS.vwDimLeaFinancialAccountBalancesParquet AS SELECT fact.DimLeaFinancialAccountBalanceId
+CREATE OR ALTER VIEW [RDS].[vwDimLeaFinancialAccountBalancesParquet] AS
+	SELECT fact.DimLeaFinancialAccountBalanceId
 	, fact.FinancialAccountCodingSystemOrganizationTypeCode
 	, fact.FinancialAccountCodingSystemOrganizationTypeDescription
 	, fact.FinancialAccountLocalBalanceSheetCodeCode

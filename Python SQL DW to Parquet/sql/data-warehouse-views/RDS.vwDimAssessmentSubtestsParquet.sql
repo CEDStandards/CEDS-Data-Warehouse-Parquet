@@ -1,8 +1,5 @@
--- View: RDS.vwDimAssessmentSubtestsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimAssessmentSubtestsParquet] AS
-CREATE   VIEW RDS.vwDimAssessmentSubtestsParquet AS SELECT fact.DimAssessmentSubtestId
+CREATE OR ALTER VIEW [RDS].[vwDimAssessmentSubtestsParquet] AS
+	SELECT fact.DimAssessmentSubtestId
 	, fact.AssessmentFormNumber
 	, fact.AssessmentAcademicSubjectCode
 	, fact.AssessmentAcademicSubjectDescription

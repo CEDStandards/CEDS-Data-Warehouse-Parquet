@@ -1,8 +1,5 @@
--- View: RDS.vwDimPeopleParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimPeopleParquet] AS
-CREATE   VIEW RDS.vwDimPeopleParquet AS SELECT fact.DimPersonId
+CREATE OR ALTER VIEW [RDS].[vwDimPeopleParquet] AS
+	SELECT fact.DimPersonId
 	, fact.FirstName
 	, fact.MiddleName
 	, fact.LastOrSurname

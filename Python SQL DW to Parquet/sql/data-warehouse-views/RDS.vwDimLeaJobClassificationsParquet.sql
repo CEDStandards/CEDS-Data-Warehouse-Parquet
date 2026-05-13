@@ -1,8 +1,5 @@
--- View: RDS.vwDimLeaJobClassificationsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimLeaJobClassificationsParquet] AS
-CREATE   VIEW RDS.vwDimLeaJobClassificationsParquet AS SELECT fact.DimLeaJobClassificationId
+CREATE OR ALTER VIEW [RDS].[vwDimLeaJobClassificationsParquet] AS
+	SELECT fact.DimLeaJobClassificationId
 	, fact.LeaIdentifierSea
 	, fact.CodingSystemOranizationTypeCode
 	, fact.CodingSystemOrganizationTypeDescription

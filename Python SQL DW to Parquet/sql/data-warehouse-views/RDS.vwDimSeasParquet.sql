@@ -1,8 +1,5 @@
--- View: RDS.vwDimSeasParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimSeasParquet] AS
-CREATE   VIEW RDS.vwDimSeasParquet AS SELECT fact.DimSeaId
+CREATE OR ALTER VIEW [RDS].[vwDimSeasParquet] AS
+	SELECT fact.DimSeaId
 	, fact.SeaOrganizationName
 	, fact.SeaOrganizationIdentifierSea
 	, fact.StateAnsiCode

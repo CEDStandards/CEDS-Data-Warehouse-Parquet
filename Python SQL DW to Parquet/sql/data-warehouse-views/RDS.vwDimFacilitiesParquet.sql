@@ -1,8 +1,5 @@
--- View: RDS.vwDimFacilitiesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimFacilitiesParquet] AS
-CREATE   VIEW RDS.vwDimFacilitiesParquet AS SELECT fact.DimFacilityId
+CREATE OR ALTER VIEW [RDS].[vwDimFacilitiesParquet] AS
+	SELECT fact.DimFacilityId
 	, fact.FacilitiesIdentifier
 	, fact.FacilityBuildingName
 	, fact.BuilidingSiteNumber
@@ -12,7 +9,6 @@ CREATE   VIEW RDS.vwDimFacilitiesParquet AS SELECT fact.DimFacilityId
 	, fact.BuildingYearBuilt
 	, fact.BuildingYearOfLastModernization
 	, fact.FacilityBlockNumberArea
-	, fact.FacilityCensusTract
 	, fact.FacilityConstructionDate
 	, fact.FacilityConstructionDateTypeCode
 	, fact.FacilityConstructionDateTypeDescription

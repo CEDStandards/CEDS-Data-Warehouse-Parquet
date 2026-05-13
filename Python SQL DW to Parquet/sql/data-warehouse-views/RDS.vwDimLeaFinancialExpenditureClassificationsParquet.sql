@@ -1,8 +1,5 @@
--- View: RDS.vwDimLeaFinancialExpenditureClassificationsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimLeaFinancialExpenditureClassificationsParquet] AS
-CREATE   VIEW RDS.vwDimLeaFinancialExpenditureClassificationsParquet AS SELECT fact.DimLeaFinancialExpenditureClassificationId
+CREATE OR ALTER VIEW [RDS].[vwDimLeaFinancialExpenditureClassificationsParquet] AS
+	SELECT fact.DimLeaFinancialExpenditureClassificationId
 	, fact.FinancialAccountCodingSystemOrganizationTypeCode
 	, fact.FinancialAccountCodingSystemOrganizationTypeDescription
 	, fact.FinancialExpenditureLocalFunctionCodeCode

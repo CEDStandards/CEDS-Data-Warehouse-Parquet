@@ -1,8 +1,5 @@
--- View: RDS.vwDimCharterSchoolManagementOrganizationsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimCharterSchoolManagementOrganizationsParquet] AS
-CREATE   VIEW RDS.vwDimCharterSchoolManagementOrganizationsParquet AS SELECT fact.DimCharterSchoolManagementOrganizationId
+CREATE OR ALTER VIEW [RDS].[vwDimCharterSchoolManagementOrganizationsParquet] AS
+	SELECT fact.DimCharterSchoolManagementOrganizationId
 	, fact.CharterSchoolManagementOrganizationOrganizationName
 	, fact.CharterSchoolManagementOrganizationOrganizationIdentifierSea
 	, fact.StateAbbreviationDescription

@@ -1,8 +1,5 @@
--- View: RDS.vwDimCalendarCrisesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimCalendarCrisesParquet] AS
-CREATE   VIEW RDS.vwDimCalendarCrisesParquet AS SELECT fact.DimCalendarCrisisId
+CREATE OR ALTER VIEW [RDS].[vwDimCalendarCrisesParquet] AS
+	SELECT fact.DimCalendarCrisisId
 	, fact.CrisisCode
 	, fact.CrisisName
 	, fact.CrisisDescription

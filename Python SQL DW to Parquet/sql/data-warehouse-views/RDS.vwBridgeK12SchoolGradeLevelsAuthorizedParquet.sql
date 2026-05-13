@@ -1,8 +1,5 @@
--- View: RDS.vwBridgeK12SchoolGradeLevelsAuthorizedParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgeK12SchoolGradeLevelsAuthorizedParquet] AS
-CREATE   VIEW RDS.vwBridgeK12SchoolGradeLevelsAuthorizedParquet AS SELECT fact.BridgeK12SchoolGradeLevelAuthorizedId
+CREATE OR ALTER VIEW [RDS].[vwBridgeK12SchoolGradeLevelsAuthorizedParquet] AS
+	SELECT fact.BridgeK12SchoolGradeLevelAuthorizedId
 	, K12School.LeaOrganizationName AS K12School_LeaOrganizationName
 	, K12School.LeaIdentifierNces AS K12School_LeaIdentifierNces
 	, K12School.LeaIdentifierSea AS K12School_LeaIdentifierSea
@@ -55,4 +52,14 @@ CREATE   VIEW RDS.vwBridgeK12SchoolGradeLevelsAuthorizedParquet AS SELECT fact.B
 	, K12School.PhysicalAddressCountyName AS K12School_PhysicalAddressCountyName
 	, K12School.Longitude AS K12School_Longitude
 	, K12School.Latitude AS K12School_Latitude
-	, K12School.SchoolOperationalSt
+	, K12School.SchoolOperationalStatusEffectiveDate AS K12School_SchoolOperationalStatusEffectiveDate
+	, K12School.AdministrativeFundingControlCode AS K12School_AdministrativeFundingControlCode
+	, K12School.AdministrativeFundingControlDescription AS K12School_AdministrativeFundingControlDescription
+	, GradeLevel.GradeLevelCode AS GradeLevel_GradeLevelCode
+	, GradeLevel.GradeLevelDescription AS GradeLevel_GradeLevelDescription
+	, GradeLevel.GradeLevelEdFactsCode AS GradeLevel_GradeLevelEdFactsCode
+FROM RDS.BridgeK12SchoolGradeLevelsAuthorized fact
+JOIN RDS.DimK12Schools K12School
+	ON fact.K12SchoolId = K12School.DimK12SchoolId
+JOIN RDS.DimGradeLevels GradeLevel
+	ON fact.GradeLevelId = GradeLevel.DimGradeLevelId

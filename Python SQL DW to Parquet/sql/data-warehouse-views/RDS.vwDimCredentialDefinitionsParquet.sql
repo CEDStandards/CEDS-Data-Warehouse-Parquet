@@ -1,8 +1,5 @@
--- View: RDS.vwDimCredentialDefinitionsParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwDimCredentialDefinitionsParquet] AS
-CREATE   VIEW RDS.vwDimCredentialDefinitionsParquet AS SELECT fact.DimCredentialDefinitionId
+CREATE OR ALTER VIEW [RDS].[vwDimCredentialDefinitionsParquet] AS
+	SELECT fact.DimCredentialDefinitionId
 	, fact.CredentialDefinitionIdentifierCtid
 	, fact.CredentialDefinitionIdentifierUri
 	, fact.CredentialDefinitionIdentifierUrl
