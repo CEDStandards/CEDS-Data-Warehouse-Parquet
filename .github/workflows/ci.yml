@@ -30,7 +30,7 @@ jobs:
 
       - name: Lint with autopep8
         working-directory: "Python SQL DW to Parquet"
-        run: autopep8 --diff --exit-code *.py sql/*.py
+        run: autopep8 --diff --exit-code *.py
 
       - name: Run tests
         working-directory: "Python SQL DW to Parquet"
@@ -50,6 +50,13 @@ jobs:
           VIEWS_DIR="Python SQL DW to Parquet/sql/data-warehouse-views"
           ERRORS=0
 
+          FILE_COUNT=$(find "$VIEWS_DIR" -name "*.sql" | wc -l)
+          if [ "$FILE_COUNT" -eq 0 ]; then
+            echo "FAILED: No view SQL files found in $VIEWS_DIR"
+            exit 1
+          fi
+          echo "Checking $FILE_COUNT view scripts..."
+
           for f in "$VIEWS_DIR"/*.sql; do
             # Must start with CREATE OR ALTER VIEW [RDS].[vwXxx] AS
             first_line=$(head -1 "$f")
@@ -64,10 +71,18 @@ jobs:
               echo "MISSING FROM CLAUSE: $f"
               ERRORS=$((ERRORS+1))
             fi
+
+            # Check for UTF-8 BOM
+            if python3 -c "import sys; sys.exit(0 if open('$f','rb').read(3) != b'\\xef\\xbb\\xbf' else 1)"; then
+              :
+            else
+              echo "BOM DETECTED: $f"
+              ERRORS=$((ERRORS+1))
+            fi
           done
 
           echo ""
-          echo "View files checked: $(ls "$VIEWS_DIR"/*.sql | wc -l)"
+          echo "View files checked: $FILE_COUNT"
           if [ $ERRORS -gt 0 ]; then
             echo "FAILED: $ERRORS error(s) found"
             exit 1

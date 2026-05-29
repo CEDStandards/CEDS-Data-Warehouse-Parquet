@@ -21,6 +21,30 @@ import argparse
 from pathlib import Path
 
 DEFAULT_SOURCE = Path(r"C:\Repos\CEDS-Data-Warehouse\src\CEDS-Data-Warehouse-Project\RDS\Tables")
+
+# ---------------------------------------------------------------------------
+# Pre-compiled regex patterns (avoid recompiling inside per-table loops)
+# ---------------------------------------------------------------------------
+_RE_FK = re.compile(
+    r"CONSTRAINT\s+\[[^\]]+\]\s+FOREIGN\s+KEY\s*\(\s*\[(\w+)\]\s*\)\s+"
+    r"REFERENCES\s+\[RDS\]\.\[(\w+)\]\s*\(\s*\[(\w+)\]\s*\)",
+    re.IGNORECASE,
+)
+_RE_COL = re.compile(
+    r"^\s+\[(\w+)\]\s+"
+    r"\[?(?:INT|BIGINT|NVARCHAR|VARCHAR|DECIMAL|NUMERIC|DATETIME2?|DATE|"
+    r"BIT|FLOAT|MONEY|UNIQUEIDENTIFIER|SMALLINT|TINYINT|CHAR|TEXT)\]?",
+    re.IGNORECASE | re.MULTILINE,
+)
+_RE_PK = re.compile(r"^\s+\[(\w+)\]\s+\w+.*?IDENTITY", re.IGNORECASE | re.MULTILINE)
+# DDL filenames don't always match the internal table name (e.g. FactCourseEndorsementRequirements.sql
+# defines [RDS].[FactK12CourseEndorsementRequirements]); always derive the real name from CREATE TABLE.
+_RE_TABLE_NAME = re.compile(r"CREATE\s+TABLE\s+\[RDS\]\.\[(\w+)\]", re.IGNORECASE)
+
+# ---------------------------------------------------------------------------
+# Module-level cache for dimension DDL column lookups
+# ---------------------------------------------------------------------------
+_dim_col_cache: dict = {}
 DEFAULT_OUTPUT = Path(__file__).parent / "sql" / "data-warehouse-views"
 
 # Tables included in the Parquet standard (mirrors Parquet View Generator.sql table list)
@@ -56,7 +80,6 @@ INCLUDED_DIM_TABLES = {
     "DimK12Courses",
     "DimK12CourseSections",
     "DimK12JobPositions",
-    "DimK12JobPositionStatuses",  # v14 new
     "DimK12Jobs",
     "DimLeas",
     "DimLeaFinancialAccountBalances",
@@ -79,7 +102,6 @@ INCLUDED_DIM_TABLES = {
     "DimSeaFinancialRevenueClassifications",
     "DimSeaJobClassifications",
     "DimSeas",
-    "DimStaffEvaluationScales",  # v14 new
 }
 
 # Tables excluded from Parquet exports
@@ -89,12 +111,8 @@ EXCLUDED_PATTERNS = ["dtos", "reports", "Toggle", "Report"]
 
 def parse_fk_constraints(sql_content: str) -> dict:
     """Returns {fk_column: (target_table, target_pk)} from a CREATE TABLE DDL."""
-    pattern = (
-        r"CONSTRAINT\s+\[[^\]]+\]\s+FOREIGN\s+KEY\s+\(\[(\w+)\]\)\s+"
-        r"REFERENCES\s+\[RDS\]\.\[(\w+)\]\s+\(\[(\w+)\]\)"
-    )
     result = {}
-    for m in re.finditer(pattern, sql_content, re.IGNORECASE):
+    for m in _RE_FK.finditer(sql_content):
         fk_col, target_table, target_pk = m.groups()
         result[fk_col] = (target_table, target_pk)
     return result
@@ -103,32 +121,33 @@ def parse_fk_constraints(sql_content: str) -> dict:
 def parse_columns(sql_content: str) -> list:
     """Returns ordered list of column names from a CREATE TABLE DDL.
     Handles both bracketed [int] and unbracketed int type names."""
-    col_pattern = (
-        r"^\s+\[(\w+)\]\s+"
-        r"\[?(?:INT|BIGINT|NVARCHAR|VARCHAR|DECIMAL|NUMERIC|DATETIME2?|DATE|"
-        r"BIT|FLOAT|MONEY|UNIQUEIDENTIFIER|SMALLINT|TINYINT|CHAR|TEXT)\]?"
-    )
-    return [m.group(1) for m in re.finditer(col_pattern, sql_content, re.IGNORECASE | re.MULTILINE)]
+    return [m.group(1) for m in _RE_COL.finditer(sql_content)]
 
 
 def get_pk_column(sql_content: str, columns: list) -> str:
     """Returns the primary key column name (IDENTITY column)."""
-    pk_pattern = r"^\s+\[(\w+)\]\s+\w+.*?IDENTITY"
-    m = re.search(pk_pattern, sql_content, re.IGNORECASE | re.MULTILINE)
+    m = _RE_PK.search(sql_content)
     if m:
         return m.group(1)
     return columns[0] if columns else None
 
 
 def get_dim_non_pk_columns(table_name: str, source_dir: Path) -> list:
-    """Returns non-PK column names from a dimension table DDL."""
+    """Returns non-PK column names from a dimension table DDL.
+    Results are cached by (table_name, source_dir) to avoid redundant file reads."""
+    cache_key = (table_name, str(source_dir))
+    if cache_key in _dim_col_cache:
+        return _dim_col_cache[cache_key]
     sql_file = source_dir / f"{table_name}.sql"
     if not sql_file.exists():
+        _dim_col_cache[cache_key] = []
         return []
     content = sql_file.read_text(encoding="utf-8", errors="ignore")
     cols = parse_columns(content)
     pk = get_pk_column(content, cols)
-    return [c for c in cols if c != pk]
+    result = [c for c in cols if c != pk]
+    _dim_col_cache[cache_key] = result
+    return result
 
 
 def generate_view_sql(table_name: str, source_dir: Path) -> str:
@@ -142,12 +161,17 @@ def generate_view_sql(table_name: str, source_dir: Path) -> str:
     if not columns:
         return None
 
+    # The internal table name from CREATE TABLE is authoritative — DDL filenames
+    # sometimes drift from it (K12/no-K12, singular/plural).
+    m = _RE_TABLE_NAME.search(content)
+    internal_name = m.group(1) if m else table_name
+
     fk_map = parse_fk_constraints(content)
     pk_col = get_pk_column(content, columns)
-    view_name = f"vw{table_name}Parquet"
+    view_name = f"vw{internal_name}Parquet"
 
     select_parts = []
-    join_parts = [f"FROM RDS.{table_name} fact"]
+    join_parts = [f"FROM RDS.{internal_name} fact"]
 
     for col in columns:
         if col == pk_col:
@@ -155,7 +179,11 @@ def generate_view_sql(table_name: str, source_dir: Path) -> str:
 
         if col in fk_map:
             target_table, target_pk = fk_map[col]
-            alias = col[:-2]  # strip "Id" suffix
+            if col.lower().endswith("id"):
+                alias = col[:-2]
+            else:
+                alias = col
+                print(f"  WARN  FK column '{col}' in {table_name} does not end in 'Id'; using full name as alias", file=sys.stderr)
             dim_cols = get_dim_non_pk_columns(target_table, source_dir)
 
             for dc in dim_cols:
@@ -173,7 +201,7 @@ def generate_view_sql(table_name: str, source_dir: Path) -> str:
     lines.extend(select_parts)
     lines.extend(join_parts)
 
-    return "\r\n".join(lines) + "\r\n"
+    return "\n".join(lines) + "\n"
 
 
 def should_include(table_name: str) -> bool:
@@ -227,16 +255,19 @@ def main():
     errors = []
 
     for table_name in tables:
-        view_name = f"vw{table_name}Parquet"
-        output_file = output_dir / f"RDS.{view_name}.sql"
-
         sql = generate_view_sql(table_name, source_dir)
         if sql is None:
             errors.append(f"  SKIP  {table_name} (DDL not found or no columns parsed)")
             skipped += 1
             continue
 
-        output_file.write_text(sql, encoding="utf-8")
+        # Recover the internal view name from the generated SQL so the output filename
+        # matches the actual view created by SQL Server.
+        m = re.search(r"CREATE\s+OR\s+ALTER\s+VIEW\s+\[RDS\]\.\[(\w+)\]", sql, re.IGNORECASE)
+        view_name = m.group(1) if m else f"vw{table_name}Parquet"
+        output_file = output_dir / f"RDS.{view_name}.sql"
+
+        output_file.write_text(sql, encoding="utf-8", newline="\r\n")
         print(f"  OK    {output_file.name}")
         generated += 1
 
@@ -245,6 +276,7 @@ def main():
         print("Skipped:")
         for e in errors:
             print(e)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

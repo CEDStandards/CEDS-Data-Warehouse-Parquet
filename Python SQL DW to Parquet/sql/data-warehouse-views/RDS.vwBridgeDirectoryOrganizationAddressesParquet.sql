@@ -1,39 +1,39 @@
-CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryOrganizationAddressesParquet] AS
-	SELECT fact.BridgeDirectoryAddressId
-	, FactDirectory.LeaId AS FactDirectory_LeaId
-	, FactDirectory.OrganizationId AS FactDirectory_OrganizationId
-	, FactDirectory.SeaId AS FactDirectory_SeaId
-	, FactDirectory.PsInstitutionID AS FactDirectory_PsInstitutionID
-	, FactDirectory.IeuId AS FactDirectory_IeuId
-	, FactDirectory.K12SchoolId AS FactDirectory_K12SchoolId
-	, FactDirectory.AeProviderId AS FactDirectory_AeProviderId
-	, FactDirectory.ComprehensiveAndTargetedSupportI AS FactDirectory_ComprehensiveAndTargetedSupportI
-	, FactDirectory.NOrDStatusId AS FactDirectory_NOrDStatusId
-	, FactDirectory.CharterSchoolManagementOrganizationId AS FactDirectory_CharterSchoolManagementOrganizationId
-	, FactDirectory.CharterSchoolStatusId AS FactDirectory_CharterSchoolStatusId
-	, FactDirectory.CharterSchoolAuthorizerId AS FactDirectory_CharterSchoolAuthorizerId
-	, FactDirectory.AlternativeSchoolStatusId AS FactDirectory_AlternativeSchoolStatusId
-	, FactDirectory.K12SchoolStatusId AS FactDirectory_K12SchoolStatusId
-	, FactDirectory.EarlyChildhoodOrganizationStatusId AS FactDirectory_EarlyChildhoodOrganizationStatusId
-	, FactDirectory.EarlyLearningOrganizationId AS FactDirectory_EarlyLearningOrganizationId
-	, FactDirectory.DataCollectionId AS FactDirectory_DataCollectionId
-	, FactDirectory.SchoolYearId AS FactDirectory_SchoolYearId
-	, OrganizationAddress.AddressStreetNumberAndName AS OrganizationAddress_AddressStreetNumberAndName
-	, OrganizationAddress.AddressApartmentRoomOrSuiteNumber AS OrganizationAddress_AddressApartmentRoomOrSuiteNumber
-	, OrganizationAddress.BuildingSiteNumber AS OrganizationAddress_BuildingSiteNumber
-	, OrganizationAddress.AddressCity AS OrganizationAddress_AddressCity
-	, OrganizationAddress.AddressStateAbbreviation AS OrganizationAddress_AddressStateAbbreviation
-	, OrganizationAddress.AddressPostalCode AS OrganizationAddress_AddressPostalCode
-	, OrganizationAddress.CountyAnsiCodeCode AS OrganizationAddress_CountyAnsiCodeCode
-	, OrganizationAddress.AddressCountyName AS OrganizationAddress_AddressCountyName
-	, OrganizationAddress.Latitude AS OrganizationAddress_Latitude
-	, OrganizationAddress.Longitude AS OrganizationAddress_Longitude
-	, OrganizationAddress.AddressTypeForOrganizationCode AS OrganizationAddress_AddressTypeForOrganizationCode
-	, OrganizationAddress.AddressTypeForOrganizationDescription AS OrganizationAddress_AddressTypeForOrganizationDescription
-	, OrganizationAddress.RecordStartDateTime AS OrganizationAddress_RecordStartDateTime
-	, OrganizationAddress.RecordEndDateTime AS OrganizationAddress_RecordEndDateTime
-FROM RDS.BridgeDirectoryOrganizationAddresses fact
-JOIN RDS.FactDirectory FactDirectory
-	ON fact.FactDirectoryId = FactDirectory.FactDirectoryId
-JOIN RDS.DimOrganizationAddresses OrganizationAddress
-	ON fact.OrganizationAddressId = OrganizationAddress.DimOrganizationAddressId
+CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryOrganizationAddressesParquet] AS
+	SELECT fact.BridgeDirectoryAddressId
+	, FactDirectory.LeaId AS FactDirectory_LeaId
+	, FactDirectory.OrganizationId AS FactDirectory_OrganizationId
+	, FactDirectory.SeaId AS FactDirectory_SeaId
+	, FactDirectory.PsInstitutionID AS FactDirectory_PsInstitutionID
+	, FactDirectory.IeuId AS FactDirectory_IeuId
+	, FactDirectory.K12SchoolId AS FactDirectory_K12SchoolId
+	, FactDirectory.AeProviderId AS FactDirectory_AeProviderId
+	, FactDirectory.ComprehensiveAndTargetedSupportId AS FactDirectory_ComprehensiveAndTargetedSupportId
+	, FactDirectory.NOrDStatusId AS FactDirectory_NOrDStatusId
+	, FactDirectory.CharterSchoolManagementOrganizationId AS FactDirectory_CharterSchoolManagementOrganizationId
+	, FactDirectory.CharterSchoolStatusId AS FactDirectory_CharterSchoolStatusId
+	, FactDirectory.CharterSchoolAuthorizerId AS FactDirectory_CharterSchoolAuthorizerId
+	, FactDirectory.AlternativeSchoolStatusId AS FactDirectory_AlternativeSchoolStatusId
+	, FactDirectory.K12SchoolStatusId AS FactDirectory_K12SchoolStatusId
+	, FactDirectory.EarlyChildhoodOrganizationStatusId AS FactDirectory_EarlyChildhoodOrganizationStatusId
+	, FactDirectory.EarlyLearningOrganizationId AS FactDirectory_EarlyLearningOrganizationId
+	, FactDirectory.DataCollectionId AS FactDirectory_DataCollectionId
+	, FactDirectory.SchoolYearId AS FactDirectory_SchoolYearId
+	, OrganizationAddress.AddressStreetNumberAndName AS OrganizationAddress_AddressStreetNumberAndName
+	, OrganizationAddress.AddressApartmentRoomOrSuiteNumber AS OrganizationAddress_AddressApartmentRoomOrSuiteNumber
+	, OrganizationAddress.BuildingSiteNumber AS OrganizationAddress_BuildingSiteNumber
+	, OrganizationAddress.AddressCity AS OrganizationAddress_AddressCity
+	, OrganizationAddress.AddressStateAbbreviation AS OrganizationAddress_AddressStateAbbreviation
+	, OrganizationAddress.AddressPostalCode AS OrganizationAddress_AddressPostalCode
+	, OrganizationAddress.CountyAnsiCodeCode AS OrganizationAddress_CountyAnsiCodeCode
+	, OrganizationAddress.AddressCountyName AS OrganizationAddress_AddressCountyName
+	, OrganizationAddress.Latitude AS OrganizationAddress_Latitude
+	, OrganizationAddress.Longitude AS OrganizationAddress_Longitude
+	, OrganizationAddress.AddressTypeForOrganizationCode AS OrganizationAddress_AddressTypeForOrganizationCode
+	, OrganizationAddress.AddressTypeForOrganizationDescription AS OrganizationAddress_AddressTypeForOrganizationDescription
+	, OrganizationAddress.RecordStartDateTime AS OrganizationAddress_RecordStartDateTime
+	, OrganizationAddress.RecordEndDateTime AS OrganizationAddress_RecordEndDateTime
+FROM RDS.BridgeDirectoryOrganizationAddresses fact
+JOIN RDS.FactDirectory FactDirectory
+	ON fact.FactDirectoryId = FactDirectory.FactDirectoryId
+JOIN RDS.DimOrganizationAddresses OrganizationAddress
+	ON fact.OrganizationAddressId = OrganizationAddress.DimOrganizationAddressId

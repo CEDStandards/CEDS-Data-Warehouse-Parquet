@@ -4,7 +4,7 @@
 
 This repository is the **CEDS Data Warehouse Parquet (DW Parquet)** standard — a cloud-native, file-based representation of the [CEDS Data Warehouse](https://github.com/CEDStandards/CEDS-Data-Warehouse) SQL schema. It provides Parquet files for data lake, BI, and cloud-native education data consumers.
 
-**Current version:** 14.0.0.0  
+**Current version:** 14.1.0.0  
 **Source DW:** `C:\Repos\CEDS-Data-Warehouse` (local clone)  
 **Language:** Python 3.9+, T-SQL
 

@@ -1,216 +1,216 @@
-CREATE OR ALTER VIEW [RDS].[vwFactQuarterlyEmploymentsParquet] AS
-	SELECT fact.FactQuarterlyEmploymentId
-	, EmploymentRecordReferencePeriodStartDate.DateValue AS EmploymentRecordReferencePeriodStartDate_DateValue
-	, EmploymentRecordReferencePeriodStartDate.Day AS EmploymentRecordReferencePeriodStartDate_Day
-	, EmploymentRecordReferencePeriodStartDate.DayOfWeek AS EmploymentRecordReferencePeriodStartDate_DayOfWeek
-	, EmploymentRecordReferencePeriodStartDate.DayOfYear AS EmploymentRecordReferencePeriodStartDate_DayOfYear
-	, EmploymentRecordReferencePeriodStartDate.Month AS EmploymentRecordReferencePeriodStartDate_Month
-	, EmploymentRecordReferencePeriodStartDate.MonthName AS EmploymentRecordReferencePeriodStartDate_MonthName
-	, EmploymentRecordReferencePeriodStartDate.SubmissionYear AS EmploymentRecordReferencePeriodStartDate_SubmissionYear
-	, EmploymentRecordReferencePeriodStartDate.Year AS EmploymentRecordReferencePeriodStartDate_Year
-	, EmploymentRecordReferencePeriodEndDate.DateValue AS EmploymentRecordReferencePeriodEndDate_DateValue
-	, EmploymentRecordReferencePeriodEndDate.Day AS EmploymentRecordReferencePeriodEndDate_Day
-	, EmploymentRecordReferencePeriodEndDate.DayOfWeek AS EmploymentRecordReferencePeriodEndDate_DayOfWeek
-	, EmploymentRecordReferencePeriodEndDate.DayOfYear AS EmploymentRecordReferencePeriodEndDate_DayOfYear
-	, EmploymentRecordReferencePeriodEndDate.Month AS EmploymentRecordReferencePeriodEndDate_Month
-	, EmploymentRecordReferencePeriodEndDate.MonthName AS EmploymentRecordReferencePeriodEndDate_MonthName
-	, EmploymentRecordReferencePeriodEndDate.SubmissionYear AS EmploymentRecordReferencePeriodEndDate_SubmissionYear
-	, EmploymentRecordReferencePeriodEndDate.Year AS EmploymentRecordReferencePeriodEndDate_Year
-	, Employer.EmployerOrganizationName AS Employer_EmployerOrganizationName
-	, Employer.EmployerOrganizationIdentifierSea AS Employer_EmployerOrganizationIdentifierSea
-	, Employer.SeaOrganizationName AS Employer_SeaOrganizationName
-	, Employer.SeaOrganizationIdentifierSea AS Employer_SeaOrganizationIdentifierSea
-	, Employer.StateAnsiCode AS Employer_StateAnsiCode
-	, Employer.StateAbbreviationCode AS Employer_StateAbbreviationCode
-	, Employer.StateAbbreviationDescription AS Employer_StateAbbreviationDescription
-	, Employer.MailingAddressStreetNumberAndName AS Employer_MailingAddressStreetNumberAndName
-	, Employer.MailingAddressApartmentRoomOrSuiteNumber AS Employer_MailingAddressApartmentRoomOrSuiteNumber
-	, Employer.MailingAddressCity AS Employer_MailingAddressCity
-	, Employer.MailingAddressStateAbbreviation AS Employer_MailingAddressStateAbbreviation
-	, Employer.MailingAddressPostalCode AS Employer_MailingAddressPostalCode
-	, Employer.MailingAddressCountyAnsiCodeCode AS Employer_MailingAddressCountyAnsiCodeCode
-	, Employer.OutOfStateIndicator AS Employer_OutOfStateIndicator
-	, Employer.OrganizationOperationalStatus AS Employer_OrganizationOperationalStatus
-	, Employer.OperationalStatusEffectiveDate AS Employer_OperationalStatusEffectiveDate
-	, Employer.PhysicalAddressStreetNumberAndName AS Employer_PhysicalAddressStreetNumberAndName
-	, Employer.PhysicalAddressApartmentRoomOrSuiteNumber AS Employer_PhysicalAddressApartmentRoomOrSuiteNumber
-	, Employer.PhysicalAddressCity AS Employer_PhysicalAddressCity
-	, Employer.PhysicalAddressPostalCode AS Employer_PhysicalAddressPostalCode
-	, Employer.PhysicalAddressStateAbbreviation AS Employer_PhysicalAddressStateAbbreviation
-	, Employer.PhysicalAddressCountyAnsiCodeCode AS Employer_PhysicalAddressCountyAnsiCodeCode
-	, Employer.TelephoneNumber AS Employer_TelephoneNumber
-	, Employer.WebSiteAddress AS Employer_WebSiteAddress
-	, Employer.OrganizationRegionGeoJson AS Employer_OrganizationRegionGeoJson
-	, Employer.Latitude AS Employer_Latitude
-	, Employer.Longitude AS Employer_Longitude
-	, Employer.RecordStartDateTime AS Employer_RecordStartDateTime
-	, Employer.RecordEndDateTime AS Employer_RecordEndDateTime
-	, Person.FirstName AS Person_FirstName
-	, Person.MiddleName AS Person_MiddleName
-	, Person.LastOrSurname AS Person_LastOrSurname
-	, Person.Birthdate AS Person_Birthdate
-	, Person.ELChildChildIdentifierState AS Person_ELChildChildIdentifierState
-	, Person.K12StudentStudentIdentifierState AS Person_K12StudentStudentIdentifierState
-	, Person.K12StudentStudentIdentifierDistrict AS Person_K12StudentStudentIdentifierDistrict
-	, Person.K12StudentStudentIdentifierNationalMigrant AS Person_K12StudentStudentIdentifierNationalMigrant
-	, Person.PsStudentStudentIdentifierState AS Person_PsStudentStudentIdentifierState
-	, Person.AeStudentStudentIdentifierState AS Person_AeStudentStudentIdentifierState
-	, Person.WorkforceProgramParticipantPersonIdentifierState AS Person_WorkforceProgramParticipantPersonIdentifierState
-	, Person.ELStaffStaffMemberIdentifierState AS Person_ELStaffStaffMemberIdentifierState
-	, Person.K12StaffStaffMemberIdentifierState AS Person_K12StaffStaffMemberIdentifierState
-	, Person.K12StaffStaffMemberIdentifierDistrict AS Person_K12StaffStaffMemberIdentifierDistrict
-	, Person.PsStaffStaffMemberIdentifierState AS Person_PsStaffStaffMemberIdentifierState
-	, Person.PersonIdentifierDriversLicense AS Person_PersonIdentifierDriversLicense
-	, Person.PersonIdentifierSSN AS Person_PersonIdentifierSSN
-	, Person.PersonIdentifierState AS Person_PersonIdentifierState
-	, Person.StudentIdentifierState AS Person_StudentIdentifierState
-	, Person.IsActiveELChild AS Person_IsActiveELChild
-	, Person.IsActiveK12Student AS Person_IsActiveK12Student
-	, Person.IsActivePsStudent AS Person_IsActivePsStudent
-	, Person.IsActiveAeStudent AS Person_IsActiveAeStudent
-	, Person.IsActiveWorkforceProgramParticipant AS Person_IsActiveWorkforceProgramParticipant
-	, Person.IsActiveELStaff AS Person_IsActiveELStaff
-	, Person.IsActiveK12Staff AS Person_IsActiveK12Staff
-	, Person.IsActivePsStaff AS Person_IsActivePsStaff
-	, Person.RecordStartDateTime AS Person_RecordStartDateTime
-	, Person.RecordEndDateTime AS Person_RecordEndDateTime
-	, Person.ElectronicMailAddressHome AS Person_ElectronicMailAddressHome
-	, Person.ElectronicMailAddressOrganizational AS Person_ElectronicMailAddressOrganizational
-	, Person.ElectronicMailAddressWork AS Person_ElectronicMailAddressWork
-	, Person.TelephoneNumberFax AS Person_TelephoneNumberFax
-	, Person.TelephoneNumberHome AS Person_TelephoneNumberHome
-	, Person.TelephoneNumberMobile AS Person_TelephoneNumberMobile
-	, Person.TelephoneNumberWork AS Person_TelephoneNumberWork
-	, Person.PersonalTitleOrPrefix AS Person_PersonalTitleOrPrefix
-	, Person.PositionTitle AS Person_PositionTitle
-	, Person.GenerationCodeOrSuffix AS Person_GenerationCodeOrSuffix
-	, Person.HighestLevelOfEducationCompletedCode AS Person_HighestLevelOfEducationCompletedCode
-	, Person.HighestLevelOfEducationCompletedDescription AS Person_HighestLevelOfEducationCompletedDescription
-	, Person_Current.FirstName AS Person_Current_FirstName
-	, Person_Current.MiddleName AS Person_Current_MiddleName
-	, Person_Current.LastOrSurname AS Person_Current_LastOrSurname
-	, Person_Current.Birthdate AS Person_Current_Birthdate
-	, Person_Current.ELChildChildIdentifierState AS Person_Current_ELChildChildIdentifierState
-	, Person_Current.K12StudentStudentIdentifierState AS Person_Current_K12StudentStudentIdentifierState
-	, Person_Current.K12StudentStudentIdentifierDistrict AS Person_Current_K12StudentStudentIdentifierDistrict
-	, Person_Current.K12StudentStudentIdentifierNationalMigrant AS Person_Current_K12StudentStudentIdentifierNationalMigrant
-	, Person_Current.PsStudentStudentIdentifierState AS Person_Current_PsStudentStudentIdentifierState
-	, Person_Current.AeStudentStudentIdentifierState AS Person_Current_AeStudentStudentIdentifierState
-	, Person_Current.WorkforceProgramParticipantPersonIdentifierState AS Person_Current_WorkforceProgramParticipantPersonIdentifierState
-	, Person_Current.ELStaffStaffMemberIdentifierState AS Person_Current_ELStaffStaffMemberIdentifierState
-	, Person_Current.K12StaffStaffMemberIdentifierState AS Person_Current_K12StaffStaffMemberIdentifierState
-	, Person_Current.K12StaffStaffMemberIdentifierDistrict AS Person_Current_K12StaffStaffMemberIdentifierDistrict
-	, Person_Current.PsStaffStaffMemberIdentifierState AS Person_Current_PsStaffStaffMemberIdentifierState
-	, Person_Current.PersonIdentifierDriversLicense AS Person_Current_PersonIdentifierDriversLicense
-	, Person_Current.PersonIdentifierSSN AS Person_Current_PersonIdentifierSSN
-	, Person_Current.PersonIdentifierState AS Person_Current_PersonIdentifierState
-	, Person_Current.StudentIdentifierState AS Person_Current_StudentIdentifierState
-	, Person_Current.IsActiveELChild AS Person_Current_IsActiveELChild
-	, Person_Current.IsActiveK12Student AS Person_Current_IsActiveK12Student
-	, Person_Current.IsActivePsStudent AS Person_Current_IsActivePsStudent
-	, Person_Current.IsActiveAeStudent AS Person_Current_IsActiveAeStudent
-	, Person_Current.IsActiveWorkforceProgramParticipant AS Person_Current_IsActiveWorkforceProgramParticipant
-	, Person_Current.IsActiveELStaff AS Person_Current_IsActiveELStaff
-	, Person_Current.IsActiveK12Staff AS Person_Current_IsActiveK12Staff
-	, Person_Current.IsActivePsStaff AS Person_Current_IsActivePsStaff
-	, Person_Current.ElectronicMailAddressHome AS Person_Current_ElectronicMailAddressHome
-	, Person_Current.ElectronicMailAddressOrganizational AS Person_Current_ElectronicMailAddressOrganizational
-	, Person_Current.ElectronicMailAddressWork AS Person_Current_ElectronicMailAddressWork
-	, Person_Current.TelephoneNumberFax AS Person_Current_TelephoneNumberFax
-	, Person_Current.TelephoneNumberHome AS Person_Current_TelephoneNumberHome
-	, Person_Current.TelephoneNumberMobile AS Person_Current_TelephoneNumberMobile
-	, Person_Current.TelephoneNumberWork AS Person_Current_TelephoneNumberWork
-	, Person_Current.PersonalTitleOrPrefix AS Person_Current_PersonalTitleOrPrefix
-	, Person_Current.PositionTitle AS Person_Current_PositionTitle
-	, Person_Current.GenerationCodeOrSuffix AS Person_Current_GenerationCodeOrSuffix
-	, Person_Current.HighestLevelOfEducationCompletedCode AS Person_Current_HighestLevelOfEducationCompletedCode
-	, Person_Current.HighestLevelOfEducationCompletedDescription AS Person_Current_HighestLevelOfEducationCompletedDescription
-	, OnetSocOccupationType.OnetSocOccupationTypeCode AS OnetSocOccupationType_OnetSocOccupationTypeCode
-	, OnetSocOccupationType.OnetSocOccupationTypeDescription AS OnetSocOccupationType_OnetSocOccupationTypeDescription
-	, StandardOccupationalClassification.StandardOccupationalClassificationCode AS StandardOccupationalClassification_StandardOccupationalClassificationCode
-	, StandardOccupationalClassification.StandardOccupationalClassificationDescription AS StandardOccupationalClassification_StandardOccupationalClassificationDescription
-	, NaicsCode.NaicsSectorCode AS NaicsCode_NaicsSectorCode
-	, NaicsCode.NaicsSectorDescription AS NaicsCode_NaicsSectorDescription
-	, NaicsCode.NaicsSubsectorCode AS NaicsCode_NaicsSubsectorCode
-	, NaicsCode.NaicsSubsectorDescription AS NaicsCode_NaicsSubsectorDescription
-	, NaicsCode.NaicsIndustryGroupCode AS NaicsCode_NaicsIndustryGroupCode
-	, NaicsCode.NaicsIndustryGroupDescription AS NaicsCode_NaicsIndustryGroupDescription
-	, NaicsCode.NaicsIndustryCode AS NaicsCode_NaicsIndustryCode
-	, NaicsCode.NaicsIndustryDescription AS NaicsCode_NaicsIndustryDescription
-	, NaicsCode.NaicsNationalIndustryCode AS NaicsCode_NaicsNationalIndustryCode
-	, NaicsCode.NaicsNationalIndustryDescription AS NaicsCode_NaicsNationalIndustryDescription
-	, NaicsCode.NaicsVersion AS NaicsCode_NaicsVersion
-	, EmploymentLocation.EmploymentLocationCode AS EmploymentLocation_EmploymentLocationCode
-	, EmploymentLocation.EmploymentLocationDescription AS EmploymentLocation_EmploymentLocationDescription
-	, EmploymentRecordSource.EmploymentRecordAdministrativeDataSourceCode AS EmploymentRecordSource_EmploymentRecordAdministrativeDataSourceCode
-	, EmploymentRecordSource.EmploymentRecordAdministrativeDataSourceDescription AS EmploymentRecordSource_EmploymentRecordAdministrativeDataSourceDescription
-	, EmploymentStartDate.DateValue AS EmploymentStartDate_DateValue
-	, EmploymentStartDate.Day AS EmploymentStartDate_Day
-	, EmploymentStartDate.DayOfWeek AS EmploymentStartDate_DayOfWeek
-	, EmploymentStartDate.DayOfYear AS EmploymentStartDate_DayOfYear
-	, EmploymentStartDate.Month AS EmploymentStartDate_Month
-	, EmploymentStartDate.MonthName AS EmploymentStartDate_MonthName
-	, EmploymentStartDate.SubmissionYear AS EmploymentStartDate_SubmissionYear
-	, EmploymentStartDate.Year AS EmploymentStartDate_Year
-	, EmploymentEndDate.DateValue AS EmploymentEndDate_DateValue
-	, EmploymentEndDate.Day AS EmploymentEndDate_Day
-	, EmploymentEndDate.DayOfWeek AS EmploymentEndDate_DayOfWeek
-	, EmploymentEndDate.DayOfYear AS EmploymentEndDate_DayOfYear
-	, EmploymentEndDate.Month AS EmploymentEndDate_Month
-	, EmploymentEndDate.MonthName AS EmploymentEndDate_MonthName
-	, EmploymentEndDate.SubmissionYear AS EmploymentEndDate_SubmissionYear
-	, EmploymentEndDate.Year AS EmploymentEndDate_Year
-	, HireDate.DateValue AS HireDate_DateValue
-	, HireDate.Day AS HireDate_Day
-	, HireDate.DayOfWeek AS HireDate_DayOfWeek
-	, HireDate.DayOfYear AS HireDate_DayOfYear
-	, HireDate.Month AS HireDate_Month
-	, HireDate.MonthName AS HireDate_MonthName
-	, HireDate.SubmissionYear AS HireDate_SubmissionYear
-	, HireDate.Year AS HireDate_Year
-	, fact.QuarterlyEarnings
-	, fact.PersonEmployedInMultipleJobsCount
-	, fact.FullTimeEquivalency
-	, DataCollection.SourceSystemDataCollectionIdentifier AS DataCollection_SourceSystemDataCollectionIdentifier
-	, DataCollection.SourceSystemName AS DataCollection_SourceSystemName
-	, DataCollection.DataCollectionName AS DataCollection_DataCollectionName
-	, DataCollection.DataCollectionDescription AS DataCollection_DataCollectionDescription
-	, DataCollection.DataCollectionOpenDate AS DataCollection_DataCollectionOpenDate
-	, DataCollection.DataCollectionCloseDate AS DataCollection_DataCollectionCloseDate
-	, DataCollection.DataCollectionAcademicSchoolYear AS DataCollection_DataCollectionAcademicSchoolYear
-	, DataCollection.DataCollectionSchoolYear AS DataCollection_DataCollectionSchoolYear
-	, RecordStatus.RecordStatusTypeCode AS RecordStatus_RecordStatusTypeCode
-	, RecordStatus.RecordStatusTypeDescription AS RecordStatus_RecordStatusTypeDescription
-	, RecordStatus.RecordStatusCreatorEntityCode AS RecordStatus_RecordStatusCreatorEntityCode
-	, RecordStatus.RecordStatusCreatorEntityDescription AS RecordStatus_RecordStatusCreatorEntityDescription
-FROM RDS.FactQuarterlyEmployments fact
-JOIN RDS.DimDates EmploymentRecordReferencePeriodStartDate
-	ON fact.EmploymentRecordReferencePeriodStartDateId = EmploymentRecordReferencePeriodStartDate.DimDateId
-JOIN RDS.DimDates EmploymentRecordReferencePeriodEndDate
-	ON fact.EmploymentRecordReferencePeriodEndDateId = EmploymentRecordReferencePeriodEndDate.DimDateId
-JOIN RDS.DimEmployers Employer
-	ON fact.EmployerId = Employer.DimEmployerId
-JOIN RDS.DimPeople Person
-	ON fact.PersonId = Person.DimPersonId
-JOIN RDS.DimPeople_Current Person_Current
-	ON fact.Person_CurrentId = Person_Current.DimPersonId
-JOIN RDS.DimOnetSocOccupationTypes OnetSocOccupationType
-	ON fact.OnetSocOccupationTypeId = OnetSocOccupationType.DimOnetSocOccupationTypeId
-JOIN RDS.DimStandardOccupationalClassifications StandardOccupationalClassification
-	ON fact.StandardOccupationalClassificationId = StandardOccupationalClassification.DimStandardOccupationalClassificationId
-JOIN RDS.DimNaicsCodes NaicsCode
-	ON fact.NaicsCodeId = NaicsCode.DimNaicsCodeId
-JOIN RDS.DimEmploymentLocations EmploymentLocation
-	ON fact.EmploymentLocationId = EmploymentLocation.DimEmploymentLocationId
-JOIN RDS.DimEmploymentRecordSources EmploymentRecordSource
-	ON fact.EmploymentRecordSourceId = EmploymentRecordSource.DimEmploymentRecordSourceId
-JOIN RDS.DimDates EmploymentStartDate
-	ON fact.EmploymentStartDateId = EmploymentStartDate.DimDateId
-JOIN RDS.DimDates EmploymentEndDate
-	ON fact.EmploymentEndDateId = EmploymentEndDate.DimDateId
-JOIN RDS.DimDates HireDate
-	ON fact.HireDateId = HireDate.DimDateId
-JOIN RDS.DimDataCollections DataCollection
-	ON fact.DataCollectionId = DataCollection.DimDataCollectionId
-JOIN RDS.DimRecordStatuses RecordStatus
-	ON fact.RecordStatusId = RecordStatus.DimRecordStatusId
+CREATE OR ALTER VIEW [RDS].[vwFactQuarterlyEmploymentsParquet] AS
+	SELECT fact.FactQuarterlyEmploymentId
+	, EmploymentRecordReferencePeriodStartDate.DateValue AS EmploymentRecordReferencePeriodStartDate_DateValue
+	, EmploymentRecordReferencePeriodStartDate.Day AS EmploymentRecordReferencePeriodStartDate_Day
+	, EmploymentRecordReferencePeriodStartDate.DayOfWeek AS EmploymentRecordReferencePeriodStartDate_DayOfWeek
+	, EmploymentRecordReferencePeriodStartDate.DayOfYear AS EmploymentRecordReferencePeriodStartDate_DayOfYear
+	, EmploymentRecordReferencePeriodStartDate.Month AS EmploymentRecordReferencePeriodStartDate_Month
+	, EmploymentRecordReferencePeriodStartDate.MonthName AS EmploymentRecordReferencePeriodStartDate_MonthName
+	, EmploymentRecordReferencePeriodStartDate.SubmissionYear AS EmploymentRecordReferencePeriodStartDate_SubmissionYear
+	, EmploymentRecordReferencePeriodStartDate.Year AS EmploymentRecordReferencePeriodStartDate_Year
+	, EmploymentRecordReferencePeriodEndDate.DateValue AS EmploymentRecordReferencePeriodEndDate_DateValue
+	, EmploymentRecordReferencePeriodEndDate.Day AS EmploymentRecordReferencePeriodEndDate_Day
+	, EmploymentRecordReferencePeriodEndDate.DayOfWeek AS EmploymentRecordReferencePeriodEndDate_DayOfWeek
+	, EmploymentRecordReferencePeriodEndDate.DayOfYear AS EmploymentRecordReferencePeriodEndDate_DayOfYear
+	, EmploymentRecordReferencePeriodEndDate.Month AS EmploymentRecordReferencePeriodEndDate_Month
+	, EmploymentRecordReferencePeriodEndDate.MonthName AS EmploymentRecordReferencePeriodEndDate_MonthName
+	, EmploymentRecordReferencePeriodEndDate.SubmissionYear AS EmploymentRecordReferencePeriodEndDate_SubmissionYear
+	, EmploymentRecordReferencePeriodEndDate.Year AS EmploymentRecordReferencePeriodEndDate_Year
+	, Employer.EmployerOrganizationName AS Employer_EmployerOrganizationName
+	, Employer.EmployerOrganizationIdentifierSea AS Employer_EmployerOrganizationIdentifierSea
+	, Employer.SeaOrganizationName AS Employer_SeaOrganizationName
+	, Employer.SeaOrganizationIdentifierSea AS Employer_SeaOrganizationIdentifierSea
+	, Employer.StateAnsiCode AS Employer_StateAnsiCode
+	, Employer.StateAbbreviationCode AS Employer_StateAbbreviationCode
+	, Employer.StateAbbreviationDescription AS Employer_StateAbbreviationDescription
+	, Employer.MailingAddressStreetNumberAndName AS Employer_MailingAddressStreetNumberAndName
+	, Employer.MailingAddressApartmentRoomOrSuiteNumber AS Employer_MailingAddressApartmentRoomOrSuiteNumber
+	, Employer.MailingAddressCity AS Employer_MailingAddressCity
+	, Employer.MailingAddressStateAbbreviation AS Employer_MailingAddressStateAbbreviation
+	, Employer.MailingAddressPostalCode AS Employer_MailingAddressPostalCode
+	, Employer.MailingAddressCountyAnsiCodeCode AS Employer_MailingAddressCountyAnsiCodeCode
+	, Employer.OutOfStateIndicator AS Employer_OutOfStateIndicator
+	, Employer.OrganizationOperationalStatus AS Employer_OrganizationOperationalStatus
+	, Employer.OperationalStatusEffectiveDate AS Employer_OperationalStatusEffectiveDate
+	, Employer.PhysicalAddressStreetNumberAndName AS Employer_PhysicalAddressStreetNumberAndName
+	, Employer.PhysicalAddressApartmentRoomOrSuiteNumber AS Employer_PhysicalAddressApartmentRoomOrSuiteNumber
+	, Employer.PhysicalAddressCity AS Employer_PhysicalAddressCity
+	, Employer.PhysicalAddressPostalCode AS Employer_PhysicalAddressPostalCode
+	, Employer.PhysicalAddressStateAbbreviation AS Employer_PhysicalAddressStateAbbreviation
+	, Employer.PhysicalAddressCountyAnsiCodeCode AS Employer_PhysicalAddressCountyAnsiCodeCode
+	, Employer.TelephoneNumber AS Employer_TelephoneNumber
+	, Employer.WebSiteAddress AS Employer_WebSiteAddress
+	, Employer.OrganizationRegionGeoJson AS Employer_OrganizationRegionGeoJson
+	, Employer.Latitude AS Employer_Latitude
+	, Employer.Longitude AS Employer_Longitude
+	, Employer.RecordStartDateTime AS Employer_RecordStartDateTime
+	, Employer.RecordEndDateTime AS Employer_RecordEndDateTime
+	, Person.FirstName AS Person_FirstName
+	, Person.MiddleName AS Person_MiddleName
+	, Person.LastOrSurname AS Person_LastOrSurname
+	, Person.Birthdate AS Person_Birthdate
+	, Person.ELChildChildIdentifierState AS Person_ELChildChildIdentifierState
+	, Person.K12StudentStudentIdentifierState AS Person_K12StudentStudentIdentifierState
+	, Person.K12StudentStudentIdentifierDistrict AS Person_K12StudentStudentIdentifierDistrict
+	, Person.K12StudentStudentIdentifierNationalMigrant AS Person_K12StudentStudentIdentifierNationalMigrant
+	, Person.PsStudentStudentIdentifierState AS Person_PsStudentStudentIdentifierState
+	, Person.AeStudentStudentIdentifierState AS Person_AeStudentStudentIdentifierState
+	, Person.WorkforceProgramParticipantPersonIdentifierState AS Person_WorkforceProgramParticipantPersonIdentifierState
+	, Person.ELStaffStaffMemberIdentifierState AS Person_ELStaffStaffMemberIdentifierState
+	, Person.K12StaffStaffMemberIdentifierState AS Person_K12StaffStaffMemberIdentifierState
+	, Person.K12StaffStaffMemberIdentifierDistrict AS Person_K12StaffStaffMemberIdentifierDistrict
+	, Person.PsStaffStaffMemberIdentifierState AS Person_PsStaffStaffMemberIdentifierState
+	, Person.PersonIdentifierDriversLicense AS Person_PersonIdentifierDriversLicense
+	, Person.PersonIdentifierSSN AS Person_PersonIdentifierSSN
+	, Person.PersonIdentifierState AS Person_PersonIdentifierState
+	, Person.StudentIdentifierState AS Person_StudentIdentifierState
+	, Person.IsActiveELChild AS Person_IsActiveELChild
+	, Person.IsActiveK12Student AS Person_IsActiveK12Student
+	, Person.IsActivePsStudent AS Person_IsActivePsStudent
+	, Person.IsActiveAeStudent AS Person_IsActiveAeStudent
+	, Person.IsActiveWorkforceProgramParticipant AS Person_IsActiveWorkforceProgramParticipant
+	, Person.IsActiveELStaff AS Person_IsActiveELStaff
+	, Person.IsActiveK12Staff AS Person_IsActiveK12Staff
+	, Person.IsActivePsStaff AS Person_IsActivePsStaff
+	, Person.RecordStartDateTime AS Person_RecordStartDateTime
+	, Person.RecordEndDateTime AS Person_RecordEndDateTime
+	, Person.ElectronicMailAddressHome AS Person_ElectronicMailAddressHome
+	, Person.ElectronicMailAddressOrganizational AS Person_ElectronicMailAddressOrganizational
+	, Person.ElectronicMailAddressWork AS Person_ElectronicMailAddressWork
+	, Person.TelephoneNumberFax AS Person_TelephoneNumberFax
+	, Person.TelephoneNumberHome AS Person_TelephoneNumberHome
+	, Person.TelephoneNumberMobile AS Person_TelephoneNumberMobile
+	, Person.TelephoneNumberWork AS Person_TelephoneNumberWork
+	, Person.PersonalTitleOrPrefix AS Person_PersonalTitleOrPrefix
+	, Person.PositionTitle AS Person_PositionTitle
+	, Person.GenerationCodeOrSuffix AS Person_GenerationCodeOrSuffix
+	, Person.HighestLevelOfEducationCompletedCode AS Person_HighestLevelOfEducationCompletedCode
+	, Person.HighestLevelOfEducationCompletedDescription AS Person_HighestLevelOfEducationCompletedDescription
+	, Person_Current.FirstName AS Person_Current_FirstName
+	, Person_Current.MiddleName AS Person_Current_MiddleName
+	, Person_Current.LastOrSurname AS Person_Current_LastOrSurname
+	, Person_Current.Birthdate AS Person_Current_Birthdate
+	, Person_Current.ELChildChildIdentifierState AS Person_Current_ELChildChildIdentifierState
+	, Person_Current.K12StudentStudentIdentifierState AS Person_Current_K12StudentStudentIdentifierState
+	, Person_Current.K12StudentStudentIdentifierDistrict AS Person_Current_K12StudentStudentIdentifierDistrict
+	, Person_Current.K12StudentStudentIdentifierNationalMigrant AS Person_Current_K12StudentStudentIdentifierNationalMigrant
+	, Person_Current.PsStudentStudentIdentifierState AS Person_Current_PsStudentStudentIdentifierState
+	, Person_Current.AeStudentStudentIdentifierState AS Person_Current_AeStudentStudentIdentifierState
+	, Person_Current.WorkforceProgramParticipantPersonIdentifierState AS Person_Current_WorkforceProgramParticipantPersonIdentifierState
+	, Person_Current.ELStaffStaffMemberIdentifierState AS Person_Current_ELStaffStaffMemberIdentifierState
+	, Person_Current.K12StaffStaffMemberIdentifierState AS Person_Current_K12StaffStaffMemberIdentifierState
+	, Person_Current.K12StaffStaffMemberIdentifierDistrict AS Person_Current_K12StaffStaffMemberIdentifierDistrict
+	, Person_Current.PsStaffStaffMemberIdentifierState AS Person_Current_PsStaffStaffMemberIdentifierState
+	, Person_Current.PersonIdentifierDriversLicense AS Person_Current_PersonIdentifierDriversLicense
+	, Person_Current.PersonIdentifierSSN AS Person_Current_PersonIdentifierSSN
+	, Person_Current.PersonIdentifierState AS Person_Current_PersonIdentifierState
+	, Person_Current.StudentIdentifierState AS Person_Current_StudentIdentifierState
+	, Person_Current.IsActiveELChild AS Person_Current_IsActiveELChild
+	, Person_Current.IsActiveK12Student AS Person_Current_IsActiveK12Student
+	, Person_Current.IsActivePsStudent AS Person_Current_IsActivePsStudent
+	, Person_Current.IsActiveAeStudent AS Person_Current_IsActiveAeStudent
+	, Person_Current.IsActiveWorkforceProgramParticipant AS Person_Current_IsActiveWorkforceProgramParticipant
+	, Person_Current.IsActiveELStaff AS Person_Current_IsActiveELStaff
+	, Person_Current.IsActiveK12Staff AS Person_Current_IsActiveK12Staff
+	, Person_Current.IsActivePsStaff AS Person_Current_IsActivePsStaff
+	, Person_Current.ElectronicMailAddressHome AS Person_Current_ElectronicMailAddressHome
+	, Person_Current.ElectronicMailAddressOrganizational AS Person_Current_ElectronicMailAddressOrganizational
+	, Person_Current.ElectronicMailAddressWork AS Person_Current_ElectronicMailAddressWork
+	, Person_Current.TelephoneNumberFax AS Person_Current_TelephoneNumberFax
+	, Person_Current.TelephoneNumberHome AS Person_Current_TelephoneNumberHome
+	, Person_Current.TelephoneNumberMobile AS Person_Current_TelephoneNumberMobile
+	, Person_Current.TelephoneNumberWork AS Person_Current_TelephoneNumberWork
+	, Person_Current.PersonalTitleOrPrefix AS Person_Current_PersonalTitleOrPrefix
+	, Person_Current.PositionTitle AS Person_Current_PositionTitle
+	, Person_Current.GenerationCodeOrSuffix AS Person_Current_GenerationCodeOrSuffix
+	, Person_Current.HighestLevelOfEducationCompletedCode AS Person_Current_HighestLevelOfEducationCompletedCode
+	, Person_Current.HighestLevelOfEducationCompletedDescription AS Person_Current_HighestLevelOfEducationCompletedDescription
+	, OnetSocOccupationType.OnetSocOccupationTypeCode AS OnetSocOccupationType_OnetSocOccupationTypeCode
+	, OnetSocOccupationType.OnetSocOccupationTypeDescription AS OnetSocOccupationType_OnetSocOccupationTypeDescription
+	, StandardOccupationalClassification.StandardOccupationalClassificationCode AS StandardOccupationalClassification_StandardOccupationalClassificationCode
+	, StandardOccupationalClassification.StandardOccupationalClassificationDescription AS StandardOccupationalClassification_StandardOccupationalClassificationDescription
+	, NaicsCode.NaicsSectorCode AS NaicsCode_NaicsSectorCode
+	, NaicsCode.NaicsSectorDescription AS NaicsCode_NaicsSectorDescription
+	, NaicsCode.NaicsSubsectorCode AS NaicsCode_NaicsSubsectorCode
+	, NaicsCode.NaicsSubsectorDescription AS NaicsCode_NaicsSubsectorDescription
+	, NaicsCode.NaicsIndustryGroupCode AS NaicsCode_NaicsIndustryGroupCode
+	, NaicsCode.NaicsIndustryGroupDescription AS NaicsCode_NaicsIndustryGroupDescription
+	, NaicsCode.NaicsIndustryCode AS NaicsCode_NaicsIndustryCode
+	, NaicsCode.NaicsIndustryDescription AS NaicsCode_NaicsIndustryDescription
+	, NaicsCode.NaicsNationalIndustryCode AS NaicsCode_NaicsNationalIndustryCode
+	, NaicsCode.NaicsNationalIndustryDescription AS NaicsCode_NaicsNationalIndustryDescription
+	, NaicsCode.NaicsVersion AS NaicsCode_NaicsVersion
+	, EmploymentLocation.EmploymentLocationCode AS EmploymentLocation_EmploymentLocationCode
+	, EmploymentLocation.EmploymentLocationDescription AS EmploymentLocation_EmploymentLocationDescription
+	, EmploymentRecordSource.EmploymentRecordAdministrativeDataSourceCode AS EmploymentRecordSource_EmploymentRecordAdministrativeDataSourceCode
+	, EmploymentRecordSource.EmploymentRecordAdministrativeDataSourceDescription AS EmploymentRecordSource_EmploymentRecordAdministrativeDataSourceDescription
+	, EmploymentStartDate.DateValue AS EmploymentStartDate_DateValue
+	, EmploymentStartDate.Day AS EmploymentStartDate_Day
+	, EmploymentStartDate.DayOfWeek AS EmploymentStartDate_DayOfWeek
+	, EmploymentStartDate.DayOfYear AS EmploymentStartDate_DayOfYear
+	, EmploymentStartDate.Month AS EmploymentStartDate_Month
+	, EmploymentStartDate.MonthName AS EmploymentStartDate_MonthName
+	, EmploymentStartDate.SubmissionYear AS EmploymentStartDate_SubmissionYear
+	, EmploymentStartDate.Year AS EmploymentStartDate_Year
+	, EmploymentEndDate.DateValue AS EmploymentEndDate_DateValue
+	, EmploymentEndDate.Day AS EmploymentEndDate_Day
+	, EmploymentEndDate.DayOfWeek AS EmploymentEndDate_DayOfWeek
+	, EmploymentEndDate.DayOfYear AS EmploymentEndDate_DayOfYear
+	, EmploymentEndDate.Month AS EmploymentEndDate_Month
+	, EmploymentEndDate.MonthName AS EmploymentEndDate_MonthName
+	, EmploymentEndDate.SubmissionYear AS EmploymentEndDate_SubmissionYear
+	, EmploymentEndDate.Year AS EmploymentEndDate_Year
+	, HireDate.DateValue AS HireDate_DateValue
+	, HireDate.Day AS HireDate_Day
+	, HireDate.DayOfWeek AS HireDate_DayOfWeek
+	, HireDate.DayOfYear AS HireDate_DayOfYear
+	, HireDate.Month AS HireDate_Month
+	, HireDate.MonthName AS HireDate_MonthName
+	, HireDate.SubmissionYear AS HireDate_SubmissionYear
+	, HireDate.Year AS HireDate_Year
+	, fact.QuarterlyEarnings
+	, fact.PersonEmployedInMultipleJobsCount
+	, fact.FullTimeEquivalency
+	, DataCollection.SourceSystemDataCollectionIdentifier AS DataCollection_SourceSystemDataCollectionIdentifier
+	, DataCollection.SourceSystemName AS DataCollection_SourceSystemName
+	, DataCollection.DataCollectionName AS DataCollection_DataCollectionName
+	, DataCollection.DataCollectionDescription AS DataCollection_DataCollectionDescription
+	, DataCollection.DataCollectionOpenDate AS DataCollection_DataCollectionOpenDate
+	, DataCollection.DataCollectionCloseDate AS DataCollection_DataCollectionCloseDate
+	, DataCollection.DataCollectionAcademicSchoolYear AS DataCollection_DataCollectionAcademicSchoolYear
+	, DataCollection.DataCollectionSchoolYear AS DataCollection_DataCollectionSchoolYear
+	, RecordStatus.RecordStatusTypeCode AS RecordStatus_RecordStatusTypeCode
+	, RecordStatus.RecordStatusTypeDescription AS RecordStatus_RecordStatusTypeDescription
+	, RecordStatus.RecordStatusCreatorEntityCode AS RecordStatus_RecordStatusCreatorEntityCode
+	, RecordStatus.RecordStatusCreatorEntityDescription AS RecordStatus_RecordStatusCreatorEntityDescription
+FROM RDS.FactQuarterlyEmployments fact
+JOIN RDS.DimDates EmploymentRecordReferencePeriodStartDate
+	ON fact.EmploymentRecordReferencePeriodStartDateId = EmploymentRecordReferencePeriodStartDate.DimDateId
+JOIN RDS.DimDates EmploymentRecordReferencePeriodEndDate
+	ON fact.EmploymentRecordReferencePeriodEndDateId = EmploymentRecordReferencePeriodEndDate.DimDateId
+JOIN RDS.DimEmployers Employer
+	ON fact.EmployerId = Employer.DimEmployerId
+JOIN RDS.DimPeople Person
+	ON fact.PersonId = Person.DimPersonId
+JOIN RDS.DimPeople_Current Person_Current
+	ON fact.Person_CurrentId = Person_Current.DimPersonId
+JOIN RDS.DimOnetSocOccupationTypes OnetSocOccupationType
+	ON fact.OnetSocOccupationTypeId = OnetSocOccupationType.DimOnetSocOccupationTypeId
+JOIN RDS.DimStandardOccupationalClassifications StandardOccupationalClassification
+	ON fact.StandardOccupationalClassificationId = StandardOccupationalClassification.DimStandardOccupationalClassificationId
+JOIN RDS.DimNaicsCodes NaicsCode
+	ON fact.NaicsCodeId = NaicsCode.DimNaicsCodeId
+JOIN RDS.DimEmploymentLocations EmploymentLocation
+	ON fact.EmploymentLocationId = EmploymentLocation.DimEmploymentLocationId
+JOIN RDS.DimEmploymentRecordSources EmploymentRecordSource
+	ON fact.EmploymentRecordSourceId = EmploymentRecordSource.DimEmploymentRecordSourceId
+JOIN RDS.DimDates EmploymentStartDate
+	ON fact.EmploymentStartDateId = EmploymentStartDate.DimDateId
+JOIN RDS.DimDates EmploymentEndDate
+	ON fact.EmploymentEndDateId = EmploymentEndDate.DimDateId
+JOIN RDS.DimDates HireDate
+	ON fact.HireDateId = HireDate.DimDateId
+JOIN RDS.DimDataCollections DataCollection
+	ON fact.DataCollectionId = DataCollection.DimDataCollectionId
+JOIN RDS.DimRecordStatuses RecordStatus
+	ON fact.RecordStatusId = RecordStatus.DimRecordStatusId

@@ -1,47 +1,47 @@
-CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryOrganizationRelationshipsParquet] AS
-	SELECT fact.BridgeDirectoryOrganizationRelationshipId
-	, SubjectOrganizati.LeaId AS SubjectOrganizati_LeaId
-	, SubjectOrganizati.OrganizationId AS SubjectOrganizati_OrganizationId
-	, SubjectOrganizati.SeaId AS SubjectOrganizati_SeaId
-	, SubjectOrganizati.PsInstitutionID AS SubjectOrganizati_PsInstitutionID
-	, SubjectOrganizati.IeuId AS SubjectOrganizati_IeuId
-	, SubjectOrganizati.K12SchoolId AS SubjectOrganizati_K12SchoolId
-	, SubjectOrganizati.AeProviderId AS SubjectOrganizati_AeProviderId
-	, SubjectOrganizati.ComprehensiveAndTargetedSupportI AS SubjectOrganizati_ComprehensiveAndTargetedSupportI
-	, SubjectOrganizati.NOrDStatusId AS SubjectOrganizati_NOrDStatusId
-	, SubjectOrganizati.CharterSchoolManagementOrganizationId AS SubjectOrganizati_CharterSchoolManagementOrganizationId
-	, SubjectOrganizati.CharterSchoolStatusId AS SubjectOrganizati_CharterSchoolStatusId
-	, SubjectOrganizati.CharterSchoolAuthorizerId AS SubjectOrganizati_CharterSchoolAuthorizerId
-	, SubjectOrganizati.AlternativeSchoolStatusId AS SubjectOrganizati_AlternativeSchoolStatusId
-	, SubjectOrganizati.K12SchoolStatusId AS SubjectOrganizati_K12SchoolStatusId
-	, SubjectOrganizati.EarlyChildhoodOrganizationStatusId AS SubjectOrganizati_EarlyChildhoodOrganizationStatusId
-	, SubjectOrganizati.EarlyLearningOrganizationId AS SubjectOrganizati_EarlyLearningOrganizationId
-	, SubjectOrganizati.DataCollectionId AS SubjectOrganizati_DataCollectionId
-	, SubjectOrganizati.SchoolYearId AS SubjectOrganizati_SchoolYearId
-	, ObjectOrganizati.LeaId AS ObjectOrganizati_LeaId
-	, ObjectOrganizati.OrganizationId AS ObjectOrganizati_OrganizationId
-	, ObjectOrganizati.SeaId AS ObjectOrganizati_SeaId
-	, ObjectOrganizati.PsInstitutionID AS ObjectOrganizati_PsInstitutionID
-	, ObjectOrganizati.IeuId AS ObjectOrganizati_IeuId
-	, ObjectOrganizati.K12SchoolId AS ObjectOrganizati_K12SchoolId
-	, ObjectOrganizati.AeProviderId AS ObjectOrganizati_AeProviderId
-	, ObjectOrganizati.ComprehensiveAndTargetedSupportI AS ObjectOrganizati_ComprehensiveAndTargetedSupportI
-	, ObjectOrganizati.NOrDStatusId AS ObjectOrganizati_NOrDStatusId
-	, ObjectOrganizati.CharterSchoolManagementOrganizationId AS ObjectOrganizati_CharterSchoolManagementOrganizationId
-	, ObjectOrganizati.CharterSchoolStatusId AS ObjectOrganizati_CharterSchoolStatusId
-	, ObjectOrganizati.CharterSchoolAuthorizerId AS ObjectOrganizati_CharterSchoolAuthorizerId
-	, ObjectOrganizati.AlternativeSchoolStatusId AS ObjectOrganizati_AlternativeSchoolStatusId
-	, ObjectOrganizati.K12SchoolStatusId AS ObjectOrganizati_K12SchoolStatusId
-	, ObjectOrganizati.EarlyChildhoodOrganizationStatusId AS ObjectOrganizati_EarlyChildhoodOrganizationStatusId
-	, ObjectOrganizati.EarlyLearningOrganizationId AS ObjectOrganizati_EarlyLearningOrganizationId
-	, ObjectOrganizati.DataCollectionId AS ObjectOrganizati_DataCollectionId
-	, ObjectOrganizati.SchoolYearId AS ObjectOrganizati_SchoolYearId
-	, fact.RelationshipTypeCode
-	, fact.RelationshipTypeDescription
-	, fact.RecordStartDateTime
-	, fact.RecordEndDateTime
-FROM RDS.BridgeDirectoryOrganizationRelationships fact
-JOIN RDS.FactDirectory SubjectOrganizati
-	ON fact.SubjectOrganization = SubjectOrganizati.FactDirectoryId
-JOIN RDS.FactDirectory ObjectOrganizati
-	ON fact.ObjectOrganization = ObjectOrganizati.FactDirectoryId
+CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryOrganizationRelationshipsParquet] AS
+	SELECT fact.BridgeDirectoryOrganizationRelationshipId
+	, SubjectOrganization.LeaId AS SubjectOrganization_LeaId
+	, SubjectOrganization.OrganizationId AS SubjectOrganization_OrganizationId
+	, SubjectOrganization.SeaId AS SubjectOrganization_SeaId
+	, SubjectOrganization.PsInstitutionID AS SubjectOrganization_PsInstitutionID
+	, SubjectOrganization.IeuId AS SubjectOrganization_IeuId
+	, SubjectOrganization.K12SchoolId AS SubjectOrganization_K12SchoolId
+	, SubjectOrganization.AeProviderId AS SubjectOrganization_AeProviderId
+	, SubjectOrganization.ComprehensiveAndTargetedSupportId AS SubjectOrganization_ComprehensiveAndTargetedSupportId
+	, SubjectOrganization.NOrDStatusId AS SubjectOrganization_NOrDStatusId
+	, SubjectOrganization.CharterSchoolManagementOrganizationId AS SubjectOrganization_CharterSchoolManagementOrganizationId
+	, SubjectOrganization.CharterSchoolStatusId AS SubjectOrganization_CharterSchoolStatusId
+	, SubjectOrganization.CharterSchoolAuthorizerId AS SubjectOrganization_CharterSchoolAuthorizerId
+	, SubjectOrganization.AlternativeSchoolStatusId AS SubjectOrganization_AlternativeSchoolStatusId
+	, SubjectOrganization.K12SchoolStatusId AS SubjectOrganization_K12SchoolStatusId
+	, SubjectOrganization.EarlyChildhoodOrganizationStatusId AS SubjectOrganization_EarlyChildhoodOrganizationStatusId
+	, SubjectOrganization.EarlyLearningOrganizationId AS SubjectOrganization_EarlyLearningOrganizationId
+	, SubjectOrganization.DataCollectionId AS SubjectOrganization_DataCollectionId
+	, SubjectOrganization.SchoolYearId AS SubjectOrganization_SchoolYearId
+	, ObjectOrganization.LeaId AS ObjectOrganization_LeaId
+	, ObjectOrganization.OrganizationId AS ObjectOrganization_OrganizationId
+	, ObjectOrganization.SeaId AS ObjectOrganization_SeaId
+	, ObjectOrganization.PsInstitutionID AS ObjectOrganization_PsInstitutionID
+	, ObjectOrganization.IeuId AS ObjectOrganization_IeuId
+	, ObjectOrganization.K12SchoolId AS ObjectOrganization_K12SchoolId
+	, ObjectOrganization.AeProviderId AS ObjectOrganization_AeProviderId
+	, ObjectOrganization.ComprehensiveAndTargetedSupportId AS ObjectOrganization_ComprehensiveAndTargetedSupportId
+	, ObjectOrganization.NOrDStatusId AS ObjectOrganization_NOrDStatusId
+	, ObjectOrganization.CharterSchoolManagementOrganizationId AS ObjectOrganization_CharterSchoolManagementOrganizationId
+	, ObjectOrganization.CharterSchoolStatusId AS ObjectOrganization_CharterSchoolStatusId
+	, ObjectOrganization.CharterSchoolAuthorizerId AS ObjectOrganization_CharterSchoolAuthorizerId
+	, ObjectOrganization.AlternativeSchoolStatusId AS ObjectOrganization_AlternativeSchoolStatusId
+	, ObjectOrganization.K12SchoolStatusId AS ObjectOrganization_K12SchoolStatusId
+	, ObjectOrganization.EarlyChildhoodOrganizationStatusId AS ObjectOrganization_EarlyChildhoodOrganizationStatusId
+	, ObjectOrganization.EarlyLearningOrganizationId AS ObjectOrganization_EarlyLearningOrganizationId
+	, ObjectOrganization.DataCollectionId AS ObjectOrganization_DataCollectionId
+	, ObjectOrganization.SchoolYearId AS ObjectOrganization_SchoolYearId
+	, fact.RelationshipTypeCode
+	, fact.RelationshipTypeDescription
+	, fact.RecordStartDateTime
+	, fact.RecordEndDateTime
+FROM RDS.BridgeDirectoryOrganizationRelationships fact
+JOIN RDS.FactDirectory SubjectOrganization
+	ON fact.SubjectOrganization = SubjectOrganization.FactDirectoryId
+JOIN RDS.FactDirectory ObjectOrganization
+	ON fact.ObjectOrganization = ObjectOrganization.FactDirectoryId

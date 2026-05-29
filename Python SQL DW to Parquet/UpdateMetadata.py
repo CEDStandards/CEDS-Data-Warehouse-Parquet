@@ -10,8 +10,10 @@ Run from the repo root:
     python "Python SQL DW to Parquet/UpdateMetadata.py"
 """
 
-import re
+import re as _re
+import shutil
 import sys
+import tempfile
 from pathlib import Path
 
 try:
@@ -24,8 +26,9 @@ except ImportError:
 
 METADATA_FILE = Path(__file__).parent.parent / "docs" / "CEDS-Data-Warehouse-Parquet-File-Metadata.xlsx"
 VIEWS_DIR = Path(__file__).parent / "sql" / "data-warehouse-views"
-SOURCE_TABLES = Path(r"C:\Repos\CEDS-Data-Warehouse\src\CEDS-Data-Warehouse-Project\RDS\Tables")
 CEDS_VERSION = "14.0.0.0"
+
+_VERSION_PATTERN = _re.compile(r"^\d+\.\d+\.\d+\.\d+$")
 
 
 def get_view_files() -> list:
@@ -41,13 +44,13 @@ def parse_view_columns(view_file: Path) -> list:
         line = line.strip()
         if " AS " in line.upper():
             # e.g. ", Lea.LeaOrganizationName AS Lea_LeaOrganizationName"
-            parts = re.split(r"\s+AS\s+", line, maxsplit=1, flags=re.IGNORECASE)
+            parts = _re.split(r"\s+AS\s+", line, maxsplit=1, flags=_re.IGNORECASE)
             if len(parts) == 2:
                 col_alias = parts[1].strip().rstrip(",")
                 columns.append(col_alias)
         elif line.startswith("SELECT ") or line.startswith("\tSELECT "):
             # Primary key column: "SELECT fact.XxxId"
-            m = re.search(r"SELECT\s+fact\.(\w+)", line, re.IGNORECASE)
+            m = _re.search(r"SELECT\s+fact\.(\w+)", line, _re.IGNORECASE)
             if m:
                 columns.insert(0, m.group(1))
     return columns
@@ -59,6 +62,10 @@ def main():
         sys.exit(1)
 
     wb = openpyxl.load_workbook(METADATA_FILE)
+
+    if not VIEWS_DIR.exists():
+        print(f"ERROR: Views directory not found: {VIEWS_DIR}", file=sys.stderr)
+        sys.exit(1)
     ws = wb.active
 
     # Find the header row and existing view names in the spreadsheet
@@ -106,14 +113,31 @@ def main():
             new_row = [view_name, col_count, CEDS_VERSION]
             ws.append(new_row)
 
-    # Update any version cells that say 13 to 14
+    # Update any version cells that contain an older dotted version string
     for row in ws.iter_rows():
         for cell in row:
-            if cell.value and str(cell.value).strip() in ("13.0.0.0", "v13", "Version 13"):
-                cell.value = CEDS_VERSION
-                print(f"  Updated version cell {cell.coordinate}: {CEDS_VERSION}")
+            if cell.value:
+                val = str(cell.value).strip()
+                if val in ("13.0.0.0", "v13", "Version 13") or (
+                    _VERSION_PATTERN.match(val) and val != CEDS_VERSION
+                ):
+                    if val != CEDS_VERSION:
+                        cell.value = CEDS_VERSION
+                        print(f"  Updated version cell {cell.coordinate}: {CEDS_VERSION}")
 
-    wb.save(METADATA_FILE)
+    backup = METADATA_FILE.with_suffix(".xlsx.bak")
+    shutil.copy2(METADATA_FILE, backup)
+    with tempfile.NamedTemporaryFile(
+        dir=METADATA_FILE.parent, suffix=".tmp.xlsx", delete=False
+    ) as tmp:
+        tmp_path = Path(tmp.name)
+    try:
+        wb.save(tmp_path)
+        tmp_path.replace(METADATA_FILE)
+        backup.unlink(missing_ok=True)
+    except Exception:
+        tmp_path.unlink(missing_ok=True)
+        raise
     print(f"\nSaved: {METADATA_FILE}")
 
 

@@ -1,8 +1,8 @@
-CREATE OR ALTER VIEW [RDS].[vwDimSeaFinancialAccountBalancesParquet] AS
-	SELECT fact.DimSeaFinancialAccountBalanceId
-	, fact.FinancialAccountCodingSystemOrganizationTypeCode
-	, fact.FinancialAccountCodingSystemOrganizationTypeDescription
-	, fact.FinancialAccountLocalBalanceSheetCodeCode
-	, fact.FinancialAccountLocalBalanceSheetCodeFederalCode
-	, fact.FinancialAccountLocalBalanceSheetCodeDescription
-FROM RDS.DimSeaFinancialAccountBalances fact
+CREATE OR ALTER VIEW [RDS].[vwDimSeaFinancialAccountBalancesParquet] AS
+	SELECT fact.DimSeaFinancialAccountBalanceId
+	, fact.FinancialAccountCodingSystemOrganizationTypeCode
+	, fact.FinancialAccountCodingSystemOrganizationTypeDescription
+	, fact.FinancialAccountLocalBalanceSheetCodeCode
+	, fact.FinancialAccountLocalBalanceSheetCodeFederalCode
+	, fact.FinancialAccountLocalBalanceSheetCodeDescription
+FROM RDS.DimSeaFinancialAccountBalances fact

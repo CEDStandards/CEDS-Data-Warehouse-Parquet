@@ -16,7 +16,6 @@ class DbTask():
     def __init__(self):
         self.dbConnection = CedsConnection()
         self.checkOutputDir()
-        print('SQL Statement in DbTask is', self.sqlStatement)
 
     def getCursor(self):
         return self.dbConnection.getCursor()

@@ -2,7 +2,7 @@
 
 # CEDS Data Warehouse Parquet (DW Parquet)
 
-**Current CEDS Version: 14.0.0.0**
+**Current CEDS Version: 14.1.0.0**
 
 Welcome to the CEDS Open Source Community!
 
@@ -13,7 +13,7 @@ The Common Education Data Standards (CEDS) Data Warehouse Parquet (DW Parquet) s
 ### Prerequisites
 
 - Python 3.9+
-- SQL Server instance with the [CEDS Data Warehouse](https://github.com/CEDStandards/CEDS-Data-Warehouse) installed and populated (v14.0.0.0)
+- SQL Server instance with the [CEDS Data Warehouse](https://github.com/CEDStandards/CEDS-Data-Warehouse) installed and populated (v14.1.0.0)
 - Python dependencies: `pip install -r "Python SQL DW to Parquet/requirements.txt"`
 
 ### Configuration
@@ -58,6 +58,14 @@ python GenerateParquetViewFiles.py
 
 This reads the source CEDS Data Warehouse DDL files and regenerates all `sql/data-warehouse-views/*.sql` scripts. See `GenerateParquetViewFiles.py --help` for options.
 
+### Update the Metadata Spreadsheet (after DW schema changes)
+
+```bash
+python "Python SQL DW to Parquet/UpdateMetadata.py"
+```
+
+This updates `docs/CEDS-Data-Warehouse-Parquet-File-Metadata.xlsx` by appending rows for any new Parquet views not yet listed, and updating version numbers. Run this after regenerating view scripts whenever the CEDS DW version changes.
+
 ## File Structure
 
 ```
@@ -67,6 +75,7 @@ CEDS-Data-Warehouse-Parquet/
 │   ├── CedsConnection.py                 # SQL Server connection
 │   ├── DbTask.py                         # Parquet write utility
 │   ├── GenerateParquetViewFiles.py       # View script generator (v14)
+│   ├── UpdateMetadata.py                 # Metadata spreadsheet sync utility
 │   ├── Parquet View Generator.sql        # T-SQL dynamic view generator
 │   ├── connection.json                   # DB credentials (not in source control)
 │   ├── requirements.txt                  # Python dependencies
@@ -124,6 +133,7 @@ The DW Parquet version always mirrors the CEDS Data Warehouse version it was gen
 | CEDS Elements | Data Warehouse | DW Parquet |
 |---------------|----------------|------------|
 | 14.0.0.0      | 14.0.0.0       | 14.0.0.0   |
+| 14.1.0.0      | 14.1.0.0       | 14.1.0.0   |
 
 ## License
 

@@ -1,4 +1,4 @@
-﻿CREATE OR ALTER VIEW [RDS].[vwDimK12SchoolsParquet] AS
+CREATE OR ALTER VIEW [RDS].[vwDimK12SchoolsParquet] AS
 SELECT fact.DimK12SchoolId
 
 	, fact.LeaOrganizationName

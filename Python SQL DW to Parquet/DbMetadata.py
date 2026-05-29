@@ -1,5 +1,4 @@
 from DbTask import DbTask
-from sql.SqlStatement import SqlStatement
 import os
 
 
@@ -55,14 +54,10 @@ class DbMetadata(DbTask):
             # Write view definition to file
             try:
                 with open(filepath, 'w', encoding='utf-8') as f:
-                    # Add header comment
-                    f.write(f"-- View: RDS.{view_name}\n")
-                    f.write(f"-- Generated from database export\n\n")
-                    
                     # Write the view definition
                     # The view definition from INFORMATION_SCHEMA.VIEWS doesn't include CREATE VIEW
                     # so we need to add it
-                    f.write(f"CREATE VIEW [RDS].[{view_name}] AS\n")
+                    f.write(f"CREATE OR ALTER VIEW [RDS].[{view_name}] AS\n")
                     f.write(view_definition)
                 
                 print(f"✓ Exported: {filename}")
