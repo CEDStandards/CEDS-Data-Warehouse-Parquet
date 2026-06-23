@@ -15,6 +15,10 @@ CREATE OR ALTER VIEW [RDS].[vwBridgePsStudentAcademicAwardCipCodesParquet] AS
 	, CipCode.CipUseDescription AS CipCode_CipUseDescription
 	, CipCode.CipVersionCode AS CipCode_CipVersionCode
 	, CipCode.CipVersionDescription AS CipCode_CipVersionDescription
+	, CipCode.CareerClusterCode AS CipCode_CareerClusterCode
+	, CipCode.CareerClusterDescription AS CipCode_CareerClusterDescription
+	, CipCode.PerkinsNontraditionalTypeCode AS CipCode_PerkinsNontraditionalTypeCode
+	, CipCode.PerkinsNontraditionalTypeDescription AS CipCode_PerkinsNontraditionalTypeDescription
 	, fact.PostsecondaryProgramLevelCode
 	, fact.PostsecondaryProgramLevelDescription
 FROM RDS.BridgePsStudentAcademicAwardCipCodes fact

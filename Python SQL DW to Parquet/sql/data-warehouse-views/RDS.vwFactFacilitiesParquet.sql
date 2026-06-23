@@ -2,6 +2,8 @@ CREATE OR ALTER VIEW [RDS].[vwFactFacilitiesParquet] AS
 	SELECT fact.FactFacilityId
 	, FacilityUtilizationStatus.BuildingUseTypeCode AS FacilityUtilizationStatus_BuildingUseTypeCode
 	, FacilityUtilizationStatus.BuildingUseTypeDescription AS FacilityUtilizationStatus_BuildingUseTypeDescription
+	, FacilityUtilizationStatus.BuildingCommunityUseSpaceTypeCode AS FacilityUtilizationStatus_BuildingCommunityUseSpaceTypeCode
+	, FacilityUtilizationStatus.BuildingCommunityUseSpaceTypeDescription AS FacilityUtilizationStatus_BuildingCommunityUseSpaceTypeDescription
 	, Organization.OrganizationName AS Organization_OrganizationName
 	, Organization.ShortNameOfOrganization AS Organization_ShortNameOfOrganization
 	, Organization.OrganizationIdentifierSea AS Organization_OrganizationIdentifierSea
@@ -50,6 +52,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactFacilitiesParquet] AS
 	, Facility.FacilityExpectedLife AS Facility_FacilityExpectedLife
 	, Facility.FacilitySiteArea AS Facility_FacilitySiteArea
 	, Facility.FacilitySiteIdentifier AS Facility_FacilitySiteIdentifier
+	, Facility.StateLicensedFacilityCapacity AS Facility_StateLicensedFacilityCapacity
 	, FacilitySpaceStatus.FacilitySpaceUseTypeCode AS FacilitySpaceStatus_FacilitySpaceUseTypeCode
 	, FacilitySpaceStatus.FacilitySpaceUseTypeDescription AS FacilitySpaceStatus_FacilitySpaceUseTypeDescription
 	, FacilityStatus.FacilityLeaseAmountCategoryCode AS FacilityStatus_FacilityLeaseAmountCategoryCode
@@ -60,6 +63,8 @@ CREATE OR ALTER VIEW [RDS].[vwFactFacilitiesParquet] AS
 	, FacilityStatus.FacilityMortgageInterestTypeDescription AS FacilityStatus_FacilityMortgageInterestTypeDescription
 	, FacilityStatus.FacilityMortgageTypeCode AS FacilityStatus_FacilityMortgageTypeCode
 	, FacilityStatus.FacilityMortgageTypeDescription AS FacilityStatus_FacilityMortgageTypeDescription
+	, FacilityStatus.FacilityOwnershipIndicatorCode AS FacilityStatus_FacilityOwnershipIndicatorCode
+	, FacilityStatus.FacilityOwnershipIndicatorDescription AS FacilityStatus_FacilityOwnershipIndicatorDescription
 FROM RDS.FactFacilities fact
 JOIN RDS.DimFacilityUtilization FacilityUtilizationStatus
 	ON fact.FacilityUtilizationStatusId = FacilityUtilizationStatus.DimFacilityUtilizationStatusId

@@ -45,6 +45,10 @@ CREATE OR ALTER VIEW [RDS].[vwBridgeK12StudentCourseSectionsCipCodesParquet] AS
 	, CipCode.CipUseDescription AS CipCode_CipUseDescription
 	, CipCode.CipVersionCode AS CipCode_CipVersionCode
 	, CipCode.CipVersionDescription AS CipCode_CipVersionDescription
+	, CipCode.CareerClusterCode AS CipCode_CareerClusterCode
+	, CipCode.CareerClusterDescription AS CipCode_CareerClusterDescription
+	, CipCode.PerkinsNontraditionalTypeCode AS CipCode_PerkinsNontraditionalTypeCode
+	, CipCode.PerkinsNontraditionalTypeDescription AS CipCode_PerkinsNontraditionalTypeDescription
 FROM RDS.BridgeK12StudentCourseSectionsCipCodes fact
 JOIN RDS.FactK12StudentCourseSections FactK12StudentCourseSection
 	ON fact.FactK12StudentCourseSectionId = FactK12StudentCourseSection.FactK12StudentCourseSectionId

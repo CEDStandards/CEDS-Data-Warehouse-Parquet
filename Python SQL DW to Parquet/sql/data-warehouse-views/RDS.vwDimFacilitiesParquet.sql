@@ -16,4 +16,5 @@ CREATE OR ALTER VIEW [RDS].[vwDimFacilitiesParquet] AS
 	, fact.FacilityExpectedLife
 	, fact.FacilitySiteArea
 	, fact.FacilitySiteIdentifier
+	, fact.StateLicensedFacilityCapacity
 FROM RDS.DimFacilities fact

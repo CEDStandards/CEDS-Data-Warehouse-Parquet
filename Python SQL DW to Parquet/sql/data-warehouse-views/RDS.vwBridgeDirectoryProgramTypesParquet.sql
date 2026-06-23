@@ -18,6 +18,8 @@ CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryProgramTypesParquet] AS
 	, FactDirectory.EarlyLearningOrganizationId AS FactDirectory_EarlyLearningOrganizationId
 	, FactDirectory.DataCollectionId AS FactDirectory_DataCollectionId
 	, FactDirectory.SchoolYearId AS FactDirectory_SchoolYearId
+	, FactDirectory.OrganizationTitleIStatusId AS FactDirectory_OrganizationTitleIStatusId
+	, FactDirectory.PsInstitutionStatusId AS FactDirectory_PsInstitutionStatusId
 	, ProgramType.ProgramTypeCode AS ProgramType_ProgramTypeCode
 	, ProgramType.ProgramTypeDescription AS ProgramType_ProgramTypeDescription
 FROM RDS.BridgeDirectoryProgramTypes fact

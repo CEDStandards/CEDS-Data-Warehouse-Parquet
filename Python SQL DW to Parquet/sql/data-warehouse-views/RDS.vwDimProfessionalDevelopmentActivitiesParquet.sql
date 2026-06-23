@@ -23,6 +23,6 @@ CREATE OR ALTER VIEW [RDS].[vwDimProfessionalDevelopmentActivitiesParquet] AS
 	, fact.ProfessionalDevelopmentActivityApprovalCode
 	, fact.ProfessionalDevelopmentActivityCode
 	, fact.ProfessionalDevelopmentActivityCost
-	, fact.ProfessionalDevelopmentApprovalStartDate
-	, fact.ProfessionalDevelopmentApprovalEndDate
+	, fact.ProfessionalDevelopmentActivityApprovalStartDate
+	, fact.ProfessionalDevelopmentActivityApprovalEndDate
 FROM RDS.DimProfessionalDevelopmentActivities fact

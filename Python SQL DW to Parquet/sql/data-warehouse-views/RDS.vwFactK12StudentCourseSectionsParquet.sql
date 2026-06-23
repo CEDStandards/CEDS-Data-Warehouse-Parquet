@@ -519,6 +519,10 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StudentCourseSectionsParquet] AS
 	, CipCode.CipUseDescription AS CipCode_CipUseDescription
 	, CipCode.CipVersionCode AS CipCode_CipVersionCode
 	, CipCode.CipVersionDescription AS CipCode_CipVersionDescription
+	, CipCode.CareerClusterCode AS CipCode_CareerClusterCode
+	, CipCode.CareerClusterDescription AS CipCode_CareerClusterDescription
+	, CipCode.PerkinsNontraditionalTypeCode AS CipCode_PerkinsNontraditionalTypeCode
+	, CipCode.PerkinsNontraditionalTypeDescription AS CipCode_PerkinsNontraditionalTypeDescription
 	, Language.Iso6392LanguageCodeCode AS Language_Iso6392LanguageCodeCode
 	, Language.Iso6392LanguageCodeDescription AS Language_Iso6392LanguageCodeDescription
 	, Language.Iso6392LanguageCodeEdFactsCode AS Language_Iso6392LanguageCodeEdFactsCode

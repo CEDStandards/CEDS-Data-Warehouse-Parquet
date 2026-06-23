@@ -18,6 +18,8 @@ CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryStudentSupportServiceTypesParquet] 
 	, FactDirectory.EarlyLearningOrganizationId AS FactDirectory_EarlyLearningOrganizationId
 	, FactDirectory.DataCollectionId AS FactDirectory_DataCollectionId
 	, FactDirectory.SchoolYearId AS FactDirectory_SchoolYearId
+	, FactDirectory.OrganizationTitleIStatusId AS FactDirectory_OrganizationTitleIStatusId
+	, FactDirectory.PsInstitutionStatusId AS FactDirectory_PsInstitutionStatusId
 	, StudentSupportServiceType.StudentSupportServiceTypeCode AS StudentSupportServiceType_StudentSupportServiceTypeCode
 	, StudentSupportServiceType.StudentSupportServiceTypeDescription AS StudentSupportServiceType_StudentSupportServiceTypeDescription
 FROM RDS.BridgeDirectoryStudentSupportServiceTypes fact

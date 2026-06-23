@@ -18,6 +18,8 @@ CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryOrganizationAddressesParquet] AS
 	, FactDirectory.EarlyLearningOrganizationId AS FactDirectory_EarlyLearningOrganizationId
 	, FactDirectory.DataCollectionId AS FactDirectory_DataCollectionId
 	, FactDirectory.SchoolYearId AS FactDirectory_SchoolYearId
+	, FactDirectory.OrganizationTitleIStatusId AS FactDirectory_OrganizationTitleIStatusId
+	, FactDirectory.PsInstitutionStatusId AS FactDirectory_PsInstitutionStatusId
 	, OrganizationAddress.AddressStreetNumberAndName AS OrganizationAddress_AddressStreetNumberAndName
 	, OrganizationAddress.AddressApartmentRoomOrSuiteNumber AS OrganizationAddress_AddressApartmentRoomOrSuiteNumber
 	, OrganizationAddress.BuildingSiteNumber AS OrganizationAddress_BuildingSiteNumber

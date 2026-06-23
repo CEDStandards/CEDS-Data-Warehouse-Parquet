@@ -18,6 +18,8 @@ CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryContactsParquet] AS
 	, FactDirectory.EarlyLearningOrganizationId AS FactDirectory_EarlyLearningOrganizationId
 	, FactDirectory.DataCollectionId AS FactDirectory_DataCollectionId
 	, FactDirectory.SchoolYearId AS FactDirectory_SchoolYearId
+	, FactDirectory.OrganizationTitleIStatusId AS FactDirectory_OrganizationTitleIStatusId
+	, FactDirectory.PsInstitutionStatusId AS FactDirectory_PsInstitutionStatusId
 	, Contact.PersonalTitleOrPrefix AS Contact_PersonalTitleOrPrefix
 	, Contact.FirstName AS Contact_FirstName
 	, Contact.MiddleName AS Contact_MiddleName

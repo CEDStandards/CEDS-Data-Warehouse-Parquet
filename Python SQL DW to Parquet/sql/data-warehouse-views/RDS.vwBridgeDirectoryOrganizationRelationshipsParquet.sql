@@ -18,6 +18,8 @@ CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryOrganizationRelationshipsParquet] A
 	, SubjectOrganization.EarlyLearningOrganizationId AS SubjectOrganization_EarlyLearningOrganizationId
 	, SubjectOrganization.DataCollectionId AS SubjectOrganization_DataCollectionId
 	, SubjectOrganization.SchoolYearId AS SubjectOrganization_SchoolYearId
+	, SubjectOrganization.OrganizationTitleIStatusId AS SubjectOrganization_OrganizationTitleIStatusId
+	, SubjectOrganization.PsInstitutionStatusId AS SubjectOrganization_PsInstitutionStatusId
 	, ObjectOrganization.LeaId AS ObjectOrganization_LeaId
 	, ObjectOrganization.OrganizationId AS ObjectOrganization_OrganizationId
 	, ObjectOrganization.SeaId AS ObjectOrganization_SeaId
@@ -36,6 +38,8 @@ CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryOrganizationRelationshipsParquet] A
 	, ObjectOrganization.EarlyLearningOrganizationId AS ObjectOrganization_EarlyLearningOrganizationId
 	, ObjectOrganization.DataCollectionId AS ObjectOrganization_DataCollectionId
 	, ObjectOrganization.SchoolYearId AS ObjectOrganization_SchoolYearId
+	, ObjectOrganization.OrganizationTitleIStatusId AS ObjectOrganization_OrganizationTitleIStatusId
+	, ObjectOrganization.PsInstitutionStatusId AS ObjectOrganization_PsInstitutionStatusId
 	, fact.RelationshipTypeCode
 	, fact.RelationshipTypeDescription
 	, fact.RecordStartDateTime
