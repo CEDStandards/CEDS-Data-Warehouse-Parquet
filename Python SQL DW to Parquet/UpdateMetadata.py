@@ -4,7 +4,7 @@ UpdateMetadata.py
 Updates the CEDS-Data-Warehouse-Parquet-File-Metadata.xlsx spreadsheet by:
   1. Reading the current sheet to understand the existing schema
   2. Adding entries for any new v14 Parquet view files not already listed
-  3. Updating the version header to 14.0.0.0
+  3. Updating the version header to 14.1.0.0
 
 Run from the repo root:
     python "Python SQL DW to Parquet/UpdateMetadata.py"
