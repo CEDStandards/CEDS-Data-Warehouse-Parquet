@@ -56,6 +56,31 @@ def parse_view_columns(view_file: Path) -> list:
     return columns
 
 
+def find_version_column(ws, header_row: int):
+    """Returns the worksheet column index for a version header, if present."""
+    for col_idx, cell in enumerate(ws[header_row], start=1):
+        if cell.value and str(cell.value).strip().lower() in ("version", "ceds version"):
+            return col_idx
+    return None
+
+
+def update_version_cells(ws, header_row: int):
+    """Updates version values only within the worksheet's version column."""
+    version_col = find_version_column(ws, header_row)
+    if version_col is None:
+        return
+
+    for row_idx in range(header_row + 1, ws.max_row + 1):
+        cell = ws.cell(row=row_idx, column=version_col)
+        if cell.value:
+            val = str(cell.value).strip()
+            if val in ("13.0.0.0", "v13", "Version 13") or (
+                _VERSION_PATTERN.match(val) and val != CEDS_VERSION
+            ):
+                cell.value = CEDS_VERSION
+                print(f"  Updated version cell {cell.coordinate}: {CEDS_VERSION}")
+
+
 def main():
     if not METADATA_FILE.exists():
         print(f"Metadata file not found: {METADATA_FILE}", file=sys.stderr)
@@ -113,17 +138,7 @@ def main():
             new_row = [view_name, col_count, CEDS_VERSION]
             ws.append(new_row)
 
-    # Update any version cells that contain an older dotted version string
-    for row in ws.iter_rows():
-        for cell in row:
-            if cell.value:
-                val = str(cell.value).strip()
-                if val in ("13.0.0.0", "v13", "Version 13") or (
-                    _VERSION_PATTERN.match(val) and val != CEDS_VERSION
-                ):
-                    if val != CEDS_VERSION:
-                        cell.value = CEDS_VERSION
-                        print(f"  Updated version cell {cell.coordinate}: {CEDS_VERSION}")
+    update_version_cells(ws, header_row)
 
     backup = METADATA_FILE.with_suffix(".xlsx.bak")
     shutil.copy2(METADATA_FILE, backup)
