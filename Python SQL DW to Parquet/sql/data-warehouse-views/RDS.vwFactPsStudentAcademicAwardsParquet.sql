@@ -23,6 +23,8 @@ CREATE OR ALTER VIEW [RDS].[vwFactPsStudentAcademicAwardsParquet] AS
 	, PsInstitution.Longitude AS PsInstitution_Longitude
 	, PsInstitution.RecordStartDateTime AS PsInstitution_RecordStartDateTime
 	, PsInstitution.RecordEndDateTime AS PsInstitution_RecordEndDateTime
+	, PsInstitution.MailingAddressCountyAnsiCodeCode AS PsInstitution_MailingAddressCountyAnsiCodeCode
+	, PsInstitution.PhysicalAddressCountyAnsiCodeCode AS PsInstitution_PhysicalAddressCountyAnsiCodeCode
 	, PsStudent.FirstName AS PsStudent_FirstName
 	, PsStudent.MiddleName AS PsStudent_MiddleName
 	, PsStudent.LastOrSurname AS PsStudent_LastOrSurname

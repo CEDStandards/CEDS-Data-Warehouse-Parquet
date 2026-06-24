@@ -11,6 +11,7 @@ CREATE OR ALTER VIEW [RDS].[vwDimLeasParquet] AS
 	, fact.LeaIdentifierNces
 	, fact.LeaIdentifierSea
 	, fact.PriorLeaIdentifierSea
+	, fact.LeaSupervisoryUnionIdentificationNumber
 	, fact.ReportedFederally
 	, fact.LeaTypeCode
 	, fact.LeaTypeDescription
@@ -20,12 +21,14 @@ CREATE OR ALTER VIEW [RDS].[vwDimLeasParquet] AS
 	, fact.MailingAddressCity
 	, fact.MailingAddressPostalCode
 	, fact.MailingAddressStateAbbreviation
+	, fact.MailingAddressCountyAnsiCodeCode
 	, fact.MailingAddressCountyName
 	, fact.PhysicalAddressStreetNumberAndName
 	, fact.PhysicalAddressApartmentRoomOrSuiteNumber
 	, fact.PhysicalAddressCity
 	, fact.PhysicalAddressPostalCode
 	, fact.PhysicalAddressStateAbbreviation
+	, fact.PhysicalAddressCountyAnsiCodeCode
 	, fact.PhysicalAddressCountyName
 	, fact.Longitude
 	, fact.Latitude

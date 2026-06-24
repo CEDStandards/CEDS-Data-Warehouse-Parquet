@@ -11,6 +11,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffAssignmentsParquet] AS
 	, Lea.LeaIdentifierNces AS Lea_LeaIdentifierNces
 	, Lea.LeaIdentifierSea AS Lea_LeaIdentifierSea
 	, Lea.PriorLeaIdentifierSea AS Lea_PriorLeaIdentifierSea
+	, Lea.LeaSupervisoryUnionIdentificationNumber AS Lea_LeaSupervisoryUnionIdentificationNumber
 	, Lea.ReportedFederally AS Lea_ReportedFederally
 	, Lea.LeaTypeCode AS Lea_LeaTypeCode
 	, Lea.LeaTypeDescription AS Lea_LeaTypeDescription
@@ -20,12 +21,14 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffAssignmentsParquet] AS
 	, Lea.MailingAddressCity AS Lea_MailingAddressCity
 	, Lea.MailingAddressPostalCode AS Lea_MailingAddressPostalCode
 	, Lea.MailingAddressStateAbbreviation AS Lea_MailingAddressStateAbbreviation
+	, Lea.MailingAddressCountyAnsiCodeCode AS Lea_MailingAddressCountyAnsiCodeCode
 	, Lea.MailingAddressCountyName AS Lea_MailingAddressCountyName
 	, Lea.PhysicalAddressStreetNumberAndName AS Lea_PhysicalAddressStreetNumberAndName
 	, Lea.PhysicalAddressApartmentRoomOrSuiteNumber AS Lea_PhysicalAddressApartmentRoomOrSuiteNumber
 	, Lea.PhysicalAddressCity AS Lea_PhysicalAddressCity
 	, Lea.PhysicalAddressPostalCode AS Lea_PhysicalAddressPostalCode
 	, Lea.PhysicalAddressStateAbbreviation AS Lea_PhysicalAddressStateAbbreviation
+	, Lea.PhysicalAddressCountyAnsiCodeCode AS Lea_PhysicalAddressCountyAnsiCodeCode
 	, Lea.PhysicalAddressCountyName AS Lea_PhysicalAddressCountyName
 	, Lea.Longitude AS Lea_Longitude
 	, Lea.Latitude AS Lea_Latitude
@@ -336,6 +339,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffAssignmentsParquet] AS
 	, LeaEmployer.LeaIdentifierNces AS LeaEmployer_LeaIdentifierNces
 	, LeaEmployer.LeaIdentifierSea AS LeaEmployer_LeaIdentifierSea
 	, LeaEmployer.PriorLeaIdentifierSea AS LeaEmployer_PriorLeaIdentifierSea
+	, LeaEmployer.LeaSupervisoryUnionIdentificationNumber AS LeaEmployer_LeaSupervisoryUnionIdentificationNumber
 	, LeaEmployer.ReportedFederally AS LeaEmployer_ReportedFederally
 	, LeaEmployer.LeaTypeCode AS LeaEmployer_LeaTypeCode
 	, LeaEmployer.LeaTypeDescription AS LeaEmployer_LeaTypeDescription
@@ -345,12 +349,14 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffAssignmentsParquet] AS
 	, LeaEmployer.MailingAddressCity AS LeaEmployer_MailingAddressCity
 	, LeaEmployer.MailingAddressPostalCode AS LeaEmployer_MailingAddressPostalCode
 	, LeaEmployer.MailingAddressStateAbbreviation AS LeaEmployer_MailingAddressStateAbbreviation
+	, LeaEmployer.MailingAddressCountyAnsiCodeCode AS LeaEmployer_MailingAddressCountyAnsiCodeCode
 	, LeaEmployer.MailingAddressCountyName AS LeaEmployer_MailingAddressCountyName
 	, LeaEmployer.PhysicalAddressStreetNumberAndName AS LeaEmployer_PhysicalAddressStreetNumberAndName
 	, LeaEmployer.PhysicalAddressApartmentRoomOrSuiteNumber AS LeaEmployer_PhysicalAddressApartmentRoomOrSuiteNumber
 	, LeaEmployer.PhysicalAddressCity AS LeaEmployer_PhysicalAddressCity
 	, LeaEmployer.PhysicalAddressPostalCode AS LeaEmployer_PhysicalAddressPostalCode
 	, LeaEmployer.PhysicalAddressStateAbbreviation AS LeaEmployer_PhysicalAddressStateAbbreviation
+	, LeaEmployer.PhysicalAddressCountyAnsiCodeCode AS LeaEmployer_PhysicalAddressCountyAnsiCodeCode
 	, LeaEmployer.PhysicalAddressCountyName AS LeaEmployer_PhysicalAddressCountyName
 	, LeaEmployer.Longitude AS LeaEmployer_Longitude
 	, LeaEmployer.Latitude AS LeaEmployer_Latitude
@@ -396,12 +402,15 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffAssignmentsParquet] AS
 	, IeuEmployer.Longitude AS IeuEmployer_Longitude
 	, IeuEmployer.RecordStartDateTime AS IeuEmployer_RecordStartDateTime
 	, IeuEmployer.RecordEndDateTime AS IeuEmployer_RecordEndDateTime
+	, ScedCode.ScedCourseCode AS ScedCode_ScedCourseCode
 	, ScedCode.ScedCourseTitle AS ScedCode_ScedCourseTitle
 	, ScedCode.ScedCourseCodeDescription AS ScedCode_ScedCourseCodeDescription
 	, ScedCode.ScedCourseLevelCode AS ScedCode_ScedCourseLevelCode
 	, ScedCode.ScedCourseLevelDescription AS ScedCode_ScedCourseLevelDescription
 	, ScedCode.ScedCourseSubjectAreaCode AS ScedCode_ScedCourseSubjectAreaCode
 	, ScedCode.ScedCourseSubjectAreaDescription AS ScedCode_ScedCourseSubjectAreaDescription
+	, ScedCode.ScedGradeSpan AS ScedCode_ScedGradeSpan
+	, ScedCode.ScedSequenceOfCourse AS ScedCode_ScedSequenceOfCourse
 	, OnetSocOccupationType.OnetSocOccupationTypeCode AS OnetSocOccupationType_OnetSocOccupationTypeCode
 	, OnetSocOccupationType.OnetSocOccupationTypeDescription AS OnetSocOccupationType_OnetSocOccupationTypeDescription
 	, K12EmploymentStatus.EmploymentStatusCode AS K12EmploymentStatus_EmploymentStatusCode

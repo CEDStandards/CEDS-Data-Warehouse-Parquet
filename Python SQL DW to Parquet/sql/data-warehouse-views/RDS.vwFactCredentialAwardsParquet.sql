@@ -15,6 +15,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactCredentialAwardsParquet] AS
 	, CredentialIssuer.MailingAddressCity AS CredentialIssuer_MailingAddressCity
 	, CredentialIssuer.MailingAddressStateAbbreviation AS CredentialIssuer_MailingAddressStateAbbreviation
 	, CredentialIssuer.MailingAddressPostalCode AS CredentialIssuer_MailingAddressPostalCode
+	, CredentialIssuer.MailingAddressCountyAnsiCodeCode AS CredentialIssuer_MailingAddressCountyAnsiCodeCode
 	, CredentialIssuer.OutOfStateIndicator AS CredentialIssuer_OutOfStateIndicator
 	, CredentialIssuer.OrganizationOperationalStatus AS CredentialIssuer_OrganizationOperationalStatus
 	, CredentialIssuer.OperationalStatusEffectiveDate AS CredentialIssuer_OperationalStatusEffectiveDate
@@ -23,6 +24,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactCredentialAwardsParquet] AS
 	, CredentialIssuer.PhysicalAddressCity AS CredentialIssuer_PhysicalAddressCity
 	, CredentialIssuer.PhysicalAddressPostalCode AS CredentialIssuer_PhysicalAddressPostalCode
 	, CredentialIssuer.PhysicalAddressStateAbbreviation AS CredentialIssuer_PhysicalAddressStateAbbreviation
+	, CredentialIssuer.PhysicalAddressCountyAnsiCodeCode AS CredentialIssuer_PhysicalAddressCountyAnsiCodeCode
 	, CredentialIssuer.StateIssuingProfessionalCredentialOrLicenseCode AS CredentialIssuer_StateIssuingProfessionalCredentialOrLicenseCode
 	, CredentialIssuer.StateIssuingProfessionalCredentialOrLicenseDescription AS CredentialIssuer_StateIssuingProfessionalCredentialOrLicenseDescription
 	, CredentialIssuer.TelephoneNumber AS CredentialIssuer_TelephoneNumber

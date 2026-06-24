@@ -23,4 +23,6 @@ CREATE OR ALTER VIEW [RDS].[vwDimPsInstitutionsParquet] AS
 	, fact.Longitude
 	, fact.RecordStartDateTime
 	, fact.RecordEndDateTime
+	, fact.MailingAddressCountyAnsiCodeCode
+	, fact.PhysicalAddressCountyAnsiCodeCode
 FROM RDS.DimPsInstitutions fact

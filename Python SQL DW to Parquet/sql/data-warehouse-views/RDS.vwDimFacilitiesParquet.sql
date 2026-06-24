@@ -9,6 +9,7 @@ CREATE OR ALTER VIEW [RDS].[vwDimFacilitiesParquet] AS
 	, fact.BuildingYearBuilt
 	, fact.BuildingYearOfLastModernization
 	, fact.FacilityBlockNumberArea
+	, fact.FacilityCensusTract
 	, fact.FacilityConstructionDate
 	, fact.FacilityConstructionDateTypeCode
 	, fact.FacilityConstructionDateTypeDescription

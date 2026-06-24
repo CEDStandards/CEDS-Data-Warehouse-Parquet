@@ -45,6 +45,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactFacilitiesParquet] AS
 	, Facility.BuildingYearBuilt AS Facility_BuildingYearBuilt
 	, Facility.BuildingYearOfLastModernization AS Facility_BuildingYearOfLastModernization
 	, Facility.FacilityBlockNumberArea AS Facility_FacilityBlockNumberArea
+	, Facility.FacilityCensusTract AS Facility_FacilityCensusTract
 	, Facility.FacilityConstructionDate AS Facility_FacilityConstructionDate
 	, Facility.FacilityConstructionDateTypeCode AS Facility_FacilityConstructionDateTypeCode
 	, Facility.FacilityConstructionDateTypeDescription AS Facility_FacilityConstructionDateTypeDescription

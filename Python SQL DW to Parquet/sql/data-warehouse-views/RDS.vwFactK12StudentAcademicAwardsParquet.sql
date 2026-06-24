@@ -45,6 +45,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StudentAcademicAwardsParquet] AS
 	, LeaAccountability.LeaIdentifierNces AS LeaAccountability_LeaIdentifierNces
 	, LeaAccountability.LeaIdentifierSea AS LeaAccountability_LeaIdentifierSea
 	, LeaAccountability.PriorLeaIdentifierSea AS LeaAccountability_PriorLeaIdentifierSea
+	, LeaAccountability.LeaSupervisoryUnionIdentificationNumber AS LeaAccountability_LeaSupervisoryUnionIdentificationNumber
 	, LeaAccountability.ReportedFederally AS LeaAccountability_ReportedFederally
 	, LeaAccountability.LeaTypeCode AS LeaAccountability_LeaTypeCode
 	, LeaAccountability.LeaTypeDescription AS LeaAccountability_LeaTypeDescription
@@ -54,12 +55,14 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StudentAcademicAwardsParquet] AS
 	, LeaAccountability.MailingAddressCity AS LeaAccountability_MailingAddressCity
 	, LeaAccountability.MailingAddressPostalCode AS LeaAccountability_MailingAddressPostalCode
 	, LeaAccountability.MailingAddressStateAbbreviation AS LeaAccountability_MailingAddressStateAbbreviation
+	, LeaAccountability.MailingAddressCountyAnsiCodeCode AS LeaAccountability_MailingAddressCountyAnsiCodeCode
 	, LeaAccountability.MailingAddressCountyName AS LeaAccountability_MailingAddressCountyName
 	, LeaAccountability.PhysicalAddressStreetNumberAndName AS LeaAccountability_PhysicalAddressStreetNumberAndName
 	, LeaAccountability.PhysicalAddressApartmentRoomOrSuiteNumber AS LeaAccountability_PhysicalAddressApartmentRoomOrSuiteNumber
 	, LeaAccountability.PhysicalAddressCity AS LeaAccountability_PhysicalAddressCity
 	, LeaAccountability.PhysicalAddressPostalCode AS LeaAccountability_PhysicalAddressPostalCode
 	, LeaAccountability.PhysicalAddressStateAbbreviation AS LeaAccountability_PhysicalAddressStateAbbreviation
+	, LeaAccountability.PhysicalAddressCountyAnsiCodeCode AS LeaAccountability_PhysicalAddressCountyAnsiCodeCode
 	, LeaAccountability.PhysicalAddressCountyName AS LeaAccountability_PhysicalAddressCountyName
 	, LeaAccountability.Longitude AS LeaAccountability_Longitude
 	, LeaAccountability.Latitude AS LeaAccountability_Latitude
@@ -85,6 +88,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StudentAcademicAwardsParquet] AS
 	, LeaInstruction.LeaIdentifierNces AS LeaInstruction_LeaIdentifierNces
 	, LeaInstruction.LeaIdentifierSea AS LeaInstruction_LeaIdentifierSea
 	, LeaInstruction.PriorLeaIdentifierSea AS LeaInstruction_PriorLeaIdentifierSea
+	, LeaInstruction.LeaSupervisoryUnionIdentificationNumber AS LeaInstruction_LeaSupervisoryUnionIdentificationNumber
 	, LeaInstruction.ReportedFederally AS LeaInstruction_ReportedFederally
 	, LeaInstruction.LeaTypeCode AS LeaInstruction_LeaTypeCode
 	, LeaInstruction.LeaTypeDescription AS LeaInstruction_LeaTypeDescription
@@ -94,12 +98,14 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StudentAcademicAwardsParquet] AS
 	, LeaInstruction.MailingAddressCity AS LeaInstruction_MailingAddressCity
 	, LeaInstruction.MailingAddressPostalCode AS LeaInstruction_MailingAddressPostalCode
 	, LeaInstruction.MailingAddressStateAbbreviation AS LeaInstruction_MailingAddressStateAbbreviation
+	, LeaInstruction.MailingAddressCountyAnsiCodeCode AS LeaInstruction_MailingAddressCountyAnsiCodeCode
 	, LeaInstruction.MailingAddressCountyName AS LeaInstruction_MailingAddressCountyName
 	, LeaInstruction.PhysicalAddressStreetNumberAndName AS LeaInstruction_PhysicalAddressStreetNumberAndName
 	, LeaInstruction.PhysicalAddressApartmentRoomOrSuiteNumber AS LeaInstruction_PhysicalAddressApartmentRoomOrSuiteNumber
 	, LeaInstruction.PhysicalAddressCity AS LeaInstruction_PhysicalAddressCity
 	, LeaInstruction.PhysicalAddressPostalCode AS LeaInstruction_PhysicalAddressPostalCode
 	, LeaInstruction.PhysicalAddressStateAbbreviation AS LeaInstruction_PhysicalAddressStateAbbreviation
+	, LeaInstruction.PhysicalAddressCountyAnsiCodeCode AS LeaInstruction_PhysicalAddressCountyAnsiCodeCode
 	, LeaInstruction.PhysicalAddressCountyName AS LeaInstruction_PhysicalAddressCountyName
 	, LeaInstruction.Longitude AS LeaInstruction_Longitude
 	, LeaInstruction.Latitude AS LeaInstruction_Latitude

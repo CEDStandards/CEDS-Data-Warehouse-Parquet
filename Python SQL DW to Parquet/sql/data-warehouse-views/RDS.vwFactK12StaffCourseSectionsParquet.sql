@@ -66,6 +66,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffCourseSectionsParquet] AS
 	, Lea.LeaIdentifierNces AS Lea_LeaIdentifierNces
 	, Lea.LeaIdentifierSea AS Lea_LeaIdentifierSea
 	, Lea.PriorLeaIdentifierSea AS Lea_PriorLeaIdentifierSea
+	, Lea.LeaSupervisoryUnionIdentificationNumber AS Lea_LeaSupervisoryUnionIdentificationNumber
 	, Lea.ReportedFederally AS Lea_ReportedFederally
 	, Lea.LeaTypeCode AS Lea_LeaTypeCode
 	, Lea.LeaTypeDescription AS Lea_LeaTypeDescription
@@ -75,12 +76,14 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffCourseSectionsParquet] AS
 	, Lea.MailingAddressCity AS Lea_MailingAddressCity
 	, Lea.MailingAddressPostalCode AS Lea_MailingAddressPostalCode
 	, Lea.MailingAddressStateAbbreviation AS Lea_MailingAddressStateAbbreviation
+	, Lea.MailingAddressCountyAnsiCodeCode AS Lea_MailingAddressCountyAnsiCodeCode
 	, Lea.MailingAddressCountyName AS Lea_MailingAddressCountyName
 	, Lea.PhysicalAddressStreetNumberAndName AS Lea_PhysicalAddressStreetNumberAndName
 	, Lea.PhysicalAddressApartmentRoomOrSuiteNumber AS Lea_PhysicalAddressApartmentRoomOrSuiteNumber
 	, Lea.PhysicalAddressCity AS Lea_PhysicalAddressCity
 	, Lea.PhysicalAddressPostalCode AS Lea_PhysicalAddressPostalCode
 	, Lea.PhysicalAddressStateAbbreviation AS Lea_PhysicalAddressStateAbbreviation
+	, Lea.PhysicalAddressCountyAnsiCodeCode AS Lea_PhysicalAddressCountyAnsiCodeCode
 	, Lea.PhysicalAddressCountyName AS Lea_PhysicalAddressCountyName
 	, Lea.Longitude AS Lea_Longitude
 	, Lea.Latitude AS Lea_Latitude
@@ -106,6 +109,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffCourseSectionsParquet] AS
 	, LeaInstruction.LeaIdentifierNces AS LeaInstruction_LeaIdentifierNces
 	, LeaInstruction.LeaIdentifierSea AS LeaInstruction_LeaIdentifierSea
 	, LeaInstruction.PriorLeaIdentifierSea AS LeaInstruction_PriorLeaIdentifierSea
+	, LeaInstruction.LeaSupervisoryUnionIdentificationNumber AS LeaInstruction_LeaSupervisoryUnionIdentificationNumber
 	, LeaInstruction.ReportedFederally AS LeaInstruction_ReportedFederally
 	, LeaInstruction.LeaTypeCode AS LeaInstruction_LeaTypeCode
 	, LeaInstruction.LeaTypeDescription AS LeaInstruction_LeaTypeDescription
@@ -115,12 +119,14 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffCourseSectionsParquet] AS
 	, LeaInstruction.MailingAddressCity AS LeaInstruction_MailingAddressCity
 	, LeaInstruction.MailingAddressPostalCode AS LeaInstruction_MailingAddressPostalCode
 	, LeaInstruction.MailingAddressStateAbbreviation AS LeaInstruction_MailingAddressStateAbbreviation
+	, LeaInstruction.MailingAddressCountyAnsiCodeCode AS LeaInstruction_MailingAddressCountyAnsiCodeCode
 	, LeaInstruction.MailingAddressCountyName AS LeaInstruction_MailingAddressCountyName
 	, LeaInstruction.PhysicalAddressStreetNumberAndName AS LeaInstruction_PhysicalAddressStreetNumberAndName
 	, LeaInstruction.PhysicalAddressApartmentRoomOrSuiteNumber AS LeaInstruction_PhysicalAddressApartmentRoomOrSuiteNumber
 	, LeaInstruction.PhysicalAddressCity AS LeaInstruction_PhysicalAddressCity
 	, LeaInstruction.PhysicalAddressPostalCode AS LeaInstruction_PhysicalAddressPostalCode
 	, LeaInstruction.PhysicalAddressStateAbbreviation AS LeaInstruction_PhysicalAddressStateAbbreviation
+	, LeaInstruction.PhysicalAddressCountyAnsiCodeCode AS LeaInstruction_PhysicalAddressCountyAnsiCodeCode
 	, LeaInstruction.PhysicalAddressCountyName AS LeaInstruction_PhysicalAddressCountyName
 	, LeaInstruction.Longitude AS LeaInstruction_Longitude
 	, LeaInstruction.Latitude AS LeaInstruction_Latitude
@@ -313,8 +319,10 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffCourseSectionsParquet] AS
 	, K12CourseSection.GradeValueQualifier AS K12CourseSection_GradeValueQualifier
 	, K12CourseSection.CourseDescription AS K12CourseSection_CourseDescription
 	, K12CourseSection.TimetableDayIdentifier AS K12CourseSection_TimetableDayIdentifier
+	, ClassBeginningTime.TimeTime AS ClassBeginningTime_TimeTime
 	, ClassBeginningTime.TimeHour AS ClassBeginningTime_TimeHour
 	, ClassBeginningTime.TimeMinute AS ClassBeginningTime_TimeMinute
+	, ClassEndingTime.TimeTime AS ClassEndingTime_TimeTime
 	, ClassEndingTime.TimeHour AS ClassEndingTime_TimeHour
 	, ClassEndingTime.TimeMinute AS ClassEndingTime_TimeMinute
 	, K12EmploymentStatus.EmploymentStatusCode AS K12EmploymentStatus_EmploymentStatusCode
@@ -489,12 +497,15 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StaffCourseSectionsParquet] AS
 	, K12StaffStatus.SpecialEducationParaprofessionalDescription AS K12StaffStatus_SpecialEducationParaprofessionalDescription
 	, K12StaffStatus.SpecialEducationTeacherCode AS K12StaffStatus_SpecialEducationTeacherCode
 	, K12StaffStatus.SpecialEducationTeacherDescription AS K12StaffStatus_SpecialEducationTeacherDescription
+	, ScedCode.ScedCourseCode AS ScedCode_ScedCourseCode
 	, ScedCode.ScedCourseTitle AS ScedCode_ScedCourseTitle
 	, ScedCode.ScedCourseCodeDescription AS ScedCode_ScedCourseCodeDescription
 	, ScedCode.ScedCourseLevelCode AS ScedCode_ScedCourseLevelCode
 	, ScedCode.ScedCourseLevelDescription AS ScedCode_ScedCourseLevelDescription
 	, ScedCode.ScedCourseSubjectAreaCode AS ScedCode_ScedCourseSubjectAreaCode
 	, ScedCode.ScedCourseSubjectAreaDescription AS ScedCode_ScedCourseSubjectAreaDescription
+	, ScedCode.ScedGradeSpan AS ScedCode_ScedGradeSpan
+	, ScedCode.ScedSequenceOfCourse AS ScedCode_ScedSequenceOfCourse
 	, fact.K12StaffMemberCount
 	, fact.K12StudentCount
 	, CalendarSession.CalendarCode AS CalendarSession_CalendarCode

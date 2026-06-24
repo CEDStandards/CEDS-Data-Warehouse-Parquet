@@ -32,8 +32,9 @@ _RE_FK = re.compile(
 )
 _RE_COL = re.compile(
     r"^\s+\[(\w+)\]\s+"
-    r"\[?(?:INT|BIGINT|NVARCHAR|VARCHAR|DECIMAL|NUMERIC|DATETIME2?|DATE|"
-    r"BIT|FLOAT|MONEY|UNIQUEIDENTIFIER|SMALLINT|TINYINT|CHAR|TEXT)\]?",
+    r"\[?(?:INT|BIGINT|NVARCHAR|VARCHAR|DECIMAL|NUMERIC|DATETIME2?|DATE|TIME|"
+    r"BIT|FLOAT|REAL|MONEY|UNIQUEIDENTIFIER|SMALLINT|TINYINT|NCHAR|CHAR|"
+    r"NTEXT|TEXT|VARBINARY|BINARY|IMAGE|XML|ROWVERSION|TIMESTAMP)\]?",
     re.IGNORECASE | re.MULTILINE,
 )
 _RE_PK = re.compile(r"^\s+\[(\w+)\]\s+\w+.*?IDENTITY", re.IGNORECASE | re.MULTILINE)
@@ -80,6 +81,7 @@ INCLUDED_DIM_TABLES = {
     "DimK12Courses",
     "DimK12CourseSections",
     "DimK12JobPositions",
+    "DimK12JobPositionStatuses",
     "DimK12Jobs",
     "DimLeas",
     "DimLeaFinancialAccountBalances",
@@ -102,6 +104,7 @@ INCLUDED_DIM_TABLES = {
     "DimSeaFinancialRevenueClassifications",
     "DimSeaJobClassifications",
     "DimSeas",
+    "DimStaffEvaluationScales",
 }
 
 # Tables excluded from Parquet exports

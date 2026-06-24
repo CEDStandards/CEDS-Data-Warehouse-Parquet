@@ -14,6 +14,7 @@ CREATE OR ALTER VIEW [RDS].[vwDimCredentialIssuersParquet] AS
 	, fact.MailingAddressCity
 	, fact.MailingAddressStateAbbreviation
 	, fact.MailingAddressPostalCode
+	, fact.MailingAddressCountyAnsiCodeCode
 	, fact.OutOfStateIndicator
 	, fact.OrganizationOperationalStatus
 	, fact.OperationalStatusEffectiveDate
@@ -22,6 +23,7 @@ CREATE OR ALTER VIEW [RDS].[vwDimCredentialIssuersParquet] AS
 	, fact.PhysicalAddressCity
 	, fact.PhysicalAddressPostalCode
 	, fact.PhysicalAddressStateAbbreviation
+	, fact.PhysicalAddressCountyAnsiCodeCode
 	, fact.StateIssuingProfessionalCredentialOrLicenseCode
 	, fact.StateIssuingProfessionalCredentialOrLicenseDescription
 	, fact.TelephoneNumber

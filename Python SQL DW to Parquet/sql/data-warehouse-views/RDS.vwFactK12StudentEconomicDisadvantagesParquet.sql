@@ -98,6 +98,7 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StudentEconomicDisadvantagesParquet] AS
 	, Lea.LeaIdentifierNces AS Lea_LeaIdentifierNces
 	, Lea.LeaIdentifierSea AS Lea_LeaIdentifierSea
 	, Lea.PriorLeaIdentifierSea AS Lea_PriorLeaIdentifierSea
+	, Lea.LeaSupervisoryUnionIdentificationNumber AS Lea_LeaSupervisoryUnionIdentificationNumber
 	, Lea.ReportedFederally AS Lea_ReportedFederally
 	, Lea.LeaTypeCode AS Lea_LeaTypeCode
 	, Lea.LeaTypeDescription AS Lea_LeaTypeDescription
@@ -107,12 +108,14 @@ CREATE OR ALTER VIEW [RDS].[vwFactK12StudentEconomicDisadvantagesParquet] AS
 	, Lea.MailingAddressCity AS Lea_MailingAddressCity
 	, Lea.MailingAddressPostalCode AS Lea_MailingAddressPostalCode
 	, Lea.MailingAddressStateAbbreviation AS Lea_MailingAddressStateAbbreviation
+	, Lea.MailingAddressCountyAnsiCodeCode AS Lea_MailingAddressCountyAnsiCodeCode
 	, Lea.MailingAddressCountyName AS Lea_MailingAddressCountyName
 	, Lea.PhysicalAddressStreetNumberAndName AS Lea_PhysicalAddressStreetNumberAndName
 	, Lea.PhysicalAddressApartmentRoomOrSuiteNumber AS Lea_PhysicalAddressApartmentRoomOrSuiteNumber
 	, Lea.PhysicalAddressCity AS Lea_PhysicalAddressCity
 	, Lea.PhysicalAddressPostalCode AS Lea_PhysicalAddressPostalCode
 	, Lea.PhysicalAddressStateAbbreviation AS Lea_PhysicalAddressStateAbbreviation
+	, Lea.PhysicalAddressCountyAnsiCodeCode AS Lea_PhysicalAddressCountyAnsiCodeCode
 	, Lea.PhysicalAddressCountyName AS Lea_PhysicalAddressCountyName
 	, Lea.Longitude AS Lea_Longitude
 	, Lea.Latitude AS Lea_Latitude

@@ -18,8 +18,6 @@ from pathlib import Path
 
 try:
     import openpyxl
-    from openpyxl.styles import Font, PatternFill, Alignment
-    from openpyxl.utils import get_column_letter
 except ImportError:
     print("ERROR: openpyxl is required. Run: pip install openpyxl", file=sys.stderr)
     sys.exit(1)

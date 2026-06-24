@@ -5,6 +5,7 @@ CREATE OR ALTER VIEW [RDS].[vwDimContactsParquet] AS
 	, fact.MiddleName
 	, fact.LastOrSurname
 	, fact.GenerationCodeOrSuffix
+	, fact.PrimaryTelephoneNumberIndicator
 	, fact.PositionTitle
 	, fact.ElectronicMailAddressWork
 	, fact.TelephoneNumberWork

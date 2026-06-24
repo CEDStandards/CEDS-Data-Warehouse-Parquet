@@ -25,6 +25,7 @@ CREATE OR ALTER VIEW [RDS].[vwBridgeDirectoryContactsParquet] AS
 	, Contact.MiddleName AS Contact_MiddleName
 	, Contact.LastOrSurname AS Contact_LastOrSurname
 	, Contact.GenerationCodeOrSuffix AS Contact_GenerationCodeOrSuffix
+	, Contact.PrimaryTelephoneNumberIndicator AS Contact_PrimaryTelephoneNumberIndicator
 	, Contact.PositionTitle AS Contact_PositionTitle
 	, Contact.ElectronicMailAddressWork AS Contact_ElectronicMailAddressWork
 	, Contact.TelephoneNumberWork AS Contact_TelephoneNumberWork
