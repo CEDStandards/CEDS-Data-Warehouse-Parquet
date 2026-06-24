@@ -83,6 +83,7 @@ INCLUDED_DIM_TABLES = {
     "DimK12JobPositions",
     "DimK12JobPositionStatuses",
     "DimK12Jobs",
+    "DimK12Schools",
     "DimLeas",
     "DimLeaFinancialAccountBalances",
     "DimLeaFinancialAccountClassifications",
@@ -107,9 +108,15 @@ INCLUDED_DIM_TABLES = {
     "DimStaffEvaluationScales",
 }
 
-# Tables excluded from Parquet exports
+# Tables excluded from Parquet exports.
+# Mirrors the upstream Parquet View Generator.sql filters:
+#   table_name LIKE 'Toggle%'   table_name LIKE 'Report%'
+#   table_name LIKE '%dtos'     table_name LIKE '%reports'
+# Use prefix/suffix matches (not substring) — a plain "Report" substring would
+# wrongly exclude legitimate tables like BridgeK12IncidentIncidentReporters.
 EXCLUDED_TABLES = {"FactCustomCounts"}
-EXCLUDED_PATTERNS = ["dtos", "reports", "Toggle", "Report"]
+EXCLUDED_PREFIXES = ("Toggle", "Report")
+EXCLUDED_SUFFIXES = ("dtos", "reports")
 
 
 def parse_fk_constraints(sql_content: str) -> dict:
@@ -211,9 +218,10 @@ def should_include(table_name: str) -> bool:
     """Returns True if the table should have a Parquet view."""
     if table_name in EXCLUDED_TABLES:
         return False
-    for pat in EXCLUDED_PATTERNS:
-        if pat.lower() in table_name.lower():
-            return False
+    if table_name.startswith(EXCLUDED_PREFIXES):
+        return False
+    if table_name.lower().endswith(EXCLUDED_SUFFIXES):
+        return False
     if table_name.startswith("Fact") or table_name.startswith("Bridge"):
         return True
     if table_name in INCLUDED_DIM_TABLES:

@@ -7,6 +7,7 @@ CREATE OR ALTER VIEW [RDS].[vwDimK12SchoolsParquet] AS
 	, fact.SchoolIdentifierNces
 	, fact.SchoolIdentifierSea
 	, fact.SchoolIdentifierAct
+	, fact.SchoolIdentifierSat
 	, fact.SeaOrganizationName
 	, fact.SeaOrganizationIdentifierSea
 	, fact.StateAnsiCode
