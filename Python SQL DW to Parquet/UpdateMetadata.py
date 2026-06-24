@@ -26,7 +26,7 @@ except ImportError:
 
 METADATA_FILE = Path(__file__).parent.parent / "docs" / "CEDS-Data-Warehouse-Parquet-File-Metadata.xlsx"
 VIEWS_DIR = Path(__file__).parent / "sql" / "data-warehouse-views"
-CEDS_VERSION = "14.0.0.0"
+CEDS_VERSION = "14.1.0.0"
 
 _VERSION_PATTERN = _re.compile(r"^\d+\.\d+\.\d+\.\d+$")
 
