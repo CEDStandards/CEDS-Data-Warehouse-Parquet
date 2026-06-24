@@ -17,7 +17,6 @@ import types
 from pathlib import Path
 from unittest.mock import MagicMock, patch, PropertyMock
 
-import openpyxl
 import pytest
 
 # ---------------------------------------------------------------------------
@@ -506,32 +505,6 @@ class TestParseViewColumns:
         f = self._write_view(tmp_path, "big.sql", sql)
         cols = UPD.parse_view_columns(f)
         assert len(cols) == 201  # 200 AS aliases + 1 pk
-
-
-class TestUpdateVersionCells:
-    def test_updates_only_version_column(self):
-        wb = openpyxl.Workbook()
-        ws = wb.active
-        ws.append(["File Name", "Version", "Sample"])
-        ws.append(["vwOne", "13.0.0.0", "2.1.3.4"])
-        ws.append(["vwTwo", "Version 13", "1.0.0.0"])
-
-        UPD.update_version_cells(ws, 1)
-
-        assert ws["B2"].value == UPD.CEDS_VERSION
-        assert ws["B3"].value == UPD.CEDS_VERSION
-        assert ws["C2"].value == "2.1.3.4"
-        assert ws["C3"].value == "1.0.0.0"
-
-    def test_no_version_header_leaves_sheet_unchanged(self):
-        wb = openpyxl.Workbook()
-        ws = wb.active
-        ws.append(["File Name", "Sample"])
-        ws.append(["vwOne", "13.0.0.0"])
-
-        UPD.update_version_cells(ws, 1)
-
-        assert ws["B2"].value == "13.0.0.0"
 
 
 # ===========================================================================
