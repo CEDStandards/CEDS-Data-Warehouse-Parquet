@@ -71,5 +71,5 @@ Table DDLs: `C:\Repos\CEDS-Data-Warehouse\src\CEDS-Data-Warehouse-Project\RDS\Ta
 ## Known Issues / Notes
 
 - `SqlStatement.py` and the `Statements` enum in it are legacy code. The enum references SQL files that are no longer used (export now uses live DB views via `ExportAll.exportTablesWithoutParquetViews()`).
-- The `CedsConnection.py` reads `./Python SQL DW to Parquet/connection.json` — this path assumes the script is run from the repo root, not the `Python SQL DW to Parquet/` directory. Keep this in mind when running scripts.
+- `CedsConnection.py` resolves `connection.json` relative to its own file location (`Path(__file__).parent / "connection.json"`), so scripts can be run from any working directory.
 - All views use `INNER JOIN` for FK relationships (matching the original `Parquet View Generator.sql` behavior). Rows where nullable FK columns are `-1` (the default sentinel) are included because the dimension tables contain a `-1` "MISSING" row.
