@@ -19,7 +19,6 @@ class CedsConnection():
             )
         with open(_CONN_FILE, "r") as connFile:
             conn = json.loads(connFile.read())
-        print(f"Connecting to: {conn.get('server', '?')} / {conn.get('database', '?')}")
         return (f'Driver={conn["driver"]};Server={conn["server"]};'
                 f'Database={conn["database"]};'
                 f'UID={conn["uid"]};PWD={conn["password"]}')

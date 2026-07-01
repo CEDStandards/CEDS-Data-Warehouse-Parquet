@@ -27,37 +27,42 @@ class DbMetadata(DbTask):
         output_dir = os.path.join(os.path.dirname(__file__), 'sql', 'data-warehouse-views')
         os.makedirs(output_dir, exist_ok=True)
         
-        # Query to get views from RDS schema that start with 'vw' and end with 'Parquet'
+        # Query to get views from RDS schema that start with 'vw' and end with 'Parquet'.
+        # Use sys.sql_modules.definition (NVARCHAR(MAX)) rather than
+        # INFORMATION_SCHEMA.VIEWS.VIEW_DEFINITION (NVARCHAR(4000)) — the latter
+        # silently truncates long view definitions and produces corrupt .sql files.
         view_query = """
-        SELECT 
-            TABLE_NAME,
-            VIEW_DEFINITION
-        FROM INFORMATION_SCHEMA.VIEWS 
-        WHERE TABLE_SCHEMA = 'RDS' 
-            AND TABLE_NAME LIKE 'vw%Parquet'
-        ORDER BY TABLE_NAME
+        SELECT
+            s.name  AS SCHEMA_NAME,
+            v.name  AS TABLE_NAME,
+            m.definition AS VIEW_DEFINITION
+        FROM sys.views v
+        INNER JOIN sys.schemas s ON v.schema_id = s.schema_id
+        INNER JOIN sys.sql_modules m ON v.object_id = m.object_id
+        WHERE s.name = 'RDS'
+            AND v.name LIKE 'vw%Parquet'
+        ORDER BY v.name
         """
-        
+
         self.cursor.execute(view_query)
         views = self.cursor.fetchall()
-        
+
         print(f"\nFound {len(views)} RDS Parquet views to export:")
-        
+
         for view in views:
             view_name = view.TABLE_NAME
             view_definition = view.VIEW_DEFINITION
-            
+
             # Create filename in format RDS.[ViewName].sql
             filename = f"RDS.{view_name}.sql"
             filepath = os.path.join(output_dir, filename)
-            
+
             # Write view definition to file
             try:
                 with open(filepath, 'w', encoding='utf-8') as f:
-                    # Write the view definition
-                    # The view definition from INFORMATION_SCHEMA.VIEWS doesn't include CREATE VIEW
-                    # so we need to add it
-                    f.write(f"CREATE OR ALTER VIEW [RDS].[{view_name}] AS\n")
+                    # sys.sql_modules.definition contains the full CREATE VIEW
+                    # statement as originally submitted, so no CREATE prefix
+                    # needs to be added.
                     f.write(view_definition)
                 
                 print(f"✓ Exported: {filename}")
