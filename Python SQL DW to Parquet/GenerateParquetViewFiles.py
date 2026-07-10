@@ -20,7 +20,8 @@ import sys
 import argparse
 from pathlib import Path
 
-DEFAULT_SOURCE = Path(r"C:\Repos\CEDS-Data-Warehouse\src\CEDS-Data-Warehouse-Project\RDS\Tables")
+DEFAULT_SOURCE = Path(
+    r"C:\Repos\CEDS-Data-Warehouse\src\CEDS-Data-Warehouse-Project\RDS\Tables")
 
 # ---------------------------------------------------------------------------
 # Pre-compiled regex patterns (avoid recompiling inside per-table loops)
@@ -37,10 +38,12 @@ _RE_COL = re.compile(
     r"NTEXT|TEXT|VARBINARY|BINARY|IMAGE|XML|ROWVERSION|TIMESTAMP)\]?",
     re.IGNORECASE | re.MULTILINE,
 )
-_RE_PK = re.compile(r"^\s+\[(\w+)\]\s+\w+.*?IDENTITY", re.IGNORECASE | re.MULTILINE)
+_RE_PK = re.compile(r"^\s+\[(\w+)\]\s+\w+.*?IDENTITY",
+                    re.IGNORECASE | re.MULTILINE)
 # DDL filenames don't always match the internal table name (e.g. FactCourseEndorsementRequirements.sql
 # defines [RDS].[FactK12CourseEndorsementRequirements]); always derive the real name from CREATE TABLE.
-_RE_TABLE_NAME = re.compile(r"CREATE\s+TABLE\s+\[RDS\]\.\[(\w+)\]", re.IGNORECASE)
+_RE_TABLE_NAME = re.compile(
+    r"CREATE\s+TABLE\s+\[RDS\]\.\[(\w+)\]", re.IGNORECASE)
 
 # ---------------------------------------------------------------------------
 # Module-level cache for dimension DDL column lookups
@@ -193,7 +196,8 @@ def generate_view_sql(table_name: str, source_dir: Path) -> str:
                 alias = col[:-2]
             else:
                 alias = col
-                print(f"  WARN  FK column '{col}' in {table_name} does not end in 'Id'; using full name as alias", file=sys.stderr)
+                print(
+                    f"  WARN  FK column '{col}' in {table_name} does not end in 'Id'; using full name as alias", file=sys.stderr)
             dim_cols = get_dim_non_pk_columns(target_table, source_dir)
 
             for dc in dim_cols:
@@ -243,17 +247,22 @@ def get_tables_to_generate(source_dir: Path, only_table: str = None) -> list:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate Parquet view SQL files from CEDS DW DDL")
-    parser.add_argument("--source", default=str(DEFAULT_SOURCE), help="Path to RDS Tables DDL directory")
-    parser.add_argument("--output", default=str(DEFAULT_OUTPUT), help="Output directory for view SQL files")
-    parser.add_argument("--table", default=None, help="Generate view for a single table only")
+    parser = argparse.ArgumentParser(
+        description="Generate Parquet view SQL files from CEDS DW DDL")
+    parser.add_argument("--source", default=str(DEFAULT_SOURCE),
+                        help="Path to RDS Tables DDL directory")
+    parser.add_argument("--output", default=str(DEFAULT_OUTPUT),
+                        help="Output directory for view SQL files")
+    parser.add_argument("--table", default=None,
+                        help="Generate view for a single table only")
     args = parser.parse_args()
 
     source_dir = Path(args.source)
     output_dir = Path(args.output)
 
     if not source_dir.exists():
-        print(f"ERROR: Source directory not found: {source_dir}", file=sys.stderr)
+        print(
+            f"ERROR: Source directory not found: {source_dir}", file=sys.stderr)
         sys.exit(1)
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -268,13 +277,15 @@ def main():
     for table_name in tables:
         sql = generate_view_sql(table_name, source_dir)
         if sql is None:
-            errors.append(f"  SKIP  {table_name} (DDL not found or no columns parsed)")
+            errors.append(
+                f"  SKIP  {table_name} (DDL not found or no columns parsed)")
             skipped += 1
             continue
 
         # Recover the internal view name from the generated SQL so the output filename
         # matches the actual view created by SQL Server.
-        m = re.search(r"CREATE\s+OR\s+ALTER\s+VIEW\s+\[RDS\]\.\[(\w+)\]", sql, re.IGNORECASE)
+        m = re.search(
+            r"CREATE\s+OR\s+ALTER\s+VIEW\s+\[RDS\]\.\[(\w+)\]", sql, re.IGNORECASE)
         view_name = m.group(1) if m else f"vw{table_name}Parquet"
         output_file = output_dir / f"RDS.{view_name}.sql"
 

@@ -24,9 +24,10 @@ class DbMetadata(DbTask):
         to SQL files in the sql/data-warehouse-views folder
         """
         # Create output directory if it doesn't exist
-        output_dir = os.path.join(os.path.dirname(__file__), 'sql', 'data-warehouse-views')
+        output_dir = os.path.join(os.path.dirname(
+            __file__), 'sql', 'data-warehouse-views')
         os.makedirs(output_dir, exist_ok=True)
-        
+
         # Query to get views from RDS schema that start with 'vw' and end with 'Parquet'.
         # Use sys.sql_modules.definition (NVARCHAR(MAX)) rather than
         # INFORMATION_SCHEMA.VIEWS.VIEW_DEFINITION (NVARCHAR(4000)) — the latter
@@ -64,16 +65,17 @@ class DbMetadata(DbTask):
                     # statement as originally submitted, so no CREATE prefix
                     # needs to be added.
                     f.write(view_definition)
-                
+
                 print(f"✓ Exported: {filename}")
-                
+
             except Exception as e:
                 print(f"✗ Error exporting {filename}: {str(e)}")
-        
+
         print(f"\nExport completed. Files saved to: {output_dir}")
 
+
 if __name__ == "__main__":
-    meta =  DbMetadata()
+    meta = DbMetadata()
     # meta.executeQuery()
     # meta.getK12ColNames()
     meta.exportRdsParquetViews()

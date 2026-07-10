@@ -23,6 +23,7 @@ import pytest
 # Helpers – import the modules under test without running their main() guards
 # ---------------------------------------------------------------------------
 
+
 def _import_generate():
     """Import GenerateParquetViewFiles without executing main()."""
     spec = importlib.util.spec_from_file_location(
@@ -178,7 +179,8 @@ class TestParseColumns:
     def test_ordering_preserved(self):
         cols = GEN.parse_columns(DIM_LEA_DDL)
         assert cols.index("DimLeaId") < cols.index("LeaOrganizationId")
-        assert cols.index("LeaOrganizationId") < cols.index("LeaOrganizationName")
+        assert cols.index("LeaOrganizationId") < cols.index(
+            "LeaOrganizationName")
 
 
 class TestGetPkColumn:
@@ -246,7 +248,8 @@ class TestGenerateViewSql:
         self._write_source(tmp_path)
         sql = GEN.generate_view_sql("FactK12StudentEnrollments", tmp_path)
         assert sql is not None
-        assert sql.startswith("CREATE OR ALTER VIEW [RDS].[vwFactK12StudentEnrollmentsParquet] AS")
+        assert sql.startswith(
+            "CREATE OR ALTER VIEW [RDS].[vwFactK12StudentEnrollmentsParquet] AS")
 
     def test_from_clause_uses_fact_alias(self, tmp_path):
         self._write_source(tmp_path)

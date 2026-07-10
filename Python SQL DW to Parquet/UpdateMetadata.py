@@ -22,7 +22,8 @@ except ImportError:
     print("ERROR: openpyxl is required. Run: pip install openpyxl", file=sys.stderr)
     sys.exit(1)
 
-METADATA_FILE = Path(__file__).parent.parent / "docs" / "CEDS-Data-Warehouse-Parquet-File-Metadata.xlsx"
+METADATA_FILE = Path(__file__).parent.parent / "docs" / \
+    "CEDS-Data-Warehouse-Parquet-File-Metadata.xlsx"
 VIEWS_DIR = Path(__file__).parent / "sql" / "data-warehouse-views"
 CEDS_VERSION = "14.1.0.0"
 
@@ -42,7 +43,8 @@ def parse_view_columns(view_file: Path) -> list:
         line = line.strip()
         if " AS " in line.upper():
             # e.g. ", Lea.LeaOrganizationName AS Lea_LeaOrganizationName"
-            parts = _re.split(r"\s+AS\s+", line, maxsplit=1, flags=_re.IGNORECASE)
+            parts = _re.split(r"\s+AS\s+", line, maxsplit=1,
+                              flags=_re.IGNORECASE)
             if len(parts) == 2:
                 col_alias = parts[1].strip().rstrip(",")
                 columns.append(col_alias)
@@ -62,7 +64,8 @@ def main():
     wb = openpyxl.load_workbook(METADATA_FILE)
 
     if not VIEWS_DIR.exists():
-        print(f"ERROR: Views directory not found: {VIEWS_DIR}", file=sys.stderr)
+        print(
+            f"ERROR: Views directory not found: {VIEWS_DIR}", file=sys.stderr)
         sys.exit(1)
     ws = wb.active
 
@@ -106,7 +109,8 @@ def main():
 
     # Determine which view files are missing from the spreadsheet
     view_files = get_view_files()
-    missing = [v for v in view_files if v not in existing_views and v.replace("vw", "") not in existing_views]
+    missing = [v for v in view_files if v not in existing_views and v.replace(
+        "vw", "") not in existing_views]
 
     if not missing:
         print("No new views to add to the metadata spreadsheet.")
@@ -117,11 +121,13 @@ def main():
         # from view SQL text — leave those cells blank rather than shifting values
         # into the wrong columns. For an authoritative refresh with real type
         # metadata, run "Generate Parquet File Spreadsheet.sql" against the live DB.
-        total_cols = max(ws.max_column, file_col, colname_col or 0, ordinal_col or 0)
+        total_cols = max(ws.max_column, file_col,
+                         colname_col or 0, ordinal_col or 0)
         for view_name in missing:
             print(f"  + {view_name}")
             view_file = VIEWS_DIR / f"RDS.{view_name}.sql"
-            columns = parse_view_columns(view_file) if view_file.exists() else []
+            columns = parse_view_columns(
+                view_file) if view_file.exists() else []
             for ordinal, col_alias in enumerate(columns, start=1):
                 row = [None] * total_cols
                 row[file_col - 1] = view_name
@@ -144,7 +150,8 @@ def main():
                 continue
             if val in ("13.0.0.0", "v13", "Version 13") or _VERSION_PATTERN.match(val):
                 cell.value = CEDS_VERSION
-                print(f"  Updated version cell {cell.coordinate}: {CEDS_VERSION}")
+                print(
+                    f"  Updated version cell {cell.coordinate}: {CEDS_VERSION}")
     else:
         print("(No 'Version' column found in header — skipping version-bump pass.)")
 
