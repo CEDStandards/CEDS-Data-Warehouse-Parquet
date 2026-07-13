@@ -1,20 +1,42 @@
--- View: RDS.vwBridgeK12StaffCompensationRacesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwBridgeK12StaffCompensationRacesParquet] AS
-CREATE   VIEW RDS.vwBridgeK12StaffCompensationRacesParquet AS SELECT fact.BridgeK12StaffCompensationRace
-	, FactK12StaffCompensation.RecordStartDateTime AS FactK12StaffCompensation_RecordStartDateTime
-	, FactK12StaffCompensation.RecordEndDateTime AS FactK12StaffCompensation_RecordEndDateTime
-	, FactK12StaffCompensation.StaffCompensation AS FactK12StaffCompensation_StaffCompensation
-	, FactK12StaffCompensation.StaffCompensationDescription AS FactK12StaffCompensation_StaffCompensationDescription
-	, FactK12StaffCompensation.FundingSourceAmount AS FactK12StaffCompensation_FundingSourceAmount
-	, FactK12StaffCompensation.FundingSourcePercentage AS FactK12StaffCompensation_FundingSourcePercentage
-	, FactK12StaffCompensation.FullTimeEquivalency AS FactK12StaffCompensation_FullTimeEquivalency
-	, Race.RaceCode AS Race_RaceCode
-	, Race.RaceDescription AS Race_RaceDescription
-	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
-FROM RDS.BridgeK12StaffCompensationRaces fact
-JOIN RDS.FactK12StaffCompensations FactK12StaffCompensation
-	ON Fact.FactK12StaffCompensationId = FactK12StaffCompensation.FactK12StaffCompensationId
-JOIN RDS.DimRaces Race
-	ON Fact.RaceId = Race.DimRaceId
+CREATE OR ALTER VIEW [RDS].[vwBridgeK12StaffCompensationRacesParquet] AS
+	SELECT fact.BridgeK12StaffCompensationRace
+	, FactK12StaffCompensation.SchoolYearId AS FactK12StaffCompensation_SchoolYearId
+	, FactK12StaffCompensation.CountDateId AS FactK12StaffCompensation_CountDateId
+	, FactK12StaffCompensation.RecordStartDateTime AS FactK12StaffCompensation_RecordStartDateTime
+	, FactK12StaffCompensation.RecordEndDateTime AS FactK12StaffCompensation_RecordEndDateTime
+	, FactK12StaffCompensation.K12StaffStatusId AS FactK12StaffCompensation_K12StaffStatusId
+	, FactK12StaffCompensation.TeachingCredentialStatusId AS FactK12StaffCompensation_TeachingCredentialStatusId
+	, FactK12StaffCompensation.SeaId AS FactK12StaffCompensation_SeaId
+	, FactK12StaffCompensation.IeuId AS FactK12StaffCompensation_IeuId
+	, FactK12StaffCompensation.LeaId AS FactK12StaffCompensation_LeaId
+	, FactK12StaffCompensation.EmployerId AS FactK12StaffCompensation_EmployerId
+	, FactK12StaffCompensation.K12StaffId AS FactK12StaffCompensation_K12StaffId
+	, FactK12StaffCompensation.K12Staff_CurrentId AS FactK12StaffCompensation_K12Staff_CurrentId
+	, FactK12StaffCompensation.OnetSocOccupationTypeId AS FactK12StaffCompensation_OnetSocOccupationTypeId
+	, FactK12StaffCompensation.StandardOccupationalClassificationId AS FactK12StaffCompensation_StandardOccupationalClassificationId
+	, FactK12StaffCompensation.K12StaffCategoryId AS FactK12StaffCompensation_K12StaffCategoryId
+	, FactK12StaffCompensation.StaffCompensationTypeId AS FactK12StaffCompensation_StaffCompensationTypeId
+	, FactK12StaffCompensation.StaffCompensation AS FactK12StaffCompensation_StaffCompensation
+	, FactK12StaffCompensation.StaffCompensationDescription AS FactK12StaffCompensation_StaffCompensationDescription
+	, FactK12StaffCompensation.FundingSourceAmount AS FactK12StaffCompensation_FundingSourceAmount
+	, FactK12StaffCompensation.FundingSourcePercentage AS FactK12StaffCompensation_FundingSourcePercentage
+	, FactK12StaffCompensation.FundingSourceFinancialAccountId AS FactK12StaffCompensation_FundingSourceFinancialAccountId
+	, FactK12StaffCompensation.K12EmploymentStatusId AS FactK12StaffCompensation_K12EmploymentStatusId
+	, FactK12StaffCompensation.K12JobPositionId AS FactK12StaffCompensation_K12JobPositionId
+	, FactK12StaffCompensation.K12JobId AS FactK12StaffCompensation_K12JobId
+	, FactK12StaffCompensation.LeaJobClassificationId AS FactK12StaffCompensation_LeaJobClassificationId
+	, FactK12StaffCompensation.SeaJobClassificationId AS FactK12StaffCompensation_SeaJobClassificationId
+	, FactK12StaffCompensation.FullTimeEquivalency AS FactK12StaffCompensation_FullTimeEquivalency
+	, FactK12StaffCompensation.EmploymentStartDateId AS FactK12StaffCompensation_EmploymentStartDateId
+	, FactK12StaffCompensation.EmploymentEndDateId AS FactK12StaffCompensation_EmploymentEndDateId
+	, FactK12StaffCompensation.K12DemographicId AS FactK12StaffCompensation_K12DemographicId
+	, FactK12StaffCompensation.DataCollectionId AS FactK12StaffCompensation_DataCollectionId
+	, FactK12StaffCompensation.RecordStatusId AS FactK12StaffCompensation_RecordStatusId
+	, Race.RaceCode AS Race_RaceCode
+	, Race.RaceDescription AS Race_RaceDescription
+	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
+FROM RDS.BridgeK12StaffCompensationRaces fact
+JOIN RDS.FactK12StaffCompensations FactK12StaffCompensation
+	ON fact.FactK12StaffCompensationId = FactK12StaffCompensation.FactK12StaffCompensationId
+JOIN RDS.DimRaces Race
+	ON fact.RaceId = Race.DimRaceId

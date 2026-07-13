@@ -17,7 +17,7 @@ class ExportAll():
 
     def getOneTableFromSqlStatement(self, sql, tableName):
         dbTask = DbTask()
-        dbTask.sqlStatement = sql;
+        dbTask.sqlStatement = sql
         dbTask.saveParquet(tableName + '.parquet')
 
     def exportTablesWithoutParquetViews(self):
@@ -27,7 +27,7 @@ class ExportAll():
         # Create a DbTask to run the query
         dbTask = DbTask()
         cursor = dbTask.dbConnection.getCursor()
-        
+
         # SQL query to find tables without corresponding Parquet views
         query = """
         select t.TABLE_NAME
@@ -42,35 +42,35 @@ class ExportAll():
             AND t.TABLE_NAME NOT LIKE 'Fact%'
         ORDER BY t.TABLE_NAME
         """
-        
+
         print("Finding RDS tables without corresponding Parquet views...")
         cursor.execute(query)
         tables = cursor.fetchall()
-        
+
         print(f"Found {len(tables)} tables to export:")
-        
+
         # Loop through each table and export it
         for table in tables:
             table_name = table.TABLE_NAME
             print(f"Exporting table: {table_name}")
-            
+
             # Create SQL statement to select all from the table
             sql_statement = f"select * from RDS.{table_name}"
-            
+
             try:
                 # Call getOneTableFromSqlStatement for this table
                 self.getOneTableFromSqlStatement(sql_statement, table_name)
                 print(f"✓ Successfully exported: {table_name}.parquet")
             except Exception as e:
                 print(f"✗ Error exporting {table_name}: {str(e)}")
-        
+
         print(f"\nExport completed. Processed {len(tables)} tables.")
 
 
 if __name__ == "__main__":
     # Export tables that don't have corresponding Parquet views
     ExportAll().exportTablesWithoutParquetViews()
-    
+
     # Export all tables defined in Statements enum
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.DimK12AcademicAwardStatuses', 'DimK12AcademicAwardStatuses')
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwDimChildOutcomeSummaries', 'vwDimChildOutcomeSummaries')
@@ -139,11 +139,10 @@ if __name__ == "__main__":
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactPsStudentEnrollmentsParquet', 'vwFactPsStudentEnrollmentsParquet')
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactSchoolPerformanceIndicatorsParquet', 'vwFactSchoolPerformanceIndicatorsParquet')
     # ExportAll().getOneTableFromSqlStatement('select * from RDS.vwFactSpecialEducationParquet', 'vwFactSpecialEducationParquet')
-    
+
     # k12StudentCounts = ExportFactK12StudentCounts()
     # df = k12StudentCounts.getDataFrame()
     # df.info(verbose=True)
     # print(df['MilitaryConnectedStudentIndicatorCode'])
-    #k12StudentCounts.saveParquet('k12StudentCounts.parquet')
+    # k12StudentCounts.saveParquet('k12StudentCounts.parquet')
     # k12StudentCounts.saveExcel('k12StudentCounts.xlsx')
-

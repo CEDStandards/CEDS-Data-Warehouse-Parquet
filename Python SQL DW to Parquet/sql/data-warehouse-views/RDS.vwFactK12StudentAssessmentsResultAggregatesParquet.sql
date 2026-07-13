@@ -1,65 +1,305 @@
--- View: RDS.vwFactK12StudentAssessmentsResultAggregatesParquet
--- Generated from database export
-
-CREATE VIEW [RDS].[vwFactK12StudentAssessmentsResultAggregatesParquet] AS
-CREATE   VIEW RDS.vwFactK12StudentAssessmentsResultAggregatesParquet AS SELECT fact.FactK12StudentAssessmentsResultAggregateId
-	, SchoolYear.SchoolYear AS SchoolYear_SchoolYear
-	, SchoolYear.SessionBeginDate AS SchoolYear_SessionBeginDate
-	, SchoolYear.SessionEndDate AS SchoolYear_SessionEndDate
-	, Sea.SeaOrganizationName AS Sea_SeaOrganizationName
-	, Sea.SeaOrganizationIdentifierSea AS Sea_SeaOrganizationIdentifierSea
-	, Sea.StateAnsiCode AS Sea_StateAnsiCode
-	, Sea.StateAbbreviationCode AS Sea_StateAbbreviationCode
-	, Sea.StateAbbreviationDescription AS Sea_StateAbbreviationDescription
-	, Sea.MailingAddressCity AS Sea_MailingAddressCity
-	, Sea.MailingAddressPostalCode AS Sea_MailingAddressPostalCode
-	, Sea.MailingAddressStateAbbreviation AS Sea_MailingAddressStateAbbreviation
-	, Sea.MailingAddressStreetNumberAndName AS Sea_MailingAddressStreetNumberAndName
-	, Sea.PhysicalAddressCity AS Sea_PhysicalAddressCity
-	, Sea.PhysicalAddressPostalCode AS Sea_PhysicalAddressPostalCode
-	, Sea.PhysicalAddressStateAbbreviation AS Sea_PhysicalAddressStateAbbreviation
-	, Sea.PhysicalAddressStreetNumberAndName AS Sea_PhysicalAddressStreetNumberAndName
-	, Sea.TelephoneNumber AS Sea_TelephoneNumber
-	, Sea.WebSiteAddress AS Sea_WebSiteAddress
-	, Sea.RecordStartDateTime AS Sea_RecordStartDateTime
-	, Sea.RecordEndDateTime AS Sea_RecordEndDateTime
-	, Sea.MailingAddressApartmentRoomOrSuiteNumber AS Sea_MailingAddressApartmentRoomOrSuiteNumber
-	, Sea.PhysicalAddressApartmentRoomOrSuiteNumber AS Sea_PhysicalAddressApartmentRoomOrSuiteNumber
-	, Sea.MailingAddressCountyAnsiCodeCode AS Sea_MailingAddressCountyAnsiCodeCode
-	, Sea.PhysicalAddressCountyAnsiCodeCode AS Sea_PhysicalAddressCountyAnsiCodeCode
-	, Ieu.IeuOrganizationName AS Ieu_IeuOrganizationName
-	, Ieu.IeuOrganizationIdentifierSea AS Ieu_IeuOrganizationIdentifierSea
-	, Ieu.SeaOrganizationName AS Ieu_SeaOrganizationName
-	, Ieu.SeaOrganizationIdentifierSea AS Ieu_SeaOrganizationIdentifierSea
-	, Ieu.StateAnsiCode AS Ieu_StateAnsiCode
-	, Ieu.StateAbbreviationCode AS Ieu_StateAbbreviationCode
-	, Ieu.StateAbbreviationDescription AS Ieu_StateAbbreviationDescription
-	, Ieu.MailingAddressStreetNumberAndName AS Ieu_MailingAddressStreetNumberAndName
-	, Ieu.MailingAddressApartmentRoomOrSuiteNumber AS Ieu_MailingAddressApartmentRoomOrSuiteNumber
-	, Ieu.MailingAddressCity AS Ieu_MailingAddressCity
-	, Ieu.MailingAddressStateAbbreviation AS Ieu_MailingAddressStateAbbreviation
-	, Ieu.MailingAddressPostalCode AS Ieu_MailingAddressPostalCode
-	, Ieu.MailingAddressCountyAnsiCodeCode AS Ieu_MailingAddressCountyAnsiCodeCode
-	, Ieu.MailingAddressCountyName AS Ieu_MailingAddressCountyName
-	, Ieu.OutOfStateIndicator AS Ieu_OutOfStateIndicator
-	, Ieu.OrganizationOperationalStatus AS Ieu_OrganizationOperationalStatus
-	, Ieu.OperationalStatusEffectiveDate AS Ieu_OperationalStatusEffectiveDate
-	, Ieu.PhysicalAddressStreetNumberAndName AS Ieu_PhysicalAddressStreetNumberAndName
-	, Ieu.PhysicalAddressApartmentRoomOrSuiteNumber AS Ieu_PhysicalAddressApartmentRoomOrSuiteNumber
-	, Ieu.PhysicalAddressCity AS Ieu_PhysicalAddressCity
-	, Ieu.PhysicalAddressPostalCode AS Ieu_PhysicalAddressPostalCode
-	, Ieu.PhysicalAddressStateAbbreviation AS Ieu_PhysicalAddressStateAbbreviation
-	, Ieu.PhysicalAddressCountyAnsiCodeCode AS Ieu_PhysicalAddressCountyAnsiCodeCode
-	, Ieu.PhysicalAddressCountyName AS Ieu_PhysicalAddressCountyName
-	, Ieu.TelephoneNumber AS Ieu_TelephoneNumber
-	, Ieu.WebSiteAddress AS Ieu_WebSiteAddress
-	, Ieu.OrganizationRegionGeoJson AS Ieu_OrganizationRegionGeoJson
-	, Ieu.Latitude AS Ieu_Latitude
-	, Ieu.Longitude AS Ieu_Longitude
-	, Ieu.RecordStartDateTime AS Ieu_RecordStartDateTime
-	, Ieu.RecordEndDateTime AS Ieu_RecordEndDateTime
-	, Lea.IeuOrganizationName AS Lea_IeuOrganizationName
-	, Lea.IeuOrganizationIdentifierSea AS Lea_IeuOrganizationIdentifierSea
-	, Lea.StateAnsiCode AS Lea_StateAnsiCode
-	, Lea.StateAbbreviationCode AS Lea_StateAbbreviationCode
-	, Lea.St
+CREATE OR ALTER VIEW [RDS].[vwFactK12StudentAssessmentsResultAggregatesParquet] AS
+	SELECT fact.FactK12StudentAssessmentsResultAggregateId
+	, SchoolYear.SchoolYear AS SchoolYear_SchoolYear
+	, SchoolYear.SessionBeginDate AS SchoolYear_SessionBeginDate
+	, SchoolYear.SessionEndDate AS SchoolYear_SessionEndDate
+	, Sea.SeaOrganizationName AS Sea_SeaOrganizationName
+	, Sea.SeaOrganizationIdentifierSea AS Sea_SeaOrganizationIdentifierSea
+	, Sea.StateAnsiCode AS Sea_StateAnsiCode
+	, Sea.StateAbbreviationCode AS Sea_StateAbbreviationCode
+	, Sea.StateAbbreviationDescription AS Sea_StateAbbreviationDescription
+	, Sea.MailingAddressCity AS Sea_MailingAddressCity
+	, Sea.MailingAddressPostalCode AS Sea_MailingAddressPostalCode
+	, Sea.MailingAddressStateAbbreviation AS Sea_MailingAddressStateAbbreviation
+	, Sea.MailingAddressStreetNumberAndName AS Sea_MailingAddressStreetNumberAndName
+	, Sea.PhysicalAddressCity AS Sea_PhysicalAddressCity
+	, Sea.PhysicalAddressPostalCode AS Sea_PhysicalAddressPostalCode
+	, Sea.PhysicalAddressStateAbbreviation AS Sea_PhysicalAddressStateAbbreviation
+	, Sea.PhysicalAddressStreetNumberAndName AS Sea_PhysicalAddressStreetNumberAndName
+	, Sea.TelephoneNumber AS Sea_TelephoneNumber
+	, Sea.WebSiteAddress AS Sea_WebSiteAddress
+	, Sea.RecordStartDateTime AS Sea_RecordStartDateTime
+	, Sea.RecordEndDateTime AS Sea_RecordEndDateTime
+	, Sea.MailingAddressApartmentRoomOrSuiteNumber AS Sea_MailingAddressApartmentRoomOrSuiteNumber
+	, Sea.PhysicalAddressApartmentRoomOrSuiteNumber AS Sea_PhysicalAddressApartmentRoomOrSuiteNumber
+	, Sea.MailingAddressCountyAnsiCodeCode AS Sea_MailingAddressCountyAnsiCodeCode
+	, Sea.PhysicalAddressCountyAnsiCodeCode AS Sea_PhysicalAddressCountyAnsiCodeCode
+	, Ieu.IeuOrganizationName AS Ieu_IeuOrganizationName
+	, Ieu.IeuOrganizationIdentifierSea AS Ieu_IeuOrganizationIdentifierSea
+	, Ieu.SeaOrganizationName AS Ieu_SeaOrganizationName
+	, Ieu.SeaOrganizationIdentifierSea AS Ieu_SeaOrganizationIdentifierSea
+	, Ieu.StateAnsiCode AS Ieu_StateAnsiCode
+	, Ieu.StateAbbreviationCode AS Ieu_StateAbbreviationCode
+	, Ieu.StateAbbreviationDescription AS Ieu_StateAbbreviationDescription
+	, Ieu.MailingAddressStreetNumberAndName AS Ieu_MailingAddressStreetNumberAndName
+	, Ieu.MailingAddressApartmentRoomOrSuiteNumber AS Ieu_MailingAddressApartmentRoomOrSuiteNumber
+	, Ieu.MailingAddressCity AS Ieu_MailingAddressCity
+	, Ieu.MailingAddressStateAbbreviation AS Ieu_MailingAddressStateAbbreviation
+	, Ieu.MailingAddressPostalCode AS Ieu_MailingAddressPostalCode
+	, Ieu.MailingAddressCountyAnsiCodeCode AS Ieu_MailingAddressCountyAnsiCodeCode
+	, Ieu.MailingAddressCountyName AS Ieu_MailingAddressCountyName
+	, Ieu.OutOfStateIndicator AS Ieu_OutOfStateIndicator
+	, Ieu.OrganizationOperationalStatus AS Ieu_OrganizationOperationalStatus
+	, Ieu.OperationalStatusEffectiveDate AS Ieu_OperationalStatusEffectiveDate
+	, Ieu.PhysicalAddressStreetNumberAndName AS Ieu_PhysicalAddressStreetNumberAndName
+	, Ieu.PhysicalAddressApartmentRoomOrSuiteNumber AS Ieu_PhysicalAddressApartmentRoomOrSuiteNumber
+	, Ieu.PhysicalAddressCity AS Ieu_PhysicalAddressCity
+	, Ieu.PhysicalAddressPostalCode AS Ieu_PhysicalAddressPostalCode
+	, Ieu.PhysicalAddressStateAbbreviation AS Ieu_PhysicalAddressStateAbbreviation
+	, Ieu.PhysicalAddressCountyAnsiCodeCode AS Ieu_PhysicalAddressCountyAnsiCodeCode
+	, Ieu.PhysicalAddressCountyName AS Ieu_PhysicalAddressCountyName
+	, Ieu.TelephoneNumber AS Ieu_TelephoneNumber
+	, Ieu.WebSiteAddress AS Ieu_WebSiteAddress
+	, Ieu.OrganizationRegionGeoJson AS Ieu_OrganizationRegionGeoJson
+	, Ieu.Latitude AS Ieu_Latitude
+	, Ieu.Longitude AS Ieu_Longitude
+	, Ieu.RecordStartDateTime AS Ieu_RecordStartDateTime
+	, Ieu.RecordEndDateTime AS Ieu_RecordEndDateTime
+	, Lea.IeuOrganizationName AS Lea_IeuOrganizationName
+	, Lea.IeuOrganizationIdentifierSea AS Lea_IeuOrganizationIdentifierSea
+	, Lea.StateAnsiCode AS Lea_StateAnsiCode
+	, Lea.StateAbbreviationCode AS Lea_StateAbbreviationCode
+	, Lea.StateAbbreviationDescription AS Lea_StateAbbreviationDescription
+	, Lea.SeaOrganizationName AS Lea_SeaOrganizationName
+	, Lea.SeaOrganizationIdentifierSea AS Lea_SeaOrganizationIdentifierSea
+	, Lea.LeaOrganizationName AS Lea_LeaOrganizationName
+	, Lea.LeaIdentifierNces AS Lea_LeaIdentifierNces
+	, Lea.LeaIdentifierSea AS Lea_LeaIdentifierSea
+	, Lea.PriorLeaIdentifierSea AS Lea_PriorLeaIdentifierSea
+	, Lea.LeaSupervisoryUnionIdentificationNumber AS Lea_LeaSupervisoryUnionIdentificationNumber
+	, Lea.ReportedFederally AS Lea_ReportedFederally
+	, Lea.LeaTypeCode AS Lea_LeaTypeCode
+	, Lea.LeaTypeDescription AS Lea_LeaTypeDescription
+	, Lea.LeaTypeEdFactsCode AS Lea_LeaTypeEdFactsCode
+	, Lea.MailingAddressStreetNumberAndName AS Lea_MailingAddressStreetNumberAndName
+	, Lea.MailingAddressApartmentRoomOrSuiteNumber AS Lea_MailingAddressApartmentRoomOrSuiteNumber
+	, Lea.MailingAddressCity AS Lea_MailingAddressCity
+	, Lea.MailingAddressPostalCode AS Lea_MailingAddressPostalCode
+	, Lea.MailingAddressStateAbbreviation AS Lea_MailingAddressStateAbbreviation
+	, Lea.MailingAddressCountyAnsiCodeCode AS Lea_MailingAddressCountyAnsiCodeCode
+	, Lea.MailingAddressCountyName AS Lea_MailingAddressCountyName
+	, Lea.PhysicalAddressStreetNumberAndName AS Lea_PhysicalAddressStreetNumberAndName
+	, Lea.PhysicalAddressApartmentRoomOrSuiteNumber AS Lea_PhysicalAddressApartmentRoomOrSuiteNumber
+	, Lea.PhysicalAddressCity AS Lea_PhysicalAddressCity
+	, Lea.PhysicalAddressPostalCode AS Lea_PhysicalAddressPostalCode
+	, Lea.PhysicalAddressStateAbbreviation AS Lea_PhysicalAddressStateAbbreviation
+	, Lea.PhysicalAddressCountyAnsiCodeCode AS Lea_PhysicalAddressCountyAnsiCodeCode
+	, Lea.PhysicalAddressCountyName AS Lea_PhysicalAddressCountyName
+	, Lea.Longitude AS Lea_Longitude
+	, Lea.Latitude AS Lea_Latitude
+	, Lea.TelephoneNumber AS Lea_TelephoneNumber
+	, Lea.WebSiteAddress AS Lea_WebSiteAddress
+	, Lea.OutOfStateIndicator AS Lea_OutOfStateIndicator
+	, Lea.LeaOperationalStatus AS Lea_LeaOperationalStatus
+	, Lea.LeaOperationalStatusEdFactsCode AS Lea_LeaOperationalStatusEdFactsCode
+	, Lea.OperationalStatusEffectiveDate AS Lea_OperationalStatusEffectiveDate
+	, Lea.CharterLeaStatus AS Lea_CharterLeaStatus
+	, Lea.ReconstitutedStatus AS Lea_ReconstitutedStatus
+	, Lea.McKinneyVentoSubgrantRecipient AS Lea_McKinneyVentoSubgrantRecipient
+	, Lea.RecordStartDateTime AS Lea_RecordStartDateTime
+	, Lea.RecordEndDateTime AS Lea_RecordEndDateTime
+	, K12School.LeaOrganizationName AS K12School_LeaOrganizationName
+	, K12School.LeaIdentifierNces AS K12School_LeaIdentifierNces
+	, K12School.LeaIdentifierSea AS K12School_LeaIdentifierSea
+	, K12School.NameOfInstitution AS K12School_NameOfInstitution
+	, K12School.SchoolIdentifierNces AS K12School_SchoolIdentifierNces
+	, K12School.SchoolIdentifierSea AS K12School_SchoolIdentifierSea
+	, K12School.SchoolIdentifierAct AS K12School_SchoolIdentifierAct
+	, K12School.SchoolIdentifierSat AS K12School_SchoolIdentifierSat
+	, K12School.SeaOrganizationName AS K12School_SeaOrganizationName
+	, K12School.SeaOrganizationIdentifierSea AS K12School_SeaOrganizationIdentifierSea
+	, K12School.StateAnsiCode AS K12School_StateAnsiCode
+	, K12School.StateAbbreviationCode AS K12School_StateAbbreviationCode
+	, K12School.StateAbbreviationDescription AS K12School_StateAbbreviationDescription
+	, K12School.PriorLeaIdentifierSea AS K12School_PriorLeaIdentifierSea
+	, K12School.PriorSchoolIdentifierSea AS K12School_PriorSchoolIdentifierSea
+	, K12School.CharterSchoolIndicator AS K12School_CharterSchoolIndicator
+	, K12School.CharterSchoolContractIdNumber AS K12School_CharterSchoolContractIdNumber
+	, K12School.CharterSchoolContractApprovalDate AS K12School_CharterSchoolContractApprovalDate
+	, K12School.CharterSchoolContractRenewalDate AS K12School_CharterSchoolContractRenewalDate
+	, K12School.ReportedFederally AS K12School_ReportedFederally
+	, K12School.LeaTypeCode AS K12School_LeaTypeCode
+	, K12School.LeaTypeDescription AS K12School_LeaTypeDescription
+	, K12School.LeaTypeEdFactsCode AS K12School_LeaTypeEdFactsCode
+	, K12School.SchoolTypeCode AS K12School_SchoolTypeCode
+	, K12School.SchoolTypeDescription AS K12School_SchoolTypeDescription
+	, K12School.SchoolTypeEdFactsCode AS K12School_SchoolTypeEdFactsCode
+	, K12School.MailingAddressCity AS K12School_MailingAddressCity
+	, K12School.MailingAddressPostalCode AS K12School_MailingAddressPostalCode
+	, K12School.MailingAddressStateAbbreviation AS K12School_MailingAddressStateAbbreviation
+	, K12School.MailingAddressStreetNumberAndName AS K12School_MailingAddressStreetNumberAndName
+	, K12School.PhysicalAddressCity AS K12School_PhysicalAddressCity
+	, K12School.PhysicalAddressPostalCode AS K12School_PhysicalAddressPostalCode
+	, K12School.PhysicalAddressStateAbbreviation AS K12School_PhysicalAddressStateAbbreviation
+	, K12School.PhysicalAddressStreetNumberAndName AS K12School_PhysicalAddressStreetNumberAndName
+	, K12School.TelephoneNumber AS K12School_TelephoneNumber
+	, K12School.WebSiteAddress AS K12School_WebSiteAddress
+	, K12School.OutOfStateIndicator AS K12School_OutOfStateIndicator
+	, K12School.RecordStartDateTime AS K12School_RecordStartDateTime
+	, K12School.RecordEndDateTime AS K12School_RecordEndDateTime
+	, K12School.SchoolOperationalStatus AS K12School_SchoolOperationalStatus
+	, K12School.SchoolOperationalStatusEdFactsCode AS K12School_SchoolOperationalStatusEdFactsCode
+	, K12School.CharterSchoolStatus AS K12School_CharterSchoolStatus
+	, K12School.ReconstitutedStatus AS K12School_ReconstitutedStatus
+	, K12School.MailingAddressApartmentRoomOrSuiteNumber AS K12School_MailingAddressApartmentRoomOrSuiteNumber
+	, K12School.PhysicalAddressApartmentRoomOrSuiteNumber AS K12School_PhysicalAddressApartmentRoomOrSuiteNumber
+	, K12School.IeuOrganizationName AS K12School_IeuOrganizationName
+	, K12School.IeuOrganizationIdentifierSea AS K12School_IeuOrganizationIdentifierSea
+	, K12School.MailingAddressCountyAnsiCodeCode AS K12School_MailingAddressCountyAnsiCodeCode
+	, K12School.MailingAddressCountyName AS K12School_MailingAddressCountyName
+	, K12School.PhysicalAddressCountyAnsiCodeCode AS K12School_PhysicalAddressCountyAnsiCodeCode
+	, K12School.PhysicalAddressCountyName AS K12School_PhysicalAddressCountyName
+	, K12School.Longitude AS K12School_Longitude
+	, K12School.Latitude AS K12School_Latitude
+	, K12School.SchoolOperationalStatusEffectiveDate AS K12School_SchoolOperationalStatusEffectiveDate
+	, K12School.AdministrativeFundingControlCode AS K12School_AdministrativeFundingControlCode
+	, K12School.AdministrativeFundingControlDescription AS K12School_AdministrativeFundingControlDescription
+	, AcademicTermDesignator.AcademicTermDesignatorCode AS AcademicTermDesignator_AcademicTermDesignatorCode
+	, AcademicTermDesignator.AcademicTermDesignatorDescription AS AcademicTermDesignator_AcademicTermDesignatorDescription
+	, AssessmentAdministration.AssessmentIdentifier AS AssessmentAdministration_AssessmentIdentifier
+	, AssessmentAdministration.AssessmentIdentificationSystem AS AssessmentAdministration_AssessmentIdentificationSystem
+	, AssessmentAdministration.AssessmentAdministrationCode AS AssessmentAdministration_AssessmentAdministrationCode
+	, AssessmentAdministration.AssessmentAdministrationName AS AssessmentAdministration_AssessmentAdministrationName
+	, AssessmentAdministration.AssessmentAdministrationStartDate AS AssessmentAdministration_AssessmentAdministrationStartDate
+	, AssessmentAdministration.AssessmentAdministrationFinishDate AS AssessmentAdministration_AssessmentAdministrationFinishDate
+	, AssessmentAdministration.AssessmentAdministrationAssessmentFamily AS AssessmentAdministration_AssessmentAdministrationAssessmentFamily
+	, AssessmentAdministration.SchoolIdentifier AS AssessmentAdministration_SchoolIdentifier
+	, AssessmentAdministration.SchoolIdentificationSystem AS AssessmentAdministration_SchoolIdentificationSystem
+	, AssessmentAdministration.LocalEducationAgencyIdentifier AS AssessmentAdministration_LocalEducationAgencyIdentifier
+	, AssessmentAdministration.LeaIdentificationSystem AS AssessmentAdministration_LeaIdentificationSystem
+	, AssessmentAdministration.AssessmentAdministrationOrganizationName AS AssessmentAdministration_AssessmentAdministrationOrganizationName
+	, AssessmentAdministration.AssessmentAdministrationPeriodDescription AS AssessmentAdministration_AssessmentAdministrationPeriodDescription
+	, AssessmentAdministration.AssessmentSecureIndicator AS AssessmentAdministration_AssessmentSecureIndicator
+	, Assessment.AssessmentIdentifierState AS Assessment_AssessmentIdentifierState
+	, Assessment.AssessmentFamilyShortName AS Assessment_AssessmentFamilyShortName
+	, Assessment.AssessmentTitle AS Assessment_AssessmentTitle
+	, Assessment.AssessmentShortName AS Assessment_AssessmentShortName
+	, Assessment.AssessmentTypeCode AS Assessment_AssessmentTypeCode
+	, Assessment.AssessmentTypeDescription AS Assessment_AssessmentTypeDescription
+	, Assessment.AssessmentTypeEdFactsCode AS Assessment_AssessmentTypeEdFactsCode
+	, Assessment.AssessmentAcademicSubjectCode AS Assessment_AssessmentAcademicSubjectCode
+	, Assessment.AssessmentAcademicSubjectDescription AS Assessment_AssessmentAcademicSubjectDescription
+	, Assessment.AssessmentAcademicSubjectEdFactsCode AS Assessment_AssessmentAcademicSubjectEdFactsCode
+	, Assessment.AssessmentTypeAdministeredCode AS Assessment_AssessmentTypeAdministeredCode
+	, Assessment.AssessmentTypeAdministeredDescription AS Assessment_AssessmentTypeAdministeredDescription
+	, Assessment.AssessmentTypeAdministeredEdFactsCode AS Assessment_AssessmentTypeAdministeredEdFactsCode
+	, Assessment.AssessmentTypeAdministeredToEnglishLearnersCode AS Assessment_AssessmentTypeAdministeredToEnglishLearnersCode
+	, Assessment.AssessmentTypeAdministeredToEnglishLearnersDescription AS Assessment_AssessmentTypeAdministeredToEnglishLearnersDescription
+	, Assessment.AssessmentTypeAdministeredToEnglishLearnersEdFactsCode AS Assessment_AssessmentTypeAdministeredToEnglishLearnersEdFactsCode
+	, AssessmentSubtest.AssessmentFormNumber AS AssessmentSubtest_AssessmentFormNumber
+	, AssessmentSubtest.AssessmentAcademicSubjectCode AS AssessmentSubtest_AssessmentAcademicSubjectCode
+	, AssessmentSubtest.AssessmentAcademicSubjectDescription AS AssessmentSubtest_AssessmentAcademicSubjectDescription
+	, AssessmentSubtest.AssessmentSubtestIdentifierInternal AS AssessmentSubtest_AssessmentSubtestIdentifierInternal
+	, AssessmentSubtest.AssessmentSubtestTitle AS AssessmentSubtest_AssessmentSubtestTitle
+	, AssessmentSubtest.AssessmentSubtestAbbreviation AS AssessmentSubtest_AssessmentSubtestAbbreviation
+	, AssessmentSubtest.AssessmentSubtestDescription AS AssessmentSubtest_AssessmentSubtestDescription
+	, AssessmentSubtest.AssessmentSubtestVersion AS AssessmentSubtest_AssessmentSubtestVersion
+	, AssessmentSubtest.AssessmentLevelForWhichDesigned AS AssessmentSubtest_AssessmentLevelForWhichDesigned
+	, AssessmentSubtest.AssessmentEarlyLearningDevelopmentalDomain AS AssessmentSubtest_AssessmentEarlyLearningDevelopmentalDomain
+	, AssessmentSubtest.AssessmentSubtestPublishedDate AS AssessmentSubtest_AssessmentSubtestPublishedDate
+	, AssessmentSubtest.AssessmentSubtestMinimumValue AS AssessmentSubtest_AssessmentSubtestMinimumValue
+	, AssessmentSubtest.AssessmentSubtestMaximumValue AS AssessmentSubtest_AssessmentSubtestMaximumValue
+	, AssessmentSubtest.AssessmentSubtestScaleOptimalValue AS AssessmentSubtest_AssessmentSubtestScaleOptimalValue
+	, AssessmentSubtest.AssessmentContentStandardType AS AssessmentSubtest_AssessmentContentStandardType
+	, AssessmentSubtest.AssessmentPurpose AS AssessmentSubtest_AssessmentPurpose
+	, AssessmentSubtest.AssessmentSubtestRules AS AssessmentSubtest_AssessmentSubtestRules
+	, AssessmentSubtest.AssessmentFormSubtestTier AS AssessmentSubtest_AssessmentFormSubtestTier
+	, AssessmentSubtest.AssessmentFormSubtestContainerOnly AS AssessmentSubtest_AssessmentFormSubtestContainerOnly
+	, CompetencyDefinition.CompetencyDefinitionIdentifier AS CompetencyDefinition_CompetencyDefinitionIdentifier
+	, CompetencyDefinition.CompetencyDefinitionCode AS CompetencyDefinition_CompetencyDefinitionCode
+	, CompetencyDefinition.CompetencyDefinitionShortName AS CompetencyDefinition_CompetencyDefinitionShortName
+	, CompetencyDefinition.CompetencyDefinitionStatement AS CompetencyDefinition_CompetencyDefinitionStatement
+	, CompetencyDefinition.CompetencyDefinitionType AS CompetencyDefinition_CompetencyDefinitionType
+	, CompetencyDefinition.CompetencyDefinitionValidStartDate AS CompetencyDefinition_CompetencyDefinitionValidStartDate
+	, CompetencyDefinition.CompetencyDefinitionValidEndDate AS CompetencyDefinition_CompetencyDefinitionValidEndDate
+	, GradeLevelWhenAssessed.GradeLevelCode AS GradeLevelWhenAssessed_GradeLevelCode
+	, GradeLevelWhenAssessed.GradeLevelDescription AS GradeLevelWhenAssessed_GradeLevelDescription
+	, GradeLevelWhenAssessed.GradeLevelEdFactsCode AS GradeLevelWhenAssessed_GradeLevelEdFactsCode
+	, IdeaStatus.SpecialEducationExitReasonCode AS IdeaStatus_SpecialEducationExitReasonCode
+	, IdeaStatus.SpecialEducationExitReasonDescription AS IdeaStatus_SpecialEducationExitReasonDescription
+	, IdeaStatus.SpecialEducationExitReasonEdFactsCode AS IdeaStatus_SpecialEducationExitReasonEdFactsCode
+	, IdeaStatus.IdeaEducationalEnvironmentForSchoolAgeDescription AS IdeaStatus_IdeaEducationalEnvironmentForSchoolAgeDescription
+	, IdeaStatus.IdeaEducationalEnvironmentForSchoolAgeCode AS IdeaStatus_IdeaEducationalEnvironmentForSchoolAgeCode
+	, IdeaStatus.IdeaEducationalEnvironmentForSchoolAgeEdFactsCode AS IdeaStatus_IdeaEducationalEnvironmentForSchoolAgeEdFactsCode
+	, IdeaStatus.IdeaIndicatorCode AS IdeaStatus_IdeaIndicatorCode
+	, IdeaStatus.IdeaIndicatorDescription AS IdeaStatus_IdeaIndicatorDescription
+	, IdeaStatus.IdeaIndicatorEdFactsCode AS IdeaStatus_IdeaIndicatorEdFactsCode
+	, IdeaStatus.IdeaEducationalEnvironmentForEarlyChildhoodCode AS IdeaStatus_IdeaEducationalEnvironmentForEarlyChildhoodCode
+	, IdeaStatus.IdeaEducationalEnvironmentForEarlyChildhoodDescription AS IdeaStatus_IdeaEducationalEnvironmentForEarlyChildhoodDescription
+	, IdeaStatus.IdeaEducationalEnvironmentForEarlyChildhoodEdFactsCode AS IdeaStatus_IdeaEducationalEnvironmentForEarlyChildhoodEdFactsCode
+	, K12Demographic.SexCode AS K12Demographic_SexCode
+	, K12Demographic.SexDescription AS K12Demographic_SexDescription
+	, K12Demographic.SexEdFactsCode AS K12Demographic_SexEdFactsCode
+	, Race.RaceCode AS Race_RaceCode
+	, Race.RaceDescription AS Race_RaceDescription
+	, Race.RaceEdFactsCode AS Race_RaceEdFactsCode
+	, fact.TotalPerformanceLevel1
+	, fact.TotalPerformanceLevel2
+	, fact.TotalPerformanceLevel3
+	, fact.TotalPerformanceLevel4
+	, fact.TotalPerformanceLevel5
+	, fact.TotalPerformanceLevel6
+	, fact.TotalMetStandard
+	, fact.TotalDidNotMeetStandard
+	, fact.PercentagePerformanceLevel1
+	, fact.PercentagePerformanceLevel2
+	, fact.PercentagePerformanceLevel3
+	, fact.PercentagePerformanceLevel4
+	, fact.PercentagePerformanceLevel5
+	, fact.PercentagePerformanceLevel6
+	, fact.PercentageMetStandard
+	, fact.PercentageDidNotMeetStandard
+	, fact.AverageScaleScorePerformanceLevel1
+	, fact.AverageScaleScorePerformanceLevel2
+	, fact.AverageScaleScorePerformanceLevel3
+	, fact.AverageScaleScorePerformanceLevel4
+	, fact.AverageScaleScorePerformanceLevel5
+	, fact.AverageScaleScorePerformanceLevel6
+	, fact.AverageScaleScoreMetStandard
+	, fact.AverageScaleScoreDidNotMeetStandard
+	, fact.AverageScaleScore
+	, fact.StandardDeviationScaleScorePerformanceLevel1
+	, fact.StandardDeviationScaleScorePerformanceLevel2
+	, fact.StandardDeviationScaleScorePerformanceLevel3
+	, fact.StandardDeviationScaleScorePerformanceLevel4
+	, fact.StandardDeviationScaleScorePerformanceLevel5
+	, fact.StandardDeviationScaleScorePerformanceLevel6
+	, fact.StandardDeviationScaleScoreMetDeviation
+	, fact.StandardDeviationScaleScoreDidNotMeetDeviation
+	, fact.StandardDeviationScaleScore
+	, fact.TotalAssessmentCount
+	, fact.TotalValidAssessmentCount
+	, fact.AssessmentSubtestMinimumValueScaleScore
+	, fact.AssessmentSubtestMaximumValueScaleScore
+	, fact.ScaleScore25thPercentile
+	, fact.ScaleScore50thPercentile
+	, fact.ScaleScore75thPercentile
+FROM RDS.FactK12StudentAssessmentsResultAggregates fact
+JOIN RDS.DimSchoolYears SchoolYear
+	ON fact.SchoolYearId = SchoolYear.DimSchoolYearId
+JOIN RDS.DimSeas Sea
+	ON fact.SeaId = Sea.DimSeaId
+JOIN RDS.DimIeus Ieu
+	ON fact.IeuId = Ieu.DimIeuId
+JOIN RDS.DimLeas Lea
+	ON fact.LeaId = Lea.DimLeaId
+JOIN RDS.DimK12Schools K12School
+	ON fact.K12SchoolId = K12School.DimK12SchoolId
+JOIN RDS.DimAcademicTermDesignators AcademicTermDesignator
+	ON fact.AcademicTermDesignatorId = AcademicTermDesignator.DimAcademicTermDesignatorId
+JOIN RDS.DimAssessmentAdministrations AssessmentAdministration
+	ON fact.AssessmentAdministrationId = AssessmentAdministration.DimAssessmentAdministrationId
+JOIN RDS.DimAssessments Assessment
+	ON fact.AssessmentId = Assessment.DimAssessmentId
+JOIN RDS.DimAssessmentSubtests AssessmentSubtest
+	ON fact.AssessmentSubtestId = AssessmentSubtest.DimAssessmentSubtestId
+JOIN RDS.DimCompetencyDefinitions CompetencyDefinition
+	ON fact.CompetencyDefinitionId = CompetencyDefinition.DimCompetencyDefinitionId
+JOIN RDS.DimGradeLevels GradeLevelWhenAssessed
+	ON fact.GradeLevelWhenAssessedId = GradeLevelWhenAssessed.DimGradeLevelId
+JOIN RDS.DimIdeaStatuses IdeaStatus
+	ON fact.IdeaStatusId = IdeaStatus.DimIdeaStatusId
+JOIN RDS.DimK12Demographics K12Demographic
+	ON fact.K12DemographicId = K12Demographic.DimK12DemographicId
+JOIN RDS.DimRaces Race
+	ON fact.RaceId = Race.DimRaceId
